@@ -216,18 +216,18 @@ tr:hover {
             document.getElementById("update-time").textContent = `Tabela została zaktualizowana o godz. ${formattedTime}`;
         }
 
-        async function getChessStats(displayName, chessComData) {
+        async function getChessStats(displayName, chessComData, useBackup = false) {
             const url = `https://www.chess.com/callback/member/stats/${chessComData.username}`;
-            const proxy = useBackupProxy ? backupProxy : mainProxy;
+            const proxy = useBackup ? backupProxy : mainProxy;
             
             try {
                 const response = await fetch(proxy + encodeURIComponent(url));
     
-                // Jeśli dostaliśmy 429, przełączamy na backup proxy i ponawiamy zapytanie
-                if (response.status === 429 && !useBackupProxy) {
-                    console.warn("Rate limit reached, switching to backup proxy...");
-                    useBackupProxy = true;
-                    return getChessStats(displayName, chessComData);
+                if (response.status === 429) {
+                    console.warn(`Rate limit for ${displayName}, retrying with backup proxy...`);
+                    if (!useBackup) {
+                        return getChessStats(displayName, chessComData, true);
+                    }
                 }
     
                 if (!response.ok) {
@@ -250,15 +250,7 @@ tr:hover {
     
                 return { displayName, tacticsRating, rapidRating, link: chessComData.link };
             } catch (error) {
-                console.error("Błąd pobierania danych:", error.message);
-    
-                // Jeśli backup proxy nie działa, nie ponawiamy zapytania w nieskończoność
-                if (!useBackupProxy) {
-                    console.warn("Switching to backup proxy...");
-                    useBackupProxy = true;
-                    return getChessStats(displayName, chessComData);
-                }
-    
+                console.error(`Błąd pobierania danych dla ${displayName}:`, error.message);
                 return { displayName, tacticsRating: "Błąd", rapidRating: "Błąd", link: chessComData.link };
             }
         }
