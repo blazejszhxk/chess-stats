@@ -206,8 +206,6 @@ tr:hover {
             "demonzz1": { username: "demonzz1", link: "https://twitch.tv/demonzz1" }
         };
     
-        let useBackupProxy = false;  // Flaga do przełączania proxy
-    
         const mainProxy = "https://cors-bypass.biazej.workers.dev/?url=";
         const backupProxy = "https://api.allorigins.win/raw?url=";
     
@@ -217,28 +215,27 @@ tr:hover {
             document.getElementById("update-time").textContent = `Tabela została zaktualizowana o godz. ${formattedTime}`;
         }
     
-        async function getChessStats(displayName, chessComData) {
+        async function getChessStats(displayName, chessComData, useBackup = false) {
             const url = `https://www.chess.com/callback/member/stats/${chessComData.username}`;
-            const proxy = useBackupProxy ? backupProxy : mainProxy;
-    
+            const proxy = useBackup ? backupProxy : mainProxy;
+            
             try {
                 const response = await fetch(proxy + encodeURIComponent(url));
     
-                if (response.status === 429) {
-                    console.warn("Rate limit reached. Switching to backup proxy...");
-                    useBackupProxy = true; // Przełącz proxy dla WSZYSTKICH użytkowników
-                    return getChessStats(displayName, chessComData); // Ponów zapytanie z nowym proxy
+                if (response.status === 429 && !useBackup) {
+                    console.warn(`Rate limit dla ${displayName}, przełączam na backup proxy...`);
+                    return getChessStats(displayName, chessComData, true);
                 }
     
                 if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
+                    throw new Error(`HTTP error ${response.status}`);
                 }
     
                 const jsonData = await response.json();
-    
+                
                 let tacticsRating = "Brak danych";
                 let rapidRating = "Brak danych";
-    
+                
                 jsonData.stats.forEach(stat => {
                     if (stat.key === "tactics") {
                         tacticsRating = stat.stats.rating || "Brak danych";
@@ -250,7 +247,7 @@ tr:hover {
     
                 return { displayName, tacticsRating, rapidRating, link: chessComData.link };
             } catch (error) {
-                console.error(`Błąd pobierania danych dla ${displayName}:`, error.message);
+                console.error(`Błąd dla ${displayName}:`, error.message);
                 return { displayName, tacticsRating: "Błąd", rapidRating: "Błąd", link: chessComData.link };
             }
         }
@@ -258,18 +255,18 @@ tr:hover {
         async function populateTable() {
             const tbody = document.getElementById("stats-body");
             tbody.innerHTML = "";
-    
+            
             const statsArray = await Promise.all(
                 Object.entries(usersMap).map(([displayName, chessComData]) => 
                     getChessStats(displayName, chessComData)
                 )
             );
-    
+            
             statsArray.forEach(({ displayName, tacticsRating, rapidRating, link }) => {
                 const nameCell = link ? `<a href='${link}' target='_blank' style='color: #007bff; font-weight: 300; text-decoration: none;'>${displayName}</a>` : displayName;
                 tbody.innerHTML += `<tr><td>${nameCell}</td><td>${rapidRating}</td><td>${tacticsRating}</td></tr>`;
             });
-    
+            
             updateTimestamp();
         }
     
