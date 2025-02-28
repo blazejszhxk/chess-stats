@@ -188,89 +188,105 @@ tr:hover {
     
     <div class="disclaimer">This website is not associated with Chess.com</div>
 
-    <script>
-        const usersMap = {
-            "Kasix": { username: "kasix909", link: "https://twitch.tv/kasix" },
-            "Delord": { username: "Pablosabre", link: "https://twitch.tv/delordione" },
-            "Nieuczesana": { username: "nieuczeszek", link: "https://twitch.tv/nieuczesana" },
-            "Diables": { username: "xdiables", link: "https://twitch.tv/diables" },
-            "TheNitroZyniak": { username: "nitro69penetrator", link: "https://kick.com/niter" },
-            "Tomasz Fornal": { username: "TomaszFornal", link: "https://www.twitch.tv/tytusc" },
-            "Netrodal": { username: "didaskyler", link: "https://twitch.tv/netrodalo" },
-            "RandomBruceTV": { username: "szachowytapir", link: "https://twitch.tv/randombrucetv" },
-            "Bagietka Michael": { username: "bagietkaofficial", link: "https://twitch.tv/mbagietson" },
-            "MokrySuchar": { username: "mokrysucharek", link: "https://twitch.tv/mokrysuchar" },
-            "Hiszpanitos": { username: "jakubjd", link: "https://twitch.tv/hiszpanitos" },
-            "Overpow": { username: "szachowychogath", link: "https://twitch.tv/overpow" },
-            "Kubon_": { username: "JaKubon000", link: "https://twitch.tv/kubon_" },
-            "demonzz1": { username: "demonzz1", link: "https://twitch.tv/demonzz1" }
-        };
-    
-        const mainProxy = "https://cors-bypass.biazej.workers.dev/?url=";
-        const backupProxy = "https://api.allorigins.win/raw?url=";
-    
-        function updateTimestamp() {
-            const now = new Date();
-            const formattedTime = now.toLocaleTimeString("pl-PL", { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-            document.getElementById("update-time").textContent = `Tabela została zaktualizowana o godz. ${formattedTime}`;
+<script>
+    const usersMap = {
+        "Kasix": { username: "kasix909", link: "https://twitch.tv/kasix" },
+        "Delord": { username: "Pablosabre", link: "https://twitch.tv/delordione" },
+        "Nieuczesana": { username: "nieuczeszek", link: "https://twitch.tv/nieuczesana" },
+        "Diables": { username: "xdiables", link: "https://twitch.tv/diables" },
+        "TheNitroZyniak": { username: "nitro69penetrator", link: "https://kick.com/niter" },
+        "Tomasz Fornal": { username: "TomaszFornal", link: "https://www.twitch.tv/tytusc" },
+        "Netrodal": { username: "didaskyler", link: "https://twitch.tv/netrodalo" },
+        "RandomBruceTV": { username: "szachowytapir", link: "https://twitch.tv/randombrucetv" },
+        "Bagietka Michael": { username: "bagietkaofficial", link: "https://twitch.tv/mbagietson" },
+        "MokrySuchar": { username: "mokrysucharek", link: "https://twitch.tv/mokrysuchar" },
+        "Hiszpanitos": { username: "jakubjd", link: "https://twitch.tv/hiszpanitos" },
+        "Overpow": { username: "szachowychogath", link: "https://twitch.tv/overpow" },
+        "Kubon_": { username: "JaKubon000", link: "https://twitch.tv/kubon_" },
+        "demonzz1": { username: "demonzz1", link: "https://twitch.tv/demonzz1" }
+    };
+
+    const proxies = [
+        "https://cors-bypass.biazej.workers.dev/?url=",
+        "https://api.allorigins.win/raw?url=",
+        "https://thingproxy.freeboard.io/fetch/"
+    ];
+
+    function updateTimestamp() {
+        const now = new Date();
+        const formattedTime = now.toLocaleTimeString("pl-PL", { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        document.getElementById("update-time").textContent = `Tabela została zaktualizowana o godz. ${formattedTime}`;
+    }
+
+    async function fetchWithProxy(url, proxyIndex = 0) {
+        if (proxyIndex >= proxies.length) {
+            throw new Error("Wszystkie proxy zawiodły.");
         }
-    
-        async function getChessStats(displayName, chessComData, useBackup = false) {
-            const url = `https://www.chess.com/callback/member/stats/${chessComData.username}`;
-            const proxy = useBackup ? backupProxy : mainProxy;
-            
-            try {
-                const response = await fetch(proxy + encodeURIComponent(url));
-    
-                if (response.status === 429 && !useBackup) {
-                    console.warn(`Rate limit dla ${displayName}, przełączam na backup proxy...`);
-                    return getChessStats(displayName, chessComData, true);
-                }
-    
-                if (!response.ok) {
-                    throw new Error(`HTTP error ${response.status}`);
-                }
-    
-                const jsonData = await response.json();
-                
-                let tacticsRating = "Brak danych";
-                let rapidRating = "Brak danych";
-                
-                jsonData.stats.forEach(stat => {
-                    if (stat.key === "tactics") {
-                        tacticsRating = stat.stats.rating || "Brak danych";
-                    }
-                    if (stat.key === "rapid") {
-                        rapidRating = stat.stats.rating || "Brak danych";
-                    }
-                });
-    
-                return { displayName, tacticsRating, rapidRating, link: chessComData.link };
-            } catch (error) {
-                console.error(`Błąd dla ${displayName}:`, error.message);
-                return { displayName, tacticsRating: "Błąd", rapidRating: "Błąd", link: chessComData.link };
+
+        const proxyUrl = proxies[proxyIndex] + encodeURIComponent(url);
+        try {
+            const response = await fetch(proxyUrl);
+
+            if (response.status === 429) {
+                console.warn(`Rate limit na proxy ${proxyIndex}, przełączam na kolejne.`);
+                return fetchWithProxy(url, proxyIndex + 1);
             }
+
+            if (!response.ok) {
+                throw new Error(`HTTP error ${response.status}`);
+            }
+
+            return response.json();
+        } catch (error) {
+            console.error(`Błąd proxy ${proxyIndex}: ${error.message}`);
+            return fetchWithProxy(url, proxyIndex + 1);
         }
-    
-        async function populateTable() {
-            const tbody = document.getElementById("stats-body");
-            tbody.innerHTML = "";
-            
-            const statsArray = await Promise.all(
-                Object.entries(usersMap).map(([displayName, chessComData]) => 
-                    getChessStats(displayName, chessComData)
-                )
-            );
-            
-            statsArray.forEach(({ displayName, tacticsRating, rapidRating, link }) => {
-                const nameCell = link ? `<a href='${link}' target='_blank' style='color: #007bff; font-weight: 300; text-decoration: none;'>${displayName}</a>` : displayName;
-                tbody.innerHTML += `<tr><td>${nameCell}</td><td>${rapidRating}</td><td>${tacticsRating}</td></tr>`;
+    }
+
+    async function getChessStats(displayName, chessComData) {
+        const url = `https://www.chess.com/callback/member/stats/${chessComData.username}`;
+        
+        try {
+            const jsonData = await fetchWithProxy(url);
+
+            let tacticsRating = "Brak danych";
+            let rapidRating = "Brak danych";
+
+            jsonData.stats.forEach(stat => {
+                if (stat.key === "tactics") {
+                    tacticsRating = stat.stats.rating || "Brak danych";
+                }
+                if (stat.key === "rapid") {
+                    rapidRating = stat.stats.rating || "Brak danych";
+                }
             });
-            
-            updateTimestamp();
+
+            return { displayName, tacticsRating, rapidRating, link: chessComData.link };
+        } catch (error) {
+            console.error(`Błąd dla ${displayName}: ${error.message}`);
+            return { displayName, tacticsRating: "Błąd", rapidRating: "Błąd", link: chessComData.link };
         }
-    
-        populateTable();
-    </script>
+    }
+
+    async function populateTable() {
+        const tbody = document.getElementById("stats-body");
+        tbody.innerHTML = "";
+
+        const statsArray = await Promise.all(
+            Object.entries(usersMap).map(([displayName, chessComData]) => 
+                getChessStats(displayName, chessComData)
+            )
+        );
+
+        statsArray.forEach(({ displayName, tacticsRating, rapidRating, link }) => {
+            const nameCell = link ? `<a href='${link}' target='_blank' style='color: #007bff; font-weight: 300; text-decoration: none;'>${displayName}</a>` : displayName;
+            tbody.innerHTML += `<tr><td>${nameCell}</td><td>${rapidRating}</td><td>${tacticsRating}</td></tr>`;
+        });
+
+        updateTimestamp();
+    }
+
+    populateTable();
+</script>
 </body>
 </html>
