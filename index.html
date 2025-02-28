@@ -205,11 +205,10 @@ tr:hover {
             "Kubon_": { username: "JaKubon000", link: "https://twitch.tv/kubon_" },
             "demonzz1": { username: "demonzz1", link: "https://twitch.tv/demonzz1" }
         };
-        
+    
         const mainProxy = "https://cors-bypass.biazej.workers.dev/?url=";
         const backupProxy = "https://api.allorigins.win/raw?url=";
-        let useBackupProxy = false;
-
+    
         function updateTimestamp() {
             const now = new Date();
             const formattedTime = now.toLocaleTimeString("pl-PL", { hour: '2-digit', minute: '2-digit', second: '2-digit' });
