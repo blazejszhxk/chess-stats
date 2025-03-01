@@ -98,7 +98,6 @@
             justify-content: center;
             padding: 10px;
             font-weight: 600;
-            background-color: #f4f4f4;
         }
         
         .footer img {
@@ -130,11 +129,18 @@
             text-align: center;
             font-size: 12px;
             color: #777;
-            background-color: #f4f4f4;
         }
-        
+
+    .changes-info {
+        position: absolute;
+        bottom: -20px;
+        right: 0;
+        font-size: 12px;
+        color: #555;
+    }
+
         @media (max-width: 768px) {
-            .made-by, .footer, .disclaimer {
+            .made-by, .footer, .disclaimer, .changes-info {
                 display: none;
             }
         
@@ -178,6 +184,7 @@
             <tbody id="stats-body">
             </tbody>
         </table>
+    <div class="changes-info">Wyniki w () to zmiany rankingu w ostatnie 30 dni.</div>
     </div>
 
     <div class="footer">
@@ -250,17 +257,21 @@
         
                 let tacticsRating = "Brak danych";
                 let rapidRating = "Brak danych";
+                let tacticsChange = null;
+                let rapidChange = null;
                 let lastGame = "Brak danych";
                 let lastDateRapid = null;
                 let lastDateTactics = null;
         
                 jsonData.stats.forEach(stat => {
-                    if (stat.key === "tactics" && stat.lastDate) {
-                        tacticsRating = stat.stats.rating || "Brak danych";
+                    if (stat.key === "tactics" && stat.stats.rating) {
+                        tacticsRating = stat.stats.rating;
+                        tacticsChange = stat.stats.rating_time_change_value ?? null;
                         lastDateTactics = new Date(stat.lastDate).getTime();
                     }
-                    if (stat.key === "rapid" && stat.lastDate) {
-                        rapidRating = stat.stats.rating || "Brak danych";
+                    if (stat.key === "rapid" && stat.stats.rating) {
+                        rapidRating = stat.stats.rating;
+                        rapidChange = stat.stats.rating_time_change_value ?? null;
                         lastDateRapid = new Date(stat.lastDate).getTime();
                     }
                 });
@@ -271,10 +282,33 @@
                     lastGame = date.toLocaleString("pl-PL");
                 }
         
-                return { displayName, tacticsRating, rapidRating, lastGame, link: chessComData.link };
+                function formatRating(rating, change) {
+                    if (rating === "Brak danych") return "Brak danych";
+                    let changeText = "";
+                    if (change !== null) {
+                        let absChange = Math.abs(change);
+                        let color = change > 0 ? "green" : change < 0 ? "red" : "black";
+                        changeText = ` (<span style='color:${color}'>${absChange}</span>)`;
+                    }
+                    return `${rating}${changeText}`;
+                }
+        
+                return { 
+                    displayName, 
+                    tacticsRating: formatRating(tacticsRating, tacticsChange), 
+                    rapidRating: formatRating(rapidRating, rapidChange), 
+                    lastGame, 
+                    link: chessComData.link 
+                };
             } catch (error) {
                 console.error(`Błąd dla ${displayName}: ${error.message}`);
-                return { displayName, tacticsRating: "Błąd", rapidRating: "Błąd", lastGame: "Błąd", link: chessComData.link };
+                return { 
+                    displayName, 
+                    tacticsRating: "Błąd", 
+                    rapidRating: "Błąd", 
+                    lastGame: "Błąd", 
+                    link: chessComData.link 
+                };
             }
         }
         
