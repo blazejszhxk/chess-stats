@@ -172,6 +172,7 @@
                     <th>Nick</th>
                     <th>Rating Rapid</th>
                     <th>Rating Zadania</th>
+                    <th>Last Game (R+Z)</th>
                 </tr>
             </thead>
             <tbody id="stats-body">
@@ -246,44 +247,54 @@
             
             try {
                 const jsonData = await fetchWithProxy(url);
-    
+        
                 let tacticsRating = "Brak danych";
                 let rapidRating = "Brak danych";
-    
+                let lastGame = "Brak danych";
+                let lastDateRapid = null;
+                let lastDateTactics = null;
+        
                 jsonData.stats.forEach(stat => {
-                    if (stat.key === "tactics") {
+                    if (stat.key === "tactics" && stat.lastDate) {
                         tacticsRating = stat.stats.rating || "Brak danych";
+                        lastDateTactics = new Date(stat.lastDate).getTime();
                     }
-                    if (stat.key === "rapid") {
+                    if (stat.key === "rapid" && stat.lastDate) {
                         rapidRating = stat.stats.rating || "Brak danych";
+                        lastDateRapid = new Date(stat.lastDate).getTime();
                     }
                 });
-    
-                return { displayName, tacticsRating, rapidRating, link: chessComData.link };
+        
+                const lastTimestamp = Math.max(lastDateRapid || 0, lastDateTactics || 0);
+                if (lastTimestamp > 0) {
+                    const date = new Date(lastTimestamp);
+                    lastGame = date.toLocaleString("pl-PL");
+                }
+        
+                return { displayName, tacticsRating, rapidRating, lastGame, link: chessComData.link };
             } catch (error) {
                 console.error(`Błąd dla ${displayName}: ${error.message}`);
-                return { displayName, tacticsRating: "Błąd", rapidRating: "Błąd", link: chessComData.link };
+                return { displayName, tacticsRating: "Błąd", rapidRating: "Błąd", lastGame: "Błąd", link: chessComData.link };
             }
         }
-    
+        
         async function populateTable() {
             const tbody = document.getElementById("stats-body");
             tbody.innerHTML = "";
-    
+        
             const statsArray = await Promise.all(
                 Object.entries(usersMap).map(([displayName, chessComData]) => 
                     getChessStats(displayName, chessComData)
                 )
             );
-    
-            statsArray.forEach(({ displayName, tacticsRating, rapidRating, link }) => {
+        
+            statsArray.forEach(({ displayName, tacticsRating, rapidRating, lastGame, link }) => {
                 const nameCell = link ? `<a href='${link}' target='_blank' style='color: #007bff; font-weight: 300; text-decoration: none;'>${displayName}</a>` : displayName;
-                tbody.innerHTML += `<tr><td>${nameCell}</td><td>${rapidRating}</td><td>${tacticsRating}</td></tr>`;
+                tbody.innerHTML += `<tr><td>${nameCell}</td><td>${rapidRating}</td><td>${tacticsRating}</td><td>${lastGame}</td></tr>`;
             });
-    
+        
             updateTimestamp();
         }
-    
         populateTable();
     </script>
 </body>
