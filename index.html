@@ -322,6 +322,18 @@
                 )
             );
         
+            statsArray.sort((a, b) => {
+                const extractRating = (ratingText) => {
+                    if (!ratingText || ratingText.includes("Błąd") || ratingText.includes("Brak danych")) {
+                        return 0;
+                    }
+                    const match = ratingText.match(/\d+/);
+                    return match ? parseInt(match[0], 10) : 0;
+                };
+        
+                return extractRating(b.rapidRating) - extractRating(a.rapidRating);
+            });
+        
             statsArray.forEach(({ displayName, tacticsRating, rapidRating, lastGame, link }) => {
                 const nameCell = link ? `<a href='${link}' target='_blank' style='color: #007bff; font-weight: 300; text-decoration: none;'>${displayName}</a>` : displayName;
                 tbody.innerHTML += `<tr><td>${nameCell}</td><td>${rapidRating}</td><td>${tacticsRating}</td><td>${lastGame}</td></tr>`;
@@ -329,7 +341,7 @@
         
             updateTimestamp();
         }
-        populateTable();
+        populateTable();    
     </script>
 </body>
 </html>
