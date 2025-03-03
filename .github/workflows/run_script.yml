@@ -2,7 +2,7 @@ name: Run script.js daily
 
 on:
   schedule:
-    - cron: "28 0 * * *"  # Uruchamia codziennie o 23:25 UTC (00:25 CET)
+    - cron: "0 0 * * *"  # Uruchamia codziennie o 00:00 UTC (01:00 CET)
   workflow_dispatch:
 
 jobs:
@@ -29,4 +29,4 @@ jobs:
           git commit -m "Add generated chess stats"
           git push origin HEAD:main  # Pushing to the main branch (lub inna gałąź, jeśli to konieczne)
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOK
