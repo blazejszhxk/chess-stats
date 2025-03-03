@@ -32,11 +32,9 @@
         }
         
         .table-container {
-            width: auto;
-            max-width: 90%;
-            margin: 0 auto;
-            overflow-x: auto;
-            padding: 0 5px;
+            width: 60%;
+            max-width: 100%;
+            position: relative;
         }
         
         .update-info {
@@ -66,16 +64,19 @@
         }
         
         table {
-            font-size: 12px;
-            width: auto;
-            max-width: 100%;
             border-collapse: collapse;
+            width: 100%;
+            background-color: white;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            overflow: hidden;
         }
         
         th, td {
-            padding: 5px;
-            white-space: nowrap;
-            border: 1px solid #000;
+            border: 1px solid #ddd;
+            padding: 12px;
+            font-size: 16px;
         }
         
         th {
@@ -148,19 +149,32 @@
         }
 
         @media (max-width: 768px) {
-        .made-by, .footer, .disclaimer, .changes-info {
-            display: none;
+            .made-by, .footer, .disclaimer, .changes-info {
+                display: none;
+            }
+        
+            .table-container {
+                width: 100%;
+                height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                overflow-x: auto;
+                padding: 0 10px;
+            }
+        
+            table {
+                font-size: 12px;
+                width: 95%;
+                max-width: 100%;
+                margin: 0;
+            }
+        
+            th, td {
+                padding: 5px;
+                white-space: nowrap;
+            }
         }
-        .table-container {
-            max-width: 100%;
-        }
-        table {
-            font-size: 10px;
-        }
-        th, td {
-            padding: 3px;
-        }
-    }
     </style>
 </head>
 <body>
@@ -191,20 +205,20 @@
 
     <script>
         const usersMap = {
-            "Kasix": { username: "kasix909", link: "https://imgur.com/a/v9ZS3aR", avatar: "https://static-cdn.jtvnw.net/jtv_user_pictures/882fd15c-f59b-4b81-be59-5bfe0422b89f-profile_image-70x70.png" },
-            "Delord": { username: "Pablosabre", link: "https://streamable.com/t1mn1x", avatar: "https://static-cdn.jtvnw.net/jtv_user_pictures/delordione-profile_image-5fe2b843e7ca4937-70x70.jpeg" },
-            "Nieuczesana": { username: "nieuczeszek", link: "https://twitch.tv/nieuczesana", avatar: "https://static-cdn.jtvnw.net/jtv_user_pictures/0930cc90-05d2-420f-b0e8-5a5a3fc80545-profile_image-70x70.png" },
-            "Diables": { username: "xdiables", link: "https://twitch.tv/diables", avatar: "https://static-cdn.jtvnw.net/jtv_user_pictures/21225f7a-c222-4fd9-8c46-1d252955e0e7-profile_image-70x70.png" },
-            "TheNitroZyniak": { username: "nitro69penetrator", link: "https://kick.com/niter", avatar: "https://static-cdn.jtvnw.net/jtv_user_pictures/0b679560-dda2-460f-887f-c54900c65636-profile_image-70x70.jpg" },
-            "Tomasz Fornal": { username: "TomaszFornal", link: "https://www.youtube.com/@FornalTV", avatar: "https://static-cdn.jtvnw.net/jtv_user_pictures/3481720c-d949-4fcf-aedd-848672c24a64-profile_image-70x70.png" },
-            "Netrodal": { username: "didaskyler", link: "https://www.youtube.com/watch?v=sn-uQlqPwcg", avatar: "https://static-cdn.jtvnw.net/jtv_user_pictures/1c2fdf85-e896-497b-8ab8-ebe0a1351d68-profile_image-70x70.png" },
-            "RandomBruceTV": { username: "szachowytapir", link: "https://www.youtube.com/watch?v=OxPrpt9ppb8", avatar: "https://static-cdn.jtvnw.net/jtv_user_pictures/c3d9937a-b69b-4a33-8e22-60c904ac1aa4-profile_image-70x70.png" },
-            "Bagietka Michael": { username: "bagietkaofficial", link: "https://twitch.tv/mbagietson", avatar: "https://static-cdn.jtvnw.net/jtv_user_pictures/11eea0dc-f662-40ae-8cb0-b92afd18ccd4-profile_image-70x70.jpg" },
-            "MokrySpuchar": { username: "mokrysucharek", link: "https://streamable.com/jnkp9t", avatar: "https://static-cdn.jtvnw.net/jtv_user_pictures/mokrysuchar-profile_image-96ef4945afd7488c-70x70.png" },
-            "Hiszpanitos": { username: "jakubjd", link: "https://twitch.tv/hiszpanitos", avatar: "https://static-cdn.jtvnw.net/jtv_user_pictures/71216ee9-2928-4f57-bf44-06c0101a11bd-profile_image-70x70.png" },
-            "Overpow": { username: "szachowychogath", link: "https://twitch.tv/overpow", avatar: "https://cdn.7tv.app/user/01F6W9T9980007WR3JGSXG9MB9/profile-picture/01HRAF9FY000023V9PPCX82E7J/2x.webp" },
-            "Kubon_": { username: "JaKubon000", link: "https://www.youtube.com/shorts/-QLUsEa1-gI", avatar: "https://static-cdn.jtvnw.net/jtv_user_pictures/fa0ffb49-871d-4700-ae2c-67364d564f5d-profile_image-70x70.png" },
-            "demonzz1": { username: "demonzz1", link: "https://twitch.tv/demonzz1", avatar: "https://cdn.7tv.app/user/01F6MV8TS0000BSPXHPYFZXG3Q/profile-picture/01J1CG8MQG000A78Z503AX79DT/2x.webp" }
+            "Kasix": { username: "kasix909", link: "https://imgur.com/a/v9ZS3aR" },
+            "Delord": { username: "Pablosabre", link: "https://streamable.com/t1mn1x" },
+            "Nieuczesana": { username: "nieuczeszek", link: "https://twitch.tv/nieuczesana" },
+            "Diables": { username: "xdiables", link: "https://twitch.tv/diables" },
+            "TheNitroZyniak": { username: "nitro69penetrator", link: "https://kick.com/niter" },
+            "Tomasz Fornal": { username: "TomaszFornal", link: "https://www.youtube.com/@FornalTV" },
+            "Netrodal": { username: "didaskyler", link: "https://twitch.tv/netrodalo" },
+            "RandomBruceTV": { username: "szachowytapir", link: "https://www.youtube.com/watch?v=OxPrpt9ppb8" },
+            "Bagietka Michael": { username: "bagietkaofficial", link: "https://twitch.tv/mbagietson" },
+            "MokrySpuchar": { username: "mokrysucharek", link: "https://streamable.com/jnkp9t" },
+            "Hiszpanitos": { username: "jakubjd", link: "https://twitch.tv/hiszpanitos" },
+            "Overpow": { username: "szachowychogath", link: "https://twitch.tv/overpow" },
+            "Kubon_": { username: "JaKubon000", link: "https://www.youtube.com/shorts/-QLUsEa1-gI" },
+            "demonzz1": { username: "demonzz1", link: "https://twitch.tv/demonzz1" }
         };
     
         const proxies = [
@@ -214,7 +228,7 @@
         function updateTimestamp() {
             const now = new Date();
             const formattedTime = now.toLocaleTimeString("pl-PL", { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-            document.getElementById("update-time").textContent = `Tabela została zaktualizowana o godz. ${formattedTime}`;
+            document.getElementById("update-time").textContent = Tabela została zaktualizowana o godz. ${formattedTime};
         }
 
         let sortDirections = [1, 1];
@@ -251,24 +265,23 @@
                 const response = await fetch(proxyUrl);
     
                 if (response.status === 429) {
-                    console.warn(`Rate limit na proxy ${proxyIndex}, przełączam na kolejne.`);
+                    console.warn(Rate limit na proxy ${proxyIndex}, przełączam na kolejne.);
                     return fetchWithProxy(url, proxyIndex + 1);
                 }
     
                 if (!response.ok) {
-                    throw new Error(`HTTP error ${response.status}`);
+                    throw new Error(HTTP error ${response.status});
                 }
     
                 return response.json();
             } catch (error) {
-                console.error(`Błąd proxy ${proxyIndex}: ${error.message}`);
+                console.error(Błąd proxy ${proxyIndex}: ${error.message});
                 return fetchWithProxy(url, proxyIndex + 1);
             }
         }
     
         async function getChessStats(displayName, chessComData) {
-            const url = `https://www.chess.com/callback/member/stats/${chessComData.username}`;
-            const avatarUrl = chessComData.avatar || "https://www.chess.com/bundles/web/images/noavatar_l.84a92436.gif";
+            const url = https://www.chess.com/callback/member/stats/${chessComData.username};
             
             try {
                 const jsonData = await fetchWithProxy(url);
@@ -297,7 +310,7 @@
                 const lastTimestamp = Math.max(lastDateRapid || 0, lastDateTactics || 0);
                 if (lastTimestamp > 0) {
                     const date = new Date(lastTimestamp).toLocaleString("pl-PL", { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' });
-                    lastGame = lastTimestamp === lastDateTactics ? `${date} (Z)` : `${date} (R)`;
+                    lastGame = lastTimestamp === lastDateTactics ? ${date} (Z) : ${date} (R);
                 }
         
                 function formatRating(rating, change) {
@@ -306,9 +319,9 @@
                     if (change !== null) {
                         let absChange = Math.abs(change);
                         let color = change > 0 ? "green" : change < 0 ? "red" : "black";
-                        changeText = ` (<span style='color:${color}'>${absChange}</span>)`;
+                        changeText =  (<span style='color:${color}'>${absChange}</span>);
                     }
-                    return `${rating}${changeText}`;
+                    return ${rating}${changeText};
                 }
         
                 return { 
@@ -316,18 +329,16 @@
                     tacticsRating: formatRating(tacticsRating, tacticsChange), 
                     rapidRating: formatRating(rapidRating, rapidChange), 
                     lastGame, 
-                    link: chessComData.link,
-                    avatar: avatarUrl
+                    link: chessComData.link 
                 };
             } catch (error) {
-                console.error(`Błąd dla ${displayName}: ${error.message}`);
+                console.error(Błąd dla ${displayName}: ${error.message});
                 return { 
                     displayName, 
                     tacticsRating: "Błąd", 
                     rapidRating: "Błąd", 
                     lastGame: "Błąd", 
-                    link: chessComData.link,
-                    avatar: avatarUrl
+                    link: chessComData.link 
                 };
             }
         }
@@ -354,15 +365,9 @@
                 return extractRating(b.rapidRating) - extractRating(a.rapidRating);
             });
         
-            statsArray.forEach(({ displayName, tacticsRating, rapidRating, lastGame, link, avatar }) => {
-                const avatarImg = avatar ? `<img src='${avatar}' alt='${displayName}' style='width: 30px; height: 30px; border-radius: 50%; margin-right: 6px; vertical-align: middle;'>` : "";
-                const nameCell = link ? `<a href='${link}' target='_blank' style='color: #007bff; font-weight: 300; text-decoration: none;'>${displayName}</a>` : displayName;
-                tbody.innerHTML += `<tr>
-                <td style='display: flex; align-items: center; justify-content: center; gap: 2px;'>${avatarImg}${nameCell}</td>
-                <td style='text-align: center;'>${rapidRating}</td>
-                <td style='text-align: center;'>${tacticsRating}</td>
-                <td style='text-align: center;'>${lastGame}</td>
-            </tr>`;
+            statsArray.forEach(({ displayName, tacticsRating, rapidRating, lastGame, link }) => {
+                const nameCell = link ? <a href='${link}' target='_blank' style='color: #007bff; font-weight: 300; text-decoration: none;'>${displayName}</a> : displayName;
+                tbody.innerHTML += <tr><td>${nameCell}</td><td>${rapidRating}</td><td>${tacticsRating}</td><td>${lastGame}</td></tr>;
             });
         
             updateTimestamp();
