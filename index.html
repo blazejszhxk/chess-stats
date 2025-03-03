@@ -149,8 +149,12 @@
             color: #555;
         }
 
+        .green { color: green; }
+        .red { color: red; }
+        .white { color: black; }
+
         @media (max-width: 768px) {
-            .made-by, .footer, .disclaimer, .changes-info {
+            .made-by, .footer, .disclaimer, .changes-info, .info-web {
                 display: none;
             }
             
@@ -174,6 +178,7 @@
 </head>
 <body>
     <div class="made-by">made by <a href="https://twitch.tv/biazej" target="_blank">blazej</a></div>
+        <h1 class="info-web" style="text-align: center; font-size: 24px; font-weight: bold; margin-bottom: 100px; color: #333;">JEST TO JEDYNA AKTUALIZUJĄCA DANE NA BIEŻĄCO STRONA!</h1>
     <div class="table-container">
         <div class="update-info" id="update-time">Aktualizuje tabelę...</div>
         <table>
@@ -182,7 +187,9 @@
         <th>Nick</th>
         <th onclick="sortTable(0)">Rating Rapid <span> ▲</span></th>
         <th onclick="sortTable(1)">Rating Zadania <span> ▲</span></th>
-        <th>Last Game</th>
+        <th onclick="sortTable(2)">Liczba gier Rapid <span> ▲</span></th>
+        <th onclick="sortTable(3)">Liczba gier Zadania <span> ▲</span></th>
+        <th onclick="sortTable(4)">Last Game <span> ▲</span></th>
                 </tr>
             </thead>
             <tbody id="stats-body">
@@ -226,14 +233,20 @@
             document.getElementById("update-time").textContent = `Tabela została zaktualizowana o godz. ${formattedTime}`;
         }
 
-        let sortDirections = [1, 1];
+        let sortDirections = [1, 1, 1, 1, 1];
         function sortTable(colIndex) {
             const tbody = document.getElementById("stats-body");
             let rows = Array.from(tbody.rows);
             
             rows.sort((a, b) => {
-                let aVal = parseInt(a.cells[colIndex + 1].textContent.match(/\d+/) || 0);
-                let bVal = parseInt(b.cells[colIndex + 1].textContent.match(/\d+/) || 0);
+                let aVal, bVal;
+                if (colIndex === 4) { 
+                    aVal = new Date(a.cells[colIndex + 1].textContent.split(" (")[0]) || 0;
+                    bVal = new Date(b.cells[colIndex + 1].textContent.split(" (")[0]) || 0;
+                } else {
+                    aVal = parseInt(a.cells[colIndex + 1].textContent.match(/\d+/) || 0);
+                    bVal = parseInt(b.cells[colIndex + 1].textContent.match(/\d+/) || 0);
+                }
                 return (aVal - bVal) * sortDirections[colIndex];
             });
             
@@ -249,7 +262,6 @@
                 span.textContent = sortDirections[index] === 1 ? " ▲" : " ▼";
             });
         }
-        
         async function fetchWithProxy(url, proxyIndex = 0) {
             if (proxyIndex >= proxies.length) {
                 throw new Error("Wszystkie proxy zawiodły.");
@@ -288,17 +300,21 @@
                 let lastGame = "Brak danych";
                 let lastDateRapid = null;
                 let lastDateTactics = null;
+                let rapidGames = "Brak danych";
+                let tacticsGames = "Brak danych";
         
                 jsonData.stats.forEach(stat => {
                     if (stat.key === "tactics" && stat.stats.rating) {
                         tacticsRating = stat.stats.rating;
                         tacticsChange = stat.stats.rating_time_change_value ?? null;
                         lastDateTactics = new Date(stat.lastDate).getTime();
+                        tacticsGames = `${stat.stats.attempt_count} (<span class='green'>${stat.stats.passed_count}</span>/<span class='red'>${stat.stats.failed_count}</span>)`;
                     }
                     if (stat.key === "rapid" && stat.stats.rating) {
                         rapidRating = stat.stats.rating;
                         rapidChange = stat.stats.rating_time_change_value ?? null;
                         lastDateRapid = new Date(stat.lastDate).getTime();
+                        rapidGames = `${stat.stats.total_game_count} (<span class='green'>${stat.stats.total_win_count}</span>/<span class='red'>${stat.stats.total_loss_count}</span>/<span class='white'>${stat.stats.total_draw_count}</span>)`;
                     }
                 });
         
@@ -323,6 +339,8 @@
                     displayName, 
                     tacticsRating: formatRating(tacticsRating, tacticsChange), 
                     rapidRating: formatRating(rapidRating, rapidChange), 
+                    rapidGames,
+                    tacticsGames,
                     lastGame, 
                     link: chessComData.link 
                 };
@@ -332,12 +350,14 @@
                     displayName, 
                     tacticsRating: "Błąd", 
                     rapidRating: "Błąd", 
+                    rapidGames: "Błąd", 
+                    tacticsGames: "Błąd", 
                     lastGame: "Błąd", 
                     link: chessComData.link 
                 };
             }
         }
-        
+
         async function populateTable() {
             const tbody = document.getElementById("stats-body");
             tbody.innerHTML = "";
@@ -360,9 +380,9 @@
                 return extractRating(b.rapidRating) - extractRating(a.rapidRating);
             });
         
-            statsArray.forEach(({ displayName, tacticsRating, rapidRating, lastGame, link }) => {
+            statsArray.forEach(({ displayName, tacticsRating, rapidRating, rapidGames, tacticsGames, lastGame, link }) => {
                 const nameCell = link ? `<a href='${link}' target='_blank' style='color: #007bff; font-weight: 300; text-decoration: none;'>${displayName}</a>` : displayName;
-                tbody.innerHTML += `<tr><td>${nameCell}</td><td>${rapidRating}</td><td>${tacticsRating}</td><td>${lastGame}</td></tr>`;
+                tbody.innerHTML += `<tr><td>${nameCell}</td><td>${rapidRating}</td><td>${tacticsRating}</td><td>${rapidGames}</td><td>${tacticsGames}</td><td>${lastGame}</td></tr>`;
             });
         
             updateTimestamp();
