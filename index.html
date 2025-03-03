@@ -32,9 +32,11 @@
         }
         
         .table-container {
-            width: 60%;
-            max-width: 100%;
-            position: relative;
+            width: auto;
+            max-width: 90%;
+            margin: 0 auto;
+            overflow-x: auto;
+            padding: 0 5px;
         }
         
         .update-info {
@@ -64,19 +66,16 @@
         }
         
         table {
+            font-size: 12px;
+            width: auto;
+            max-width: 100%;
             border-collapse: collapse;
-            width: 100%;
-            background-color: white;
-            text-align: center;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            border-radius: 12px;
-            overflow: hidden;
         }
         
         th, td {
-            border: 1px solid #ddd;
-            padding: 12px;
-            font-size: 16px;
+            padding: 5px;
+            white-space: nowrap;
+            border: 1px solid #000;
         }
         
         th {
@@ -152,23 +151,16 @@
         .made-by, .footer, .disclaimer, .changes-info {
             display: none;
         }
-            .table-container {
-                width: 100%;
-                overflow-x: auto;
-                padding: 0 5px;
-            }
-            
-            table {
-                font-size: 12px;
-                width: 100%;
-                max-width: 100%;
-            }
-            
-            th, td {
-                padding: 5px;
-                white-space: nowrap;
-            }
+        .table-container {
+            max-width: 100%;
         }
+        table {
+            font-size: 10px;
+        }
+        th, td {
+            padding: 3px;
+        }
+    }
     </style>
 </head>
 <body>
