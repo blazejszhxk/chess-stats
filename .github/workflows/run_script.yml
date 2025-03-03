@@ -1,9 +1,9 @@
-name: Run script.js daily
+name: Run script.js every 5 minutes
 
 on:
   schedule:
-    - cron: "0 * * * *"  # Uruchamia co godzinę (UTC)
-  workflow_dispatch:
+    - cron: "*/5 * * * *"  # Uruchamia co 5 minut (UTC)
+  workflow_dispatch:  # Możliwość ręcznego wywołania workflow
 
 jobs:
   run-script:
