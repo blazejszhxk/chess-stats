@@ -21,8 +21,12 @@ jobs:
       - name: Run script.js
         run: node script.js  # Odpala Twój skrypt
 
-      - name: Upload generated files as artifacts
-        uses: actions/upload-artifact@v4  # Zmieniona wersja na v4
-        with:
-          name: chess-stats-files  # Nazwa artefaktu
-          path: dane/  # Ścieżka do folderu z plikami (tutaj 'dane')
+      - name: Commit and push the generated files
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add dane/  # Dodanie plików z folderu dane
+          git commit -m "Add generated chess stats"
+          git push origin HEAD:main  # Pushing to the main branch (lub inna gałąź, jeśli to konieczne)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
