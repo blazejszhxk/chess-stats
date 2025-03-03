@@ -3,11 +3,11 @@
     {
       "key": "tactics",
       "stats": {
-        "rating": 1581,
+        "rating": 1569,
         "highest_rating": 1727,
         "highest_rating_date": 1741033420,
         "rating_time_change_days": 30,
-        "rating_time_change_value": 1181,
+        "rating_time_change_value": 1169,
         "highest_rating_info": {
           "timestamp": 1741033420,
           "rating": 1727
@@ -16,17 +16,17 @@
           "timestamp": 1739898032,
           "rating": 400
         },
-        "total_seconds": 62022,
+        "total_seconds": 62597,
         "lowest_rating": 400,
         "lowest_rating_date": 1739898032,
-        "attempt_count": 848,
-        "passed_count": 552,
-        "failed_count": 296,
-        "last_date": "2025-03-03T15:40:13-08:00"
+        "attempt_count": 858,
+        "passed_count": 558,
+        "failed_count": 300,
+        "last_date": "2025-03-03T15:51:41-08:00"
       },
-      "gameCount": 848,
+      "gameCount": 858,
       "lastPlayed": true,
-      "lastDate": "2025-03-03T15:40:13-08:00"
+      "lastDate": "2025-03-03T15:51:41-08:00"
     },
     {
       "key": "rapid",
