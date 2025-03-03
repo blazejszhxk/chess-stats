@@ -22,7 +22,7 @@ jobs:
         run: node script.js  # Odpala Twój skrypt
 
       - name: Upload generated files as artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4  # Zmieniona wersja na v4
         with:
           name: chess-stats-files  # Nazwa artefaktu
           path: dane/  # Ścieżka do folderu z plikami (tutaj 'dane')
