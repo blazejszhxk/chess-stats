@@ -211,7 +211,7 @@
             "Diables": { username: "xdiables", link: "https://twitch.tv/diables" },
             "TheNitroZyniak": { username: "nitro69penetrator", link: "https://kick.com/niter" },
             "Tomasz Fornal": { username: "TomaszFornal", link: "https://www.youtube.com/@FornalTV" },
-            "Netrodal": { username: "didaskyler", link: "https://twitch.tv/netrodalo" },
+            "Netrodal": { username: "didaskyler", link: "https://www.youtube.com/watch?v=sn-uQlqPwcg" },
             "RandomBruceTV": { username: "szachowytapir", link: "https://www.youtube.com/watch?v=OxPrpt9ppb8" },
             "Bagietka Michael": { username: "bagietkaofficial", link: "https://twitch.tv/mbagietson" },
             "MokrySpuchar": { username: "mokrysucharek", link: "https://streamable.com/jnkp9t" },
@@ -228,7 +228,7 @@
         function updateTimestamp() {
             const now = new Date();
             const formattedTime = now.toLocaleTimeString("pl-PL", { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-            document.getElementById("update-time").textContent = Tabela została zaktualizowana o godz. ${formattedTime};
+            document.getElementById("update-time").textContent = `Tabela została zaktualizowana o godz. ${formattedTime}`;
         }
 
         let sortDirections = [1, 1];
@@ -265,23 +265,23 @@
                 const response = await fetch(proxyUrl);
     
                 if (response.status === 429) {
-                    console.warn(Rate limit na proxy ${proxyIndex}, przełączam na kolejne.);
+                    console.warn(`Rate limit na proxy ${proxyIndex}, przełączam na kolejne.`);
                     return fetchWithProxy(url, proxyIndex + 1);
                 }
     
                 if (!response.ok) {
-                    throw new Error(HTTP error ${response.status});
+                    throw new Error(`HTTP error ${response.status}`);
                 }
     
                 return response.json();
             } catch (error) {
-                console.error(Błąd proxy ${proxyIndex}: ${error.message});
+                console.error(`Błąd proxy ${proxyIndex}: ${error.message}`);
                 return fetchWithProxy(url, proxyIndex + 1);
             }
         }
     
         async function getChessStats(displayName, chessComData) {
-            const url = https://www.chess.com/callback/member/stats/${chessComData.username};
+            const url = `https://www.chess.com/callback/member/stats/${chessComData.username}`;
             
             try {
                 const jsonData = await fetchWithProxy(url);
@@ -310,7 +310,7 @@
                 const lastTimestamp = Math.max(lastDateRapid || 0, lastDateTactics || 0);
                 if (lastTimestamp > 0) {
                     const date = new Date(lastTimestamp).toLocaleString("pl-PL", { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' });
-                    lastGame = lastTimestamp === lastDateTactics ? ${date} (Z) : ${date} (R);
+                    lastGame = lastTimestamp === lastDateTactics ? `${date} (Z)` : `${date} (R)`;
                 }
         
                 function formatRating(rating, change) {
@@ -319,9 +319,9 @@
                     if (change !== null) {
                         let absChange = Math.abs(change);
                         let color = change > 0 ? "green" : change < 0 ? "red" : "black";
-                        changeText =  (<span style='color:${color}'>${absChange}</span>);
+                        changeText = ` (<span style='color:${color}'>${absChange}</span>)`;
                     }
-                    return ${rating}${changeText};
+                    return `${rating}${changeText}`;
                 }
         
                 return { 
@@ -332,7 +332,7 @@
                     link: chessComData.link 
                 };
             } catch (error) {
-                console.error(Błąd dla ${displayName}: ${error.message});
+                console.error(`Błąd dla ${displayName}: ${error.message}`);
                 return { 
                     displayName, 
                     tacticsRating: "Błąd", 
@@ -366,8 +366,8 @@
             });
         
             statsArray.forEach(({ displayName, tacticsRating, rapidRating, lastGame, link }) => {
-                const nameCell = link ? <a href='${link}' target='_blank' style='color: #007bff; font-weight: 300; text-decoration: none;'>${displayName}</a> : displayName;
-                tbody.innerHTML += <tr><td>${nameCell}</td><td>${rapidRating}</td><td>${tacticsRating}</td><td>${lastGame}</td></tr>;
+                const nameCell = link ? `<a href='${link}' target='_blank' style='color: #007bff; font-weight: 300; text-decoration: none;'>${displayName}</a>` : displayName;
+                tbody.innerHTML += `<tr><td>${nameCell}</td><td>${rapidRating}</td><td>${tacticsRating}</td><td>${lastGame}</td></tr>`;
             });
         
             updateTimestamp();
