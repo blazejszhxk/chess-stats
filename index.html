@@ -150,23 +150,22 @@
         }
 
         @media (max-width: 768px) {
-            .made-by, .footer, .disclaimer, .changes-info {
-                display: none;
+            .table-container {
+                width: 100%;
+                overflow-x: auto;
+                padding: 0 5px;
             }
-        
-        .table-container {
-            width: 95%;
-            overflow-x: auto;
+    
+            table {
+                font-size: 10px;
+                width: 100%;
+            }
+    
+            th, td {
+                padding: 4px;
+                white-space: nowrap;
+            }
         }
-
-        table {
-            font-size: 11px;
-        }
-
-        th, td {
-            padding: 5px;
-        }
-    }
 </style>
 </head>
 <body>
