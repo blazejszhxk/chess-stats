@@ -1,0 +1,22 @@
+name: Run script.js daily
+
+on:
+  schedule:
+    - cron: "0 0 * * *"  # Codziennie o 00:00 UTC
+  workflow_dispatch:  # Pozwala uruchomić ręcznie
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20"  # Możesz zmienić wersję
+
+      - name: Run script.js
+        run: node script.js  # Odpala Twój skrypt
