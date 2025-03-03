@@ -2,8 +2,8 @@ name: Run script.js daily
 
 on:
   schedule:
-    - cron: "0 0 * * *"  # Codziennie o 00:00 UTC
-  workflow_dispatch:  # Pozwala uruchomić ręcznie
+    - cron: "25 23 * * *"  # Uruchamia codziennie o 23:25 UTC (00:25 CET)
+  workflow_dispatch:
 
 jobs:
   run-script:
