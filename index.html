@@ -244,26 +244,19 @@
                 let aVal = a.cells[colIndex + 1].textContent.trim();
                 let bVal = b.cells[colIndex + 1].textContent.trim();
         
-                if (aVal === "Brak danych" || aVal === "Błąd") aVal = -Infinity;
-                else aVal = parseInt(aVal.match(/-?\d+/) || 0);
-        
-                if (bVal === "Brak danych" || bVal === "Błąd") bVal = -Infinity;
-                else bVal = parseInt(bVal.match(/-?\d+/) || 0);
+                // Zamiana wartości tekstowych na liczby lub ustawienie ich jako -Infinity
+                aVal = aVal === "Brak danych" || aVal === "Błąd" ? -Infinity : parseInt(aVal.match(/-?\d+/) || 0);
+                bVal = bVal === "Brak danych" || bVal === "Błąd" ? -Infinity : parseInt(bVal.match(/-?\d+/) || 0);
         
                 return (aVal - bVal) * sortDirections[colIndex];
             });
         
-            // Odwrócenie kierunku sortowania dla następnego kliknięcia
             sortDirections[colIndex] *= -1;
-        
-            // Aktualizacja ikon sortowania
-            updateSortIcons(colIndex);
-        
-            // Aktualizacja tabeli
             tbody.innerHTML = "";
             rows.forEach(row => tbody.appendChild(row));
+            updateSortIcons();
         }
-        
+  
         function updateSortIcons(activeIndex) {
             const headers = document.querySelectorAll("th span");
             headers.forEach((span, index) => {
