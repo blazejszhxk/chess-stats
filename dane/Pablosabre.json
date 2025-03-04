@@ -1,0 +1,193 @@
+{
+  "stats": [
+    {
+      "key": "lightning",
+      "stats": {
+        "rating": 633,
+        "highest_rating": 808,
+        "highest_rating_date": "2021-05-20T03:25:01-07:00",
+        "rating_time_change_days": 30,
+        "rating_time_change_value": 187,
+        "total_game_count": 1612,
+        "total_win_count": 778,
+        "total_loss_count": 757,
+        "total_draw_count": 77,
+        "avg_opponent_rating": 581.573,
+        "highest_opponent_rating": 823,
+        "best_win_opponent": {
+          "country": {
+            "id": 52,
+            "code": "FR",
+            "name": "France",
+            "iso3": "FRA",
+            "currency_code": "EUR",
+            "phone_code": 33
+          },
+          "id": 94327284,
+          "create_date": "2020-10-29T07:44:04-07:00",
+          "username": "GGwesthead",
+          "country_id": 52,
+          "last_login_date": "2024-12-24T06:11:46-08:00",
+          "points": 0,
+          "is_enabled": true,
+          "membership_level": 10
+        },
+        "best_win_opponent_id": 94327284
+      },
+      "gameCount": 1612,
+      "lastPlayed": true,
+      "lastDate": "2025-03-03T14:29:27-08:00"
+    },
+    {
+      "key": "bullet",
+      "stats": {
+        "rating": 706,
+        "highest_rating": 927,
+        "highest_rating_date": "2020-12-21T08:48:54-08:00",
+        "rating_time_change_days": 30,
+        "rating_time_change_value": 19,
+        "total_game_count": 1139,
+        "total_win_count": 535,
+        "total_loss_count": 571,
+        "total_draw_count": 33,
+        "avg_opponent_rating": 784.323,
+        "highest_opponent_rating": 2347,
+        "best_win_opponent": {
+          "country": {
+            "id": 112,
+            "code": "PL",
+            "name": "Poland",
+            "iso3": "POL",
+            "currency_code": "PLN",
+            "phone_code": 48
+          },
+          "id": 24528170,
+          "create_date": "2015-10-11T08:59:14-07:00",
+          "username": "DawidCzerw",
+          "first_name": "Dawid",
+          "last_name": "Czerw",
+          "country_id": 112,
+          "location": "Lublin",
+          "last_login_date": "2025-03-03T00:22:17-08:00",
+          "points": 2582,
+          "is_enabled": true,
+          "chess_title": "IM",
+          "membership_level": 90
+        },
+        "best_win_opponent_id": 24528170
+      },
+      "gameCount": 1139,
+      "lastPlayed": false,
+      "lastDate": "2025-03-02T13:57:53-08:00"
+    },
+    {
+      "key": "tactics",
+      "stats": {
+        "rating": 1700,
+        "highest_rating": 1700,
+        "highest_rating_date": 1740814323,
+        "rating_time_change_days": 30,
+        "rating_time_change_value": 755,
+        "highest_rating_info": {
+          "timestamp": 1740814323,
+          "rating": 1700
+        },
+        "lowest_rating_info": {
+          "timestamp": 1607981644,
+          "rating": 387
+        },
+        "total_seconds": 20453,
+        "lowest_rating": 387,
+        "lowest_rating_date": 1607981644,
+        "attempt_count": 693,
+        "passed_count": 417,
+        "failed_count": 276,
+        "last_date": "2025-02-28T23:32:03-08:00"
+      },
+      "gameCount": 693,
+      "lastPlayed": false,
+      "lastDate": "2025-02-28T23:32:03-08:00"
+    },
+    {
+      "key": "rapid",
+      "stats": {
+        "rating": 665,
+        "highest_rating": 1020,
+        "highest_rating_date": "2021-02-23T13:25:52-08:00",
+        "rating_time_change_days": 30,
+        "rating_time_change_value": -166,
+        "total_game_count": 221,
+        "total_win_count": 104,
+        "total_loss_count": 101,
+        "total_draw_count": 16,
+        "avg_opponent_rating": 916.445,
+        "highest_opponent_rating": 1075,
+        "best_win_opponent": {
+          "country": {
+            "id": 101,
+            "code": "NL",
+            "name": "Netherlands",
+            "iso3": "NLD",
+            "currency_code": "EUR",
+            "phone_code": 31
+          },
+          "id": 96430728,
+          "create_date": "2020-11-12T09:03:37-08:00",
+          "username": "schaaknurd",
+          "first_name": "Max",
+          "last_name": "van Koppen",
+          "country_id": 101,
+          "location": "Haags Montessori Lyceum",
+          "last_login_date": "2025-03-03T07:23:44-08:00",
+          "points": 2,
+          "is_enabled": true,
+          "membership_level": 10
+        },
+        "best_win_opponent_id": 96430728
+      },
+      "gameCount": 221,
+      "lastPlayed": false,
+      "lastDate": "2025-02-21T00:16:05-08:00"
+    },
+    {
+      "key": "chess",
+      "stats": {
+        "rating": 671,
+        "highest_rating": 800,
+        "highest_rating_date": "2020-12-14T02:07:32-08:00",
+        "rating_time_change_days": 365,
+        "rating_time_change_value": 0,
+        "total_game_count": 3,
+        "total_win_count": 0,
+        "total_loss_count": 3,
+        "total_draw_count": 0,
+        "avg_opponent_rating": 0,
+        "timeout_percent": 0,
+        "timeout_days": 90,
+        "total_in_progress_count": 0,
+        "avg_move_time": 427322,
+        "last_date": "2025-02-10T13:38:48-08:00"
+      },
+      "gameCount": 3,
+      "lastPlayed": false,
+      "lastDate": "2025-02-10T13:38:48-08:00"
+    }
+  ],
+  "lastType": "liveBlitz",
+  "versus": {
+    "total": 0
+  },
+  "ratingOnlyStats": [
+    "threecheck",
+    "kingofthehill",
+    "crazyhouse",
+    "bughouse",
+    "liveChess960"
+  ],
+  "officialRating": null,
+  "lessonLevel": {
+    "icon": "pawn-fill",
+    "name": "Learn to Play Chess",
+    "progress": 20
+  }
+}

@@ -1,0 +1,163 @@
+{
+  "stats": [
+    {
+      "key": "tactics",
+      "stats": {
+        "rating": 966,
+        "highest_rating": 1135,
+        "highest_rating_date": 1741075772,
+        "rating_time_change_days": 30,
+        "rating_time_change_value": 578,
+        "highest_rating_info": {
+          "timestamp": 1741075772,
+          "rating": 1135
+        },
+        "lowest_rating_info": {
+          "timestamp": 1705355471,
+          "rating": 358
+        },
+        "total_seconds": 4721,
+        "lowest_rating": 358,
+        "lowest_rating_date": 1705355471,
+        "attempt_count": 395,
+        "passed_count": 227,
+        "failed_count": 168,
+        "last_date": "2025-03-04T07:18:33-08:00"
+      },
+      "gameCount": 395,
+      "lastPlayed": true,
+      "lastDate": "2025-03-04T07:18:33-08:00"
+    },
+    {
+      "key": "rapid",
+      "stats": {
+        "rating": 450,
+        "highest_rating": 552,
+        "highest_rating_date": "2023-02-16T12:59:31-08:00",
+        "rating_time_change_days": 30,
+        "rating_time_change_value": 43,
+        "total_game_count": 380,
+        "total_win_count": 175,
+        "total_loss_count": 189,
+        "total_draw_count": 16,
+        "avg_opponent_rating": 634.029,
+        "highest_opponent_rating": 1952,
+        "best_win_opponent": {
+          "country": {
+            "id": 112,
+            "code": "PL",
+            "name": "Poland",
+            "iso3": "POL",
+            "currency_code": "PLN",
+            "phone_code": 48
+          },
+          "id": 137486306,
+          "create_date": "2021-04-26T15:01:21-07:00",
+          "username": "SmokesT-Dono",
+          "country_id": 112,
+          "last_login_date": "2023-08-16T14:07:26-07:00",
+          "points": 0,
+          "is_enabled": true,
+          "membership_level": 10
+        },
+        "best_win_opponent_id": 137486306
+      },
+      "gameCount": 380,
+      "lastPlayed": false,
+      "lastDate": "2025-03-04T06:50:43-08:00"
+    },
+    {
+      "key": "bullet",
+      "stats": {
+        "rating": 447,
+        "highest_rating": 853,
+        "highest_rating_date": "2023-02-16T12:32:17-08:00",
+        "rating_time_change_days": 30,
+        "rating_time_change_value": -102,
+        "total_game_count": 8,
+        "total_win_count": 3,
+        "total_loss_count": 5,
+        "total_draw_count": 0,
+        "avg_opponent_rating": 1203,
+        "highest_opponent_rating": 1535,
+        "best_win_opponent": {
+          "country": {
+            "id": 112,
+            "code": "PL",
+            "name": "Poland",
+            "iso3": "POL",
+            "currency_code": "PLN",
+            "phone_code": 48
+          },
+          "id": 137486306,
+          "create_date": "2021-04-26T15:01:21-07:00",
+          "username": "SmokesT-Dono",
+          "country_id": 112,
+          "last_login_date": "2023-08-16T14:07:26-07:00",
+          "points": 0,
+          "is_enabled": true,
+          "membership_level": 10
+        },
+        "best_win_opponent_id": 137486306
+      },
+      "gameCount": 8,
+      "lastPlayed": false,
+      "lastDate": "2025-02-28T10:18:45-08:00"
+    },
+    {
+      "key": "lightning",
+      "stats": {
+        "rating": 296,
+        "highest_rating": 556,
+        "highest_rating_date": "2023-02-22T13:19:36-08:00",
+        "rating_time_change_days": 30,
+        "rating_time_change_value": -160,
+        "total_game_count": 26,
+        "total_win_count": 6,
+        "total_loss_count": 19,
+        "total_draw_count": 1,
+        "avg_opponent_rating": 1020.77,
+        "highest_opponent_rating": 559,
+        "best_win_opponent": {
+          "country": {
+            "id": 112,
+            "code": "PL",
+            "name": "Poland",
+            "iso3": "POL",
+            "currency_code": "PLN",
+            "phone_code": 48
+          },
+          "id": 222749517,
+          "create_date": "2023-01-09T13:19:45-08:00",
+          "username": "Dominikoewww",
+          "country_id": 112,
+          "last_login_date": "2025-02-02T08:24:50-08:00",
+          "points": 0,
+          "is_enabled": true,
+          "membership_level": 10
+        },
+        "best_win_opponent_id": 222749517
+      },
+      "gameCount": 26,
+      "lastPlayed": false,
+      "lastDate": "2025-02-28T02:20:29-08:00"
+    }
+  ],
+  "lastType": "tactics",
+  "versus": {
+    "total": 0
+  },
+  "ratingOnlyStats": [
+    "threecheck",
+    "kingofthehill",
+    "crazyhouse",
+    "bughouse",
+    "liveChess960"
+  ],
+  "officialRating": null,
+  "lessonLevel": {
+    "icon": "knight-fill",
+    "name": "From Beginner to Winner",
+    "progress": 22
+  }
+}
