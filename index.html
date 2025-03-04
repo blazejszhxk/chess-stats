@@ -154,7 +154,7 @@
         .white { color: black; }
 
         @media (max-width: 768px) {
-            .made-by, .footer, .disclaimer, .changes-info, .info-web {
+            .made-by, .footer, .disclaimer, .changes-info {
                 display: none;
             }
             
@@ -178,7 +178,6 @@
 </head>
 <body>
     <div class="made-by">made by <a href="https://twitch.tv/biazej" target="_blank">blazej</a></div>
-        <h1 class="info-web" style="text-align: center; font-size: 24px; font-weight: bold; margin-bottom: 100px; color: #333;">JEST TO JEDYNA AKTUALIZUJĄCA DANE NA BIEŻĄCO STRONA!</h1>
     <div class="table-container">
         <div class="update-info" id="update-time">Aktualizuje tabelę...</div>
         <table>
@@ -224,7 +223,7 @@
         };
     
         const proxies = [
-            "https://cors-bypass.biazej.workers.dev/?url="
+            "https://api.allorigins.win/raw?url="
         ];
     
         function updateTimestamp() {
@@ -287,74 +286,49 @@
             }
         }
     
+        async function loadPreviousRatings(username) {
+            try {
+                const response = await fetch(`dane/${username}.json`);
+                if (!response.ok) {
+                    throw new Error("Brak danych");
+                }
+                return await response.json();
+            } catch (error) {
+                console.warn(`Brak pliku dla ${username}:`, error);
+                return null;
+            }
+        }
+
         async function getChessStats(displayName, chessComData) {
             const url = `https://www.chess.com/callback/member/stats/${chessComData.username}`;
+            const previousData = await loadPreviousRatings(chessComData.username);
             
             try {
                 const jsonData = await fetchWithProxy(url);
-        
                 let tacticsRating = "Brak danych";
                 let rapidRating = "Brak danych";
-                let tacticsChange = null;
-                let rapidChange = null;
                 let lastGame = "Brak danych";
-                let lastDateRapid = null;
-                let lastDateTactics = null;
                 let rapidGames = "Brak danych";
                 let tacticsGames = "Brak danych";
-        
+                
                 jsonData.stats.forEach(stat => {
                     if (stat.key === "tactics" && stat.stats.rating) {
-                        tacticsRating = stat.stats.rating;
-                        tacticsChange = stat.stats.rating_time_change_value ?? null;
-                        lastDateTactics = new Date(stat.lastDate).getTime();
-                        tacticsGames = `${stat.stats.attempt_count} (<span class='green'>${stat.stats.passed_count}</span>/<span class='red'>${stat.stats.failed_count}</span>)`;
+                        let previousTactics = previousData?.stats.find(s => s.key === "tactics")?.stats?.rating || stat.stats.rating;
+                        let tacticsChange = stat.stats.rating - previousTactics;
+                        tacticsRating = `${stat.stats.rating} (<span style='color:${tacticsChange > 0 ? "green" : "red"}'>${tacticsChange}</span>)`;
+                        tacticsGames = `${stat.stats.attempt_count}`;
                     }
                     if (stat.key === "rapid" && stat.stats.rating) {
-                        rapidRating = stat.stats.rating;
-                        rapidChange = stat.stats.rating_time_change_value ?? null;
-                        lastDateRapid = new Date(stat.lastDate).getTime();
-                        rapidGames = `${stat.stats.total_game_count} (<span class='green'>${stat.stats.total_win_count}</span>/<span class='red'>${stat.stats.total_loss_count}</span>/<span class='white'>${stat.stats.total_draw_count}</span>)`;
+                        let previousRapid = previousData?.stats.find(s => s.key === "rapid")?.stats?.rating || stat.stats.rating;
+                        let rapidChange = stat.stats.rating - previousRapid;
+                        rapidRating = `${stat.stats.rating} (<span style='color:${rapidChange > 0 ? "green" : "red"}'>${rapidChange}</span>)`;
+                        rapidGames = `${stat.stats.total_game_count}`;
                     }
                 });
-        
-                const lastTimestamp = Math.max(lastDateRapid || 0, lastDateTactics || 0);
-                if (lastTimestamp > 0) {
-                    const date = new Date(lastTimestamp).toLocaleString("pl-PL", { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' });
-                    lastGame = lastTimestamp === lastDateTactics ? `${date} (Z)` : `${date} (R)`;
-                }
-        
-                function formatRating(rating, change) {
-                    if (rating === "Brak danych") return "Brak danych";
-                    let changeText = "";
-                    if (change !== null) {
-                        let absChange = Math.abs(change);
-                        let color = change > 0 ? "green" : change < 0 ? "red" : "black";
-                        changeText = ` (<span style='color:${color}'>${absChange}</span>)`;
-                    }
-                    return `${rating}${changeText}`;
-                }
-        
-                return { 
-                    displayName, 
-                    tacticsRating: formatRating(tacticsRating, tacticsChange), 
-                    rapidRating: formatRating(rapidRating, rapidChange), 
-                    rapidGames,
-                    tacticsGames,
-                    lastGame, 
-                    link: chessComData.link 
-                };
+                return { displayName, tacticsRating, rapidRating, rapidGames, tacticsGames, lastGame, link: chessComData.link };
             } catch (error) {
                 console.error(`Błąd dla ${displayName}: ${error.message}`);
-                return { 
-                    displayName, 
-                    tacticsRating: "Błąd", 
-                    rapidRating: "Błąd", 
-                    rapidGames: "Błąd", 
-                    tacticsGames: "Błąd", 
-                    lastGame: "Błąd", 
-                    link: chessComData.link 
-                };
+                return { displayName, tacticsRating: "Błąd", rapidRating: "Błąd", rapidGames: "Błąd", tacticsGames: "Błąd", lastGame: "Błąd", link: chessComData.link };
             }
         }
 
