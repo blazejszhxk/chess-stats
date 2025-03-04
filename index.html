@@ -249,8 +249,14 @@ function sortTable(colIndex) {
             aVal = new Date(a.cells[actualIndex].textContent.split(" (")[0]) || new Date(0);
             bVal = new Date(b.cells[actualIndex].textContent.split(" (")[0]) || new Date(0);
         } else { // Pozostałe kolumny - liczby
-            aVal = parseInt(a.cells[actualIndex].textContent.match(/-?\d+/g)?.[0]) || 0;
-            bVal = parseInt(b.cells[actualIndex].textContent.match(/-?\d+/g)?.[0]) || 0;
+            let aText = a.cells[actualIndex].textContent.trim();
+            let bText = b.cells[actualIndex].textContent.trim();
+
+            if (aText === "Brak danych" || aText === "Błąd") aVal = -Infinity;
+            else aVal = parseInt(aText.match(/-?\d+/g)?.[0]) || 0;
+
+            if (bText === "Brak danych" || bText === "Błąd") bVal = -Infinity;
+            else bVal = parseInt(bText.match(/-?\d+/g)?.[0]) || 0;
         }
 
         return (aVal - bVal) * sortDirections[colIndex];
