@@ -286,51 +286,88 @@
             }
         }
     
-        async function loadPreviousRatings(username) {
-            try {
-                const response = await fetch(`dane/${username}.json`);
-                if (!response.ok) {
-                    throw new Error("Brak danych");
-                }
-                return await response.json();
-            } catch (error) {
-                console.warn(`Brak pliku dla ${username}:`, error);
-                return null;
+async function fetchLocalData(username) {
+    try {
+        const response = await fetch(`dane/${username}.json`);
+        if (!response.ok) throw new Error("Błąd ładowania pliku JSON");
+        return await response.json();
+    } catch (error) {
+        console.error(`Błąd ładowania lokalnych danych dla ${username}:`, error);
+        return null;
+    }
+}
+
+async function getChessStats(displayName, chessComData) {
+    const url = `https://www.chess.com/callback/member/stats/${chessComData.username}`;
+    const localData = await fetchLocalData(chessComData.username);
+    
+    try {
+        const jsonData = await fetchWithProxy(url);
+
+        let tacticsRating = "Brak danych";
+        let rapidRating = "Brak danych";
+        let lastGame = "Brak danych";
+        let lastDateRapid = null;
+        let lastDateTactics = null;
+        let rapidGames = "Brak danych";
+        let tacticsGames = "Brak danych";
+
+        let prevTacticsRating = localData?.stats.find(s => s.key === "tactics")?.stats?.rating || null;
+        let prevRapidRating = localData?.stats.find(s => s.key === "rapid")?.stats?.rating || null;
+
+        jsonData.stats.forEach(stat => {
+            if (stat.key === "tactics" && stat.stats.rating) {
+                tacticsRating = stat.stats.rating;
+                lastDateTactics = new Date(stat.lastDate).getTime();
+                tacticsGames = `${stat.stats.attempt_count} (<span class='green'>${stat.stats.passed_count}</span>/<span class='red'>${stat.stats.failed_count}</span>)`;
             }
+            if (stat.key === "rapid" && stat.stats.rating) {
+                rapidRating = stat.stats.rating;
+                lastDateRapid = new Date(stat.lastDate).getTime();
+                rapidGames = `${stat.stats.total_game_count} (<span class='green'>${stat.stats.total_win_count}</span>/<span class='red'>${stat.stats.total_loss_count}</span>/<span class='white'>${stat.stats.total_draw_count}</span>)`;
+            }
+        });
+
+        const lastTimestamp = Math.max(lastDateRapid || 0, lastDateTactics || 0);
+        if (lastTimestamp > 0) {
+            const date = new Date(lastTimestamp).toLocaleString("pl-PL", { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            lastGame = lastTimestamp === lastDateTactics ? `${date} (Z)` : `${date} (R)`;
         }
 
-        async function getChessStats(displayName, chessComData) {
-            const url = `https://www.chess.com/callback/member/stats/${chessComData.username}`;
-            const previousData = await loadPreviousRatings(chessComData.username);
-            
-            try {
-                const jsonData = await fetchWithProxy(url);
-                let tacticsRating = "Brak danych";
-                let rapidRating = "Brak danych";
-                let lastGame = "Brak danych";
-                let rapidGames = "Brak danych";
-                let tacticsGames = "Brak danych";
-                
-                jsonData.stats.forEach(stat => {
-                    if (stat.key === "tactics" && stat.stats.rating) {
-                        let previousTactics = previousData?.stats.find(s => s.key === "tactics")?.stats?.rating || stat.stats.rating;
-                        let tacticsChange = stat.stats.rating - previousTactics;
-                        tacticsRating = `${stat.stats.rating} (<span style='color:${tacticsChange > 0 ? "green" : "red"}'>${tacticsChange}</span>)`;
-                        tacticsGames = `${stat.stats.attempt_count}`;
-                    }
-                    if (stat.key === "rapid" && stat.stats.rating) {
-                        let previousRapid = previousData?.stats.find(s => s.key === "rapid")?.stats?.rating || stat.stats.rating;
-                        let rapidChange = stat.stats.rating - previousRapid;
-                        rapidRating = `${stat.stats.rating} (<span style='color:${rapidChange > 0 ? "green" : "red"}'>${rapidChange}</span>)`;
-                        rapidGames = `${stat.stats.total_game_count}`;
-                    }
-                });
-                return { displayName, tacticsRating, rapidRating, rapidGames, tacticsGames, lastGame, link: chessComData.link };
-            } catch (error) {
-                console.error(`Błąd dla ${displayName}: ${error.message}`);
-                return { displayName, tacticsRating: "Błąd", rapidRating: "Błąd", rapidGames: "Błąd", tacticsGames: "Błąd", lastGame: "Błąd", link: chessComData.link };
+        function formatRating(rating, prevRating) {
+            if (rating === "Brak danych") return "Brak danych";
+            let changeText = "";
+            if (prevRating !== null) {
+                let change = rating - prevRating;
+                let absChange = Math.abs(change);
+                let color = change > 0 ? "green" : change < 0 ? "red" : "black";
+                changeText = ` (<span style='color:${color}'>${change > 0 ? "+" : "-"}${absChange}</span>)`;
             }
+            return `${rating}${changeText}`;
         }
+
+        return { 
+            displayName, 
+            tacticsRating: formatRating(tacticsRating, prevTacticsRating), 
+            rapidRating: formatRating(rapidRating, prevRapidRating), 
+            rapidGames,
+            tacticsGames,
+            lastGame, 
+            link: chessComData.link 
+        };
+    } catch (error) {
+        console.error(`Błąd dla ${displayName}: ${error.message}`);
+        return { 
+            displayName, 
+            tacticsRating: "Błąd", 
+            rapidRating: "Błąd", 
+            rapidGames: "Błąd", 
+            tacticsGames: "Błąd", 
+            lastGame: "Błąd", 
+            link: chessComData.link 
+        };
+    }
+}
 
         async function populateTable() {
             const tbody = document.getElementById("stats-body");
