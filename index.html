@@ -243,22 +243,22 @@
             let rows = Array.from(tbody.rows);
         
             rows.sort((a, b) => {
-                let aVal = a.cells[colIndex + 1].textContent.trim();
-                let bVal = b.cells[colIndex + 1].textContent.trim();
+                let aVal = a.cells[colIndex].textContent.trim();
+                let bVal = b.cells[colIndex].textContent.trim();
         
-                // Zamiana wartości na liczby - "Brak danych" traktujemy jako bardzo niską wartość
                 let aNum = aVal.includes("Brak danych") || aVal.includes("Błąd") ? -99999 : parseInt(aVal.match(/-?\d+/) || 0);
                 let bNum = bVal.includes("Brak danych") || bVal.includes("Błąd") ? -99999 : parseInt(bVal.match(/-?\d+/) || 0);
         
                 return (aNum - bNum) * sortDirections[colIndex];
             });
         
-            sortDirections[colIndex] *= -1; // Odwrócenie kierunku sortowania
+            sortDirections[colIndex] *= -1; // Odwracanie kierunku sortowania
             tbody.innerHTML = "";
             rows.forEach(row => tbody.appendChild(row));
+        
             updateSortIcons(colIndex);
         }
-  
+        
         function updateSortIcons(activeIndex) {
             const headers = document.querySelectorAll("th span");
             headers.forEach((span, index) => {
