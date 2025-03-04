@@ -316,35 +316,41 @@ async function getChessStats(displayName, chessComData) {
         let rapidGamesToday = "Brak danych";
         let tacticsGamesToday = "Brak danych";
 
-        // Pobranie danych z lokalnych plików, jeśli istnieją
-        let prevTacticsRating = localData?.stats.find(s => s.key === "tactics")?.stats?.rating || null;
-        let prevRapidRating = localData?.stats.find(s => s.key === "rapid")?.stats?.rating || null;
-        let prevRapidGames = localData?.stats.find(s => s.key === "rapid")?.stats?.total_game_count || 0;
+        // Pobranie poprzednich wartości z lokalnych danych (jeśli istnieją)
         let prevTacticsGames = localData?.stats.find(s => s.key === "tactics")?.stats?.attempt_count || 0;
+        let prevRapidGames = localData?.stats.find(s => s.key === "rapid")?.stats?.total_game_count || 0;
 
-jsonData.stats.forEach(stat => {
-    if (stat.key === "tactics" && stat.stats.rating) {
-        tacticsRating = stat.stats.rating;
-        lastDateTactics = stat.lastDate ? new Date(stat.lastDate).getTime() : null;
-        tacticsGames = `${stat.stats.attempt_count} (<span class='green'>${stat.stats.passed_count}</span>/<span class='red'>${stat.stats.failed_count}</span>)`;
-    }
-    if (stat.key === "rapid" && stat.stats.rating) {
-        rapidRating = stat.stats.rating;
-        lastDateRapid = stat.lastDate ? new Date(stat.lastDate).getTime() : null;
-        rapidGames = `${stat.stats.total_game_count} (<span class='green'>${stat.stats.total_win_count}</span>/<span class='red'>${stat.stats.total_loss_count}</span>/<span class='white'>${stat.stats.total_draw_count}</span>)`;
-    }
-});
+        jsonData.stats.forEach(stat => {
+            if (stat.key === "tactics" && stat.stats.rating) {
+                tacticsRating = stat.stats.rating;
+                lastDateTactics = stat.lastDate ? new Date(stat.lastDate).getTime() : null;
+                tacticsGames = `${stat.stats.attempt_count} (<span class='green'>${stat.stats.passed_count}</span>/<span class='red'>${stat.stats.failed_count}</span>)`;
+                tacticsGamesToday = stat.stats.attempt_count - prevTacticsGames; // Poprawione liczenie gier dzisiaj
+            }
+            if (stat.key === "rapid" && stat.stats.rating) {
+                rapidRating = stat.stats.rating;
+                lastDateRapid = stat.lastDate ? new Date(stat.lastDate).getTime() : null;
+                rapidGames = `${stat.stats.total_game_count} (<span class='green'>${stat.stats.total_win_count}</span>/<span class='red'>${stat.stats.total_loss_count}</span>/<span class='white'>${stat.stats.total_draw_count}</span>)`;
+                rapidGamesToday = stat.stats.total_game_count - prevRapidGames; // Poprawione liczenie gier dzisiaj
+            }
+        });
 
-// Ustalamy ostatnią aktywność (Z - Zagadki, R - Rapid)
-const lastTimestamp = Math.max(lastDateRapid ?? 0, lastDateTactics ?? 0);
-if (lastTimestamp > 0) {
-    const date = new Date(lastTimestamp).toLocaleString("pl-PL", { 
-        day: '2-digit', month: '2-digit', 
-        hour: '2-digit', minute: '2-digit', second: '2-digit' 
-    });
-    lastGame = (lastTimestamp === lastDateTactics) ? `${date} (Z)` : `${date} (R)`;
+        // Ustalamy ostatnią aktywność (Z - Zagadki, R - Rapid)
+        const lastTimestamp = Math.max(lastDateRapid ?? 0, lastDateTactics ?? 0);
+        if (lastTimestamp > 0) {
+            const date = new Date(lastTimestamp).toLocaleString("pl-PL", { 
+                day: '2-digit', month: '2-digit', 
+                hour: '2-digit', minute: '2-digit', second: '2-digit' 
+            });
+            lastGame = (lastTimestamp === lastDateTactics) ? `${date} (Z)` : `${date} (R)`;
+        }
+
+        console.log({ tacticsGamesToday, rapidGamesToday, lastGame }); // Debugging
+    } catch (error) {
+        console.error("Błąd pobierania danych:", error);
+    }
 }
-
+        
         function formatRating(rating, prevRating) {
             if (rating === "Brak danych") return "Brak danych";
             if (prevRating !== null) {
