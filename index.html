@@ -234,50 +234,36 @@
             document.getElementById("update-time").textContent = `Tabela została zaktualizowana o godz. ${formattedTime}`;
         }
 
-let sortDirections = [1, 1, 1, 1, 1, 1, 1]; // Dla 7 kolumn (bez "Nick")
-
-function sortTable(colIndex) {
-    const tbody = document.getElementById("stats-body");
-    let rows = Array.from(tbody.rows);
-
-    rows.sort((a, b) => {
-        let aVal, bVal;
+        let sortDirections = [1, 1, 1, 1, 1, 1, 1];
+        function sortTable(colIndex) {
+            const tbody = document.getElementById("stats-body");
+            let rows = Array.from(tbody.rows);
+            
+            rows.sort((a, b) => {
+                let aVal, bVal;
+                if (colIndex === 7) { 
+                    aVal = new Date(a.cells[colIndex + 1].textContent.split(" (")[0]) || 0;
+                    bVal = new Date(b.cells[colIndex + 1].textContent.split(" (")[0]) || 0;
+                } else {
+                    aVal = parseInt(a.cells[colIndex + 1].textContent.match(/\d+/) || 0);
+                    bVal = parseInt(b.cells[colIndex + 1].textContent.match(/\d+/) || 0);
+                }
+                return (aVal - bVal) * sortDirections[colIndex];
+            });
+            
+            sortDirections[colIndex] *= -1;
+            tbody.innerHTML = "";
+            rows.forEach(row => tbody.appendChild(row));
+            updateSortIcons();
+        }
         
-        // Poprawne indeksowanie kolumn (pomijamy "Nick")
-        let aCell = a.cells[colIndex + 1]; 
-        let bCell = b.cells[colIndex + 1];
-
-        if (!aCell || !bCell) return 0; // Zapobieganie błędom
-
-        if (colIndex === 6) { // Sortowanie dat w kolumnie "Last Game"
-            aVal = new Date(aCell.textContent.split(" (")[0]) || 0;
-            bVal = new Date(bCell.textContent.split(" (")[0]) || 0;
-        } else { // Sortowanie liczb
-            aVal = parseInt(aCell.textContent.match(/\d+/)) || 0;
-            bVal = parseInt(bCell.textContent.match(/\d+/)) || 0;
+        function updateSortIcons() {
+            const headers = document.querySelectorAll("th span");
+            headers.forEach((span, index) => {
+                span.textContent = sortDirections[index] === 1 ? " ▲" : " ▼";
+            });
         }
 
-        return (aVal - bVal) * sortDirections[colIndex];
-    });
-
-    sortDirections[colIndex] *= -1; // Zmiana kierunku sortowania
-    tbody.innerHTML = ""; 
-    rows.forEach(row => tbody.appendChild(row));
-
-    updateSortIcons(colIndex);
-}
-
-function updateSortIcons(activeIndex) {
-    const headers = document.querySelectorAll("th span");
-
-    headers.forEach((span, index) => {
-        if (index === activeIndex) {
-            span.textContent = sortDirections[index] === 1 ? " ▲" : " ▼";
-        } else {
-            span.textContent = " ▲"; // Reset strzałek w innych kolumnach
-        }
-    });
-}
         
         async function fetchWithProxy(url, proxyIndex = 0) {
             if (proxyIndex >= proxies.length) {
