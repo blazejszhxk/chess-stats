@@ -238,19 +238,21 @@
         function sortTable(colIndex) {
             const tbody = document.getElementById("stats-body");
             let rows = Array.from(tbody.rows);
-            
+        
             rows.sort((a, b) => {
                 let aVal, bVal;
+                
                 if (colIndex === 7) { 
-                    aVal = new Date(a.cells[colIndex + 1].textContent.split(" (")[0]) || 0;
-                    bVal = new Date(b.cells[colIndex + 1].textContent.split(" (")[0]) || 0;
+                    aVal = new Date(a.cells[colIndex].textContent.split(" (")[0]) || 0;
+                    bVal = new Date(b.cells[colIndex].textContent.split(" (")[0]) || 0;
                 } else {
-                    aVal = parseInt(a.cells[colIndex + 1].textContent.match(/\d+/) || 0);
-                    bVal = parseInt(b.cells[colIndex + 1].textContent.match(/\d+/) || 0);
+                    aVal = parseInt(a.cells[colIndex].textContent.match(/-?\d+/) || 0);
+                    bVal = parseInt(b.cells[colIndex].textContent.match(/-?\d+/) || 0);
                 }
+        
                 return (aVal - bVal) * sortDirections[colIndex];
             });
-            
+        
             sortDirections[colIndex] *= -1;
             tbody.innerHTML = "";
             rows.forEach(row => tbody.appendChild(row));
