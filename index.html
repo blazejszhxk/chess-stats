@@ -234,50 +234,35 @@
             document.getElementById("update-time").textContent = `Tabela została zaktualizowana o godz. ${formattedTime}`;
         }
 
-let sortDirections = [1, 1, 1, 1, 1, 1, 1]; // 7 kolumn do sortowania
-
-function sortTable(colIndex) {
-    const tbody = document.getElementById("stats-body");
-    let rows = Array.from(tbody.rows);
-    
-    let actualIndex = colIndex + 1; // Ponieważ Nick nie jest sortowany
-    
-    rows.sort((a, b) => {
-        let aVal, bVal;
-
-        if (colIndex === 6) { // Last Game (data)
-            aVal = new Date(a.cells[actualIndex].textContent.split(" (")[0]) || new Date(0);
-            bVal = new Date(b.cells[actualIndex].textContent.split(" (")[0]) || new Date(0);
-        } else { // Pozostałe kolumny - liczby
-            let aText = a.cells[actualIndex].textContent.trim();
-            let bText = b.cells[actualIndex].textContent.trim();
-
-            if (aText === "Brak danych" || aText === "Błąd") aVal = -Infinity;
-            else aVal = parseInt(aText.match(/-?\d+/g)?.[0]) || 0;
-
-            if (bText === "Brak danych" || bText === "Błąd") bVal = -Infinity;
-            else bVal = parseInt(bText.match(/-?\d+/g)?.[0]) || 0;
+        let sortDirections = [1, 1, 1, 1, 1, 1, 1];
+        function sortTable(colIndex) {
+            const tbody = document.getElementById("stats-body");
+            let rows = Array.from(tbody.rows);
+            
+            rows.sort((a, b) => {
+                let aVal, bVal;
+                if (colIndex === 6) { 
+                    aVal = new Date(a.cells[colIndex + 1].textContent.split(" (")[0]) || 0;
+                    bVal = new Date(b.cells[colIndex + 1].textContent.split(" (")[0]) || 0;
+                } else {
+                    aVal = parseInt(a.cells[colIndex + 1].textContent.match(/\d+/) || 0);
+                    bVal = parseInt(b.cells[colIndex + 1].textContent.match(/\d+/) || 0);
+                }
+                return (aVal - bVal) * sortDirections[colIndex];
+            });
+            
+            sortDirections[colIndex] *= -1;
+            tbody.innerHTML = "";
+            rows.forEach(row => tbody.appendChild(row));
+            updateSortIcons();
         }
-
-        return (aVal - bVal) * sortDirections[colIndex];
-    });
-
-    sortDirections[colIndex] *= -1;
-    tbody.innerHTML = "";
-    rows.forEach(row => tbody.appendChild(row));
-    updateSortIcons(colIndex);
-}
-
-function updateSortIcons(activeColIndex) {
-    const headers = document.querySelectorAll("th span");
-    headers.forEach((span, index) => {
-        if (index === activeColIndex) {
-            span.textContent = sortDirections[index] === 1 ? " ▲" : " ▼";
-        } else {
-            span.textContent = " ▲";
+        
+        function updateSortIcons() {
+            const headers = document.querySelectorAll("th span");
+            headers.forEach((span, index) => {
+                span.textContent = sortDirections[index] === 1 ? " ▲" : " ▼";
+            });
         }
-    });
-}
         
         async function fetchWithProxy(url, proxyIndex = 0) {
             if (proxyIndex >= proxies.length) {
