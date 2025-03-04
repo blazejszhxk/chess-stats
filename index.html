@@ -234,35 +234,43 @@
             document.getElementById("update-time").textContent = `Tabela została zaktualizowana o godz. ${formattedTime}`;
         }
 
-        let sortDirections = [1, 1, 1, 1, 1];
-        function sortTable(colIndex) {
-            const tbody = document.getElementById("stats-body");
-            let rows = Array.from(tbody.rows);
-            
-            rows.sort((a, b) => {
-                let aVal, bVal;
-                if (colIndex === 4) { 
-                    aVal = new Date(a.cells[colIndex + 1].textContent.split(" (")[0]) || 0;
-                    bVal = new Date(b.cells[colIndex + 1].textContent.split(" (")[0]) || 0;
-                } else {
-                    aVal = parseInt(a.cells[colIndex + 1].textContent.match(/\d+/) || 0);
-                    bVal = parseInt(b.cells[colIndex + 1].textContent.match(/\d+/) || 0);
-                }
-                return (aVal - bVal) * sortDirections[colIndex];
-            });
-            
-            sortDirections[colIndex] *= -1;
-            tbody.innerHTML = "";
-            rows.forEach(row => tbody.appendChild(row));
-            updateSortIcons();
-        }
-        
-        function updateSortIcons() {
-            const headers = document.querySelectorAll("th span");
-            headers.forEach((span, index) => {
-                span.textContent = sortDirections[index] === 1 ? " ▲" : " ▼";
-            });
-        }
+let sortDirections = [1, 1, 1, 1, 1, 1, 1, 1]; // Dla każdej kolumny
+
+function sortTable(colIndex) {
+    const tbody = document.getElementById("stats-body");
+    let rows = Array.from(tbody.rows);
+
+    rows.sort((a, b) => {
+        let aVal = getCellValue(a.cells[colIndex]);
+        let bVal = getCellValue(b.cells[colIndex]);
+
+        return (aVal - bVal) * sortDirections[colIndex];
+    });
+
+    sortDirections[colIndex] *= -1; // Zmiana kierunku sortowania
+    tbody.innerHTML = "";
+    rows.forEach(row => tbody.appendChild(row));
+
+    updateSortIcons(colIndex);
+}
+
+// Funkcja do pobrania wartości liczbowej z komórki
+function getCellValue(cell) {
+    if (!cell) return 0;
+    let text = cell.textContent.replace(/[^0-9-+]/g, "").trim(); // Usunięcie HTML i zostawienie liczb
+    return text ? parseInt(text, 10) : 0;
+}
+
+// Aktualizacja strzałek sortowania
+function updateSortIcons(colIndex) {
+    const headers = document.querySelectorAll("th span");
+    headers.forEach((span, index) => {
+        span.textContent = index === colIndex
+            ? (sortDirections[index] === 1 ? " ▲" : " ▼")
+            : " ▲"; // Reset ikon przy innych kolumnach
+    });
+}
+
         async function fetchWithProxy(url, proxyIndex = 0) {
             if (proxyIndex >= proxies.length) {
                 throw new Error("Wszystkie proxy zawiodły.");
