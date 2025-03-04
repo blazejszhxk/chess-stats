@@ -234,43 +234,55 @@
             document.getElementById("update-time").textContent = `Tabela została zaktualizowana o godz. ${formattedTime}`;
         }
 
-let sortDirections = [1, 1, 1, 1, 1, 1, 1, 1]; // Dla każdej kolumny
+let sortDirections = {}; 
 
 function sortTable(colIndex) {
     const tbody = document.getElementById("stats-body");
     let rows = Array.from(tbody.rows);
 
-    rows.sort((a, b) => {
-        let aVal = getCellValue(a.cells[colIndex]);
-        let bVal = getCellValue(b.cells[colIndex]);
+    // Zainicjalizowanie kierunku sortowania, jeśli nie istnieje
+    if (!sortDirections[colIndex]) {
+        sortDirections[colIndex] = 1;
+    } else {
+        sortDirections[colIndex] *= -1;
+    }
 
-        return (aVal - bVal) * sortDirections[colIndex];
+    rows.sort((a, b) => {
+        let aVal = a.cells[colIndex].textContent.trim();
+        let bVal = b.cells[colIndex].textContent.trim();
+
+        // Jeśli kolumna zawiera liczby, konwertujemy je do porównania
+        if (!isNaN(parseFloat(aVal)) && !isNaN(parseFloat(bVal))) {
+            return (parseFloat(aVal) - parseFloat(bVal)) * sortDirections[colIndex];
+        }
+
+        // Jeśli sortujemy po dacie
+        if (colIndex === 7) {
+            let dateA = new Date(aVal.split(" (")[0]) || 0;
+            let dateB = new Date(bVal.split(" (")[0]) || 0;
+            return (dateA - dateB) * sortDirections[colIndex];
+        }
+
+        return aVal.localeCompare(bVal) * sortDirections[colIndex];
     });
 
-    sortDirections[colIndex] *= -1; // Zmiana kierunku sortowania
     tbody.innerHTML = "";
     rows.forEach(row => tbody.appendChild(row));
 
     updateSortIcons(colIndex);
 }
 
-// Funkcja do pobrania wartości liczbowej z komórki
-function getCellValue(cell) {
-    if (!cell) return 0;
-    let text = cell.textContent.replace(/[^0-9-+]/g, "").trim(); // Usunięcie HTML i zostawienie liczb
-    return text ? parseInt(text, 10) : 0;
-}
-
-// Aktualizacja strzałek sortowania
 function updateSortIcons(colIndex) {
     const headers = document.querySelectorAll("th span");
     headers.forEach((span, index) => {
-        span.textContent = index === colIndex
-            ? (sortDirections[index] === 1 ? " ▲" : " ▼")
-            : " ▲"; // Reset ikon przy innych kolumnach
+        if (index === colIndex) {
+            span.textContent = sortDirections[colIndex] === 1 ? " ▲" : " ▼";
+        } else {
+            span.textContent = " ▲";
+        }
     });
 }
-
+        
         async function fetchWithProxy(url, proxyIndex = 0) {
             if (proxyIndex >= proxies.length) {
                 throw new Error("Wszystkie proxy zawiodły.");
