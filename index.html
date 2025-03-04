@@ -234,48 +234,39 @@
             document.getElementById("update-time").textContent = `Tabela została zaktualizowana o godz. ${formattedTime}`;
         }
 
-let sortDirections = Array(8).fill(1); // Tablica kierunków sortowania dla każdej kolumny
+let sortDirections = [1, 1, 1, 1, 1, 1, 1, 1]; // Zaktualizowana tablica kierunków sortowania
 
 function sortTable(colIndex) {
     const tbody = document.getElementById("stats-body");
     let rows = Array.from(tbody.rows);
 
     rows.sort((a, b) => {
-        let aVal = a.cells[colIndex + 1].textContent.trim(); // +1 bo pierwsza kolumna to "Nick"
-        let bVal = b.cells[colIndex + 1].textContent.trim();
-
-        // Jeśli kolumna to "Last Game" (data)
+        let aVal, bVal;
+        
+        // "Last Game" (kolumna 7) zawiera datę, więc trzeba ją parsować
         if (colIndex === 7) { 
-            aVal = new Date(aVal.split(" (")[0]) || 0;
-            bVal = new Date(bVal.split(" (")[0]) || 0;
-        } 
-        // Jeśli kolumna zawiera liczby
-        else if (!isNaN(aVal) && !isNaN(bVal)) { 
-            aVal = parseInt(aVal) || 0;
-            bVal = parseInt(bVal) || 0;
-        } 
-        // Sortowanie tekstowe (dla kolumny "Nick" lub innych tekstowych)
-        else {
-            return aVal.localeCompare(bVal) * sortDirections[colIndex];
+            aVal = new Date(a.cells[colIndex + 1].textContent.split(" (")[0]) || 0;
+            bVal = new Date(b.cells[colIndex + 1].textContent.split(" (")[0]) || 0;
+        } else {
+            // Pobranie liczby z tekstu (np. "123" z "123 gier")
+            aVal = parseInt(a.cells[colIndex + 1].textContent.match(/\d+/) || 0);
+            bVal = parseInt(b.cells[colIndex + 1].textContent.match(/\d+/) || 0);
         }
 
         return (aVal - bVal) * sortDirections[colIndex];
     });
 
-    // Odwrócenie kierunku sortowania dla danej kolumny
-    sortDirections[colIndex] *= -1;
-
-    // Wstawienie posortowanych wierszy do tabeli
-    tbody.innerHTML = "";
+    sortDirections[colIndex] *= -1; // Odwrócenie kierunku sortowania
+    tbody.innerHTML = ""; 
     rows.forEach(row => tbody.appendChild(row));
 
-    updateSortIcons(colIndex);
+    updateSortIcons();
 }
 
-function updateSortIcons(colIndex) {
+function updateSortIcons() {
     const headers = document.querySelectorAll("th span");
     headers.forEach((span, index) => {
-        span.textContent = index === colIndex ? (sortDirections[colIndex] === 1 ? " ▲" : " ▼") : " ▲";
+        span.textContent = sortDirections[index] === 1 ? " ▲" : " ▼";
     });
 }
 
