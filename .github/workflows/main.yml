@@ -1,0 +1,42 @@
+name: Run script.js every 5 minutes
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: "*/2 * * * *"  # Uruchamia co 5 minut (UTC)
+  workflow_dispatch:  # Możliwość ręcznego wywołania workflow
+
+permissions:
+  contents: write  # Umożliwia zapisywanie zmian w repozytorium
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "20"
+
+      - name: Run script.js
+        run: node script.js
+
+      - name: Commit and push the generated files
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git add dane/
+          if git diff --staged --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Add generated chess stats"
+            git push origin main
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
