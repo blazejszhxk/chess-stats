@@ -23,13 +23,13 @@ if (!fs.existsSync(dataDir)) {
     fs.mkdirSync(dataDir);
 }
 
-async function fetchChessStats(username, filename) {
+async function fetchChessStats(username) {
     const url = `https://www.chess.com/callback/member/stats/${username}`;
     try {
         const response = await fetch(url);
         if (!response.ok) throw new Error(`HTTP error ${response.status}`);
         const jsonData = await response.json();
-        const filePath = path.join(dataDir, `${filename}.json`);
+        const filePath = path.join(dataDir, `${username}.json`);
         fs.writeFileSync(filePath, JSON.stringify(jsonData, null, 2));
         console.log(`Dane zapisane w pliku ${filePath}`);
     } catch (error) {
@@ -38,8 +38,8 @@ async function fetchChessStats(username, filename) {
 }
 
 async function fetchAllStats() {
-    for (const [displayName, userData] of Object.entries(usersMap)) {
-        await fetchChessStats(userData.username, displayName);
+    for (const userData of Object.values(usersMap)) {
+        await fetchChessStats(userData.username);
     }
 }
 
