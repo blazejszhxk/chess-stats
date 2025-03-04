@@ -190,7 +190,7 @@
         <th onclick="sortTable(4)">Liczba gier Rapid dziś <span> ▲</span></th>
         <th onclick="sortTable(5)">Liczba gier Zadania <span> ▲</span></th>
         <th onclick="sortTable(6)">Liczba gier Zadania dziś <span> ▲</span></th>
-        <th onclick="sortTable(4)">Last Game <span> ▲</span></th>
+        <th onclick="sortTable(7)">Last Game <span> ▲</span></th>
                 </tr>
             </thead>
             <tbody id="stats-body">
@@ -234,39 +234,67 @@
             document.getElementById("update-time").textContent = `Tabela została zaktualizowana o godz. ${formattedTime}`;
         }
 
-        let sortDirections = [1, 1, 1, 1, 1];
-        function sortTable(colIndex) {
-            const tbody = document.getElementById("stats-body");
-            let rows = Array.from(tbody.rows);
-            
-            rows.sort((a, b) => {
-                let aVal, bVal;
-                if (colIndex === 4) { 
-                    aVal = new Date(a.cells[colIndex + 1].textContent.split(" (")[0]) || 0;
-                    bVal = new Date(b.cells[colIndex + 1].textContent.split(" (")[0]) || 0;
-                } else {
-                    aVal = parseInt(a.cells[colIndex + 1].textContent.match(/\d+/) || 0);
-                    bVal = parseInt(b.cells[colIndex + 1].textContent.match(/\d+/) || 0);
-                }
-                return (aVal - bVal) * sortDirections[colIndex];
-            });
-            
-            sortDirections[colIndex] *= -1;
-            tbody.innerHTML = "";
-            rows.forEach(row => tbody.appendChild(row));
-            updateSortIcons();
+let sortDirections = {};
+
+function sortTable(colIndex) {
+    const tbody = document.getElementById("stats-body");
+    let rows = Array.from(tbody.rows);
+
+    // Odwrócenie kierunku sortowania
+    sortDirections[colIndex] = sortDirections[colIndex] === -1 ? 1 : -1;
+
+    rows.sort((a, b) => {
+        let aVal = a.cells[colIndex].textContent.trim();
+        let bVal = b.cells[colIndex].textContent.trim();
+
+        if (colIndex === 0) {  
+            // Sortowanie alfabetyczne dla nicków
+            return aVal.localeCompare(bVal) * sortDirections[colIndex];
+        } else if (colIndex === 7) { 
+            // Sortowanie po dacie ostatniej gry
+            let dateA = extractDate(aVal);
+            let dateB = extractDate(bVal);
+            return (dateA - dateB) * sortDirections[colIndex];
+        } else {
+            // Sortowanie po wartościach liczbowych (wraz ze zmianami ratingu)
+            let numA = extractNumber(aVal);
+            let numB = extractNumber(bVal);
+            return (numA - numB) * sortDirections[colIndex];
         }
-        
-        function updateSortIcons() {
-            const headers = document.querySelectorAll("th span");
-            headers.forEach((span, index) => {
-                span.textContent = sortDirections[index] === 1 ? " ▲" : " ▼";
-            });
+    });
+
+    tbody.innerHTML = "";
+    rows.forEach(row => tbody.appendChild(row));
+    updateSortIcons(colIndex);
+}
+
+// Funkcja do pobierania wartości liczbowych, obsługuje też wartości z (+/-)
+function extractNumber(text) {
+    let match = text.match(/-?\d+/);
+    return match ? parseInt(match[0], 10) : 0;
+}
+
+// Funkcja do parsowania daty
+function extractDate(text) {
+    let match = text.match(/(\d{2})\.(\d{2}) (\d{2}):(\d{2}):(\d{2})/);
+    if (match) {
+        let now = new Date();
+        return new Date(now.getFullYear(), match[2] - 1, match[1], match[3], match[4], match[5]).getTime();
+    }
+    return 0;
+}
+
+// Funkcja aktualizująca strzałki sortowania
+function updateSortIcons(colIndex) {
+    const headers = document.querySelectorAll("th span");
+    headers.forEach((span, index) => {
+        if (index === colIndex) {
+            span.textContent = sortDirections[colIndex] === 1 ? " ▲" : " ▼";
+        } else {
+            span.textContent = " ▲";
         }
-        async function fetchWithProxy(url, proxyIndex = 0) {
-            if (proxyIndex >= proxies.length) {
-                throw new Error("Wszystkie proxy zawiodły.");
-            }
+    });
+}
     
             const proxyUrl = proxies[proxyIndex] + encodeURIComponent(url);
             try {
