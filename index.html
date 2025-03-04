@@ -234,23 +234,25 @@
             document.getElementById("update-time").textContent = `Tabela została zaktualizowana o godz. ${formattedTime}`;
         }
 
-        let sortDirections = [1, 1, 1, 1, 1, 1, 1];
+        let sortDirections = [1, 1, 1, 1, 1, 1, 1, 1]; // 8 kolumn
+        
         function sortTable(colIndex) {
             const tbody = document.getElementById("stats-body");
             let rows = Array.from(tbody.rows);
-            
+        
             rows.sort((a, b) => {
-                let aVal, bVal;
+                let aVal = a.cells[colIndex].textContent.trim();
+                let bVal = b.cells[colIndex].textContent.trim();
         
-                if (colIndex === 7) { // Last Game (porównujemy daty)
-                    aVal = new Date(a.cells[colIndex].textContent.split(" (")[0]) || 0;
-                    bVal = new Date(b.cells[colIndex].textContent.split(" (")[0]) || 0;
+                if (colIndex === 7) { // Sortowanie daty (Last Game)
+                    aVal = new Date(aVal.split(" (")[0]);
+                    bVal = new Date(bVal.split(" (")[0]);
+        
+                    if (isNaN(aVal)) aVal = new Date(0); // Jeśli niepoprawna data, ustaw 0
+                    if (isNaN(bVal)) bVal = new Date(0);
                 } else {
-                    aVal = a.cells[colIndex].textContent.match(/-?\d+/g);
-                    bVal = b.cells[colIndex].textContent.match(/-?\d+/g);
-        
-                    aVal = aVal ? parseInt(aVal[0]) : 0;
-                    bVal = bVal ? parseInt(bVal[0]) : 0;
+                    aVal = parseFloat(aVal.replace(/[^0-9.-]/g, "")) || 0; // Usuwamy inne znaki
+                    bVal = parseFloat(bVal.replace(/[^0-9.-]/g, "")) || 0;
                 }
         
                 return (aVal - bVal) * sortDirections[colIndex];
