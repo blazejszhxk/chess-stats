@@ -211,26 +211,24 @@
     <div class="footer">
         <img src="https://img.icons8.com/ios-glyphs/30/chess-com.png" alt="chess-com"/>
         <span>Organizowane przez <a href="https://twitch.tv/xntentacion" target="_blank">xntentacion</a></span>
-    </div>
-    
+    </div> 
     <div class="disclaimer">This website is not associated with Chess.com</div>
-
     <script>
         const usersMap = {
             "Kasix": { username: "kasix909", link: "https://twitch.tv/kasix" },
-            "Delord": { username: "Pablosabre", link: "https://twitch.tv/delordione" },
+            "Delord": { username: "Pablosabre", link: "https://twitch.tv/delordione", link2: "https://kick.com/delordione" },
             "Nieuczesana": { username: "nieuczeszek", link: "https://twitch.tv/nieuczesana" },
             "Diables": { username: "xdiables", link: "https://twitch.tv/diables" },
-            "TheNitroZyniak": { username: "nitro69penetrator", link: "https://kick.com/niter" },
+            "TheNitroZyniak": { username: "nitro69penetrator", link: "https://twitch.tv/thenitrozyniak", link2: "https://kick.com/niter" },
             "Tomasz Fornal": { username: "TomaszFornal", link: "https://twitch.tv/tytusc" },
             "Netrodal": { username: "didaskyler", link: "https://twitch.tv/netrodalo" },
             "RandomBruceTV": { username: "szachowytapir", link: "https://twitch.tv/randombrucetv" },
             "Bagietka Michael": { username: "bagietkaofficial", link: "https://twitch.tv/mbagietson" },
-            "MokrySpuchar": { username: "mokrysucharek", link: "https://kick.com/mokrysuchar" },
+            "MokrySpuchar": { username: "mokrysucharek", link: "https://twitch.tv/mokrysuchar", link2: "https://kick.com/mokrysuchar" },
             "Hiszpanitos": { username: "jakubjd", link: "https://twitch.tv/hiszpanitos" },
             "Overpow": { username: "szachowychogath", link: "https://twitch.tv/overpow" },
-            "Kubon_": { username: "JaKubon000", link: "https://twitch.tv/kubon_" },
-            "demonzz1": { username: "demonzz1", link: "https://twitch.tv/demonzz1" }
+            "Kubon_": { username: "JaKubon000", link: "https://twitch.tv/kubon_", link2: "https://kick.com/kubon" },
+            "demonzz1": { username: "demonzz1", link: "https://twitch.tv/demonzz1", link2: "https://kick.com/demonzz1" }
         };
     
         const proxies = [
@@ -338,31 +336,38 @@
             }
         }
 
-        async function checkStreamStatus(username, link) {
+        async function checkStreamStatus(username, link, link2) {
+            let streamStatus = "Offline";
+            
             if (link.includes('twitch.tv')) {
                 const twitchUsername = link.split('/')[3];
                 const apiUrl = `https://decapi.me/twitch/uptime/${twitchUsername}`;
                 try {
                     const response = await fetch(apiUrl);
                     const data = await response.text();
-                    return data.includes("offline") ? "Offline" : "Online";
+                    if (!data.includes("offline")) {
+                        streamStatus = "Online";
+                    }
                 } catch (error) {
                     console.error(`Błąd sprawdzania statusu streamu Twitcha dla ${username}:`, error);
-                    return "Offline";
                 }
-            } else if (link.includes('kick.com')) {
-                const kickUsername = link.split('/')[3];
+            }
+            
+            if (streamStatus === "Offline" && link2 && link2.includes('kick.com')) {
+                const kickUsername = link2.split('/')[3];
                 const apiUrl = `https://kick.com/api/v2/channels/${kickUsername}`;
                 try {
                     const response = await fetch(apiUrl);
                     const data = await response.json();
-                    return data.livestream === null ? "Offline" : "Online";
+                    if (data.livestream !== null) {
+                        streamStatus = "Online";
+                    }
                 } catch (error) {
                     console.error(`Błąd sprawdzania statusu streamu Kicka dla ${username}:`, error);
-                    return "Offline";
                 }
             }
-            return "Offline";
+        
+            return streamStatus;
         }
 
         async function getChessStats(displayName, chessComData) {
@@ -442,7 +447,7 @@
                     lastGame,
                     timeOnTactics: formatTime(totalTacticsTime),
                     link: chessComData.link,
-                    streamStatus
+                    streamStatus // Add the stream status
                 };
             } catch (error) {
                 console.error(`Błąd dla ${displayName}: ${error.message}`);
@@ -465,46 +470,45 @@
         async function populateTable() {
             const tbody = document.getElementById("stats-body");
             tbody.innerHTML = "";
-        
+            
             const statsArray = await Promise.all(
                 Object.entries(usersMap).map(async ([displayName, chessComData]) => {
                     const chessStats = await getChessStats(displayName, chessComData);
-                    const streamStatus = await checkStreamStatus(displayName, chessComData.link);
+                    const streamStatus = await checkStreamStatus(displayName, chessComData.link, chessComData.link2);
                     return {
                         ...chessStats,
                         streamStatus
                     };
                 })
             );
-        
+            
             statsArray.sort((a, b) => parseInt(b.rapidRating) - parseInt(a.rapidRating));
         
-        const rows = statsArray.map(({ displayName, tacticsRating, rapidRating, rapidGames, rapidGamesToday, tacticsGames, tacticsGamesToday, lastGame, timeOnTactics, link, streamStatus }) => {
-            const nameCell = link 
-                ? `<a href='${link}' target='_blank' style='color: #007bff; font-weight: 300; text-decoration: none;'>${displayName}</a>` 
-                : displayName;
-            
-        const streamIcon = streamStatus === "Online"
-            ? "<div class='stream-status'><img src='https://i.imgur.com/WQFquis.png' alt='Online' width='18' height='18' /></div>"
-            : "<div class='stream-status'><img src='https://i.imgur.com/IH9wGGK.png' alt='Offline' width='18' height='18' /></div>";
+            const rows = statsArray.map(({ displayName, tacticsRating, rapidRating, rapidGames, rapidGamesToday, tacticsGames, tacticsGamesToday, lastGame, timeOnTactics, link, streamStatus }) => {
+                const nameCell = link
+                    ? `<a href='${link}' target='_blank' style='color: #007bff; font-weight: 300; text-decoration: none;'>${displayName}</a>`
+                    : displayName;
         
-            
-            return `<tr>
-                        <td>${nameCell}</td>
-                        <td>${streamIcon}</td>
-                        <td>${rapidRating}</td>
-                        <td>${tacticsRating}</td>
-                        <td>${rapidGames}</td>
-                        <td>${rapidGamesToday}</td>
-                        <td>${tacticsGames}</td>
-                        <td>${tacticsGamesToday}</td>
-                        <td>${timeOnTactics}</td>
-                        <td>${lastGame}</td>
-                    </tr>`;
-        });
+                const streamIcon = streamStatus === "Online"
+                    ? "<div class='stream-status'><img src='https://i.imgur.com/WQFquis.png' alt='Online' width='18' height='18' /></div>"
+                    : "<div class='stream-status'><img src='https://i.imgur.com/IH9wGGK.png' alt='Offline' width='18' height='18' /></div>";
+        
+                return `<tr>
+                            <td>${nameCell}</td>
+                            <td>${streamIcon}</td>
+                            <td>${rapidRating}</td>
+                            <td>${tacticsRating}</td>
+                            <td>${rapidGames}</td>
+                            <td>${rapidGamesToday}</td>
+                            <td>${tacticsGames}</td>
+                            <td>${tacticsGamesToday}</td>
+                            <td>${timeOnTactics}</td>
+                            <td>${lastGame}</td>
+                        </tr>`;
+            });
         
             tbody.innerHTML = rows.join("");
-        
+            
             updateTimestamp();
         }
         populateTable();
