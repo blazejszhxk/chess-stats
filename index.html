@@ -238,16 +238,19 @@
         function sortTable(colIndex) {
             const tbody = document.getElementById("stats-body");
             let rows = Array.from(tbody.rows);
-        
+            
             rows.sort((a, b) => {
                 let aVal, bVal;
-                
-                if (colIndex === 7) { 
+        
+                if (colIndex === 7) { // Last Game (porównujemy daty)
                     aVal = new Date(a.cells[colIndex].textContent.split(" (")[0]) || 0;
                     bVal = new Date(b.cells[colIndex].textContent.split(" (")[0]) || 0;
                 } else {
-                    aVal = parseInt(a.cells[colIndex].textContent.match(/-?\d+/) || 0);
-                    bVal = parseInt(b.cells[colIndex].textContent.match(/-?\d+/) || 0);
+                    aVal = a.cells[colIndex].textContent.match(/-?\d+/g);
+                    bVal = b.cells[colIndex].textContent.match(/-?\d+/g);
+        
+                    aVal = aVal ? parseInt(aVal[0]) : 0;
+                    bVal = bVal ? parseInt(bVal[0]) : 0;
                 }
         
                 return (aVal - bVal) * sortDirections[colIndex];
@@ -256,16 +259,19 @@
             sortDirections[colIndex] *= -1;
             tbody.innerHTML = "";
             rows.forEach(row => tbody.appendChild(row));
-            updateSortIcons();
+            updateSortIcons(colIndex);
         }
         
-        function updateSortIcons() {
+        function updateSortIcons(activeColIndex) {
             const headers = document.querySelectorAll("th span");
             headers.forEach((span, index) => {
-                span.textContent = sortDirections[index] === 1 ? " ▲" : " ▼";
+                if (index === activeColIndex) {
+                    span.textContent = sortDirections[index] === 1 ? " ▲" : " ▼";
+                } else {
+                    span.textContent = " ▲";
+                }
             });
         }
-
         
         async function fetchWithProxy(url, proxyIndex = 0) {
             if (proxyIndex >= proxies.length) {
