@@ -235,32 +235,43 @@
         }
 
         let sortDirections = [1, 1, 1, 1, 1, 1, 1];
+        
         function sortTable(colIndex) {
             const tbody = document.getElementById("stats-body");
             let rows = Array.from(tbody.rows);
-            
+        
             rows.sort((a, b) => {
-                let aVal, bVal;
-                if (colIndex === 6) { 
-                    aVal = new Date(a.cells[colIndex + 1].textContent.split(" (")[0]) || 0;
-                    bVal = new Date(b.cells[colIndex + 1].textContent.split(" (")[0]) || 0;
-                } else {
-                    aVal = parseInt(a.cells[colIndex + 1].textContent.match(/\d+/) || 0);
-                    bVal = parseInt(b.cells[colIndex + 1].textContent.match(/\d+/) || 0);
-                }
+                let aVal = a.cells[colIndex + 1].textContent.trim();
+                let bVal = b.cells[colIndex + 1].textContent.trim();
+        
+                if (aVal === "Brak danych" || aVal === "Błąd") aVal = -Infinity;
+                else aVal = parseInt(aVal.match(/-?\d+/) || 0);
+        
+                if (bVal === "Brak danych" || bVal === "Błąd") bVal = -Infinity;
+                else bVal = parseInt(bVal.match(/-?\d+/) || 0);
+        
                 return (aVal - bVal) * sortDirections[colIndex];
             });
-            
+        
+            // Odwrócenie kierunku sortowania dla następnego kliknięcia
             sortDirections[colIndex] *= -1;
+        
+            // Aktualizacja ikon sortowania
+            updateSortIcons(colIndex);
+        
+            // Aktualizacja tabeli
             tbody.innerHTML = "";
             rows.forEach(row => tbody.appendChild(row));
-            updateSortIcons();
         }
         
-        function updateSortIcons() {
+        function updateSortIcons(activeIndex) {
             const headers = document.querySelectorAll("th span");
             headers.forEach((span, index) => {
-                span.textContent = sortDirections[index] === 1 ? " ▲" : " ▼";
+                if (index === activeIndex) {
+                    span.textContent = sortDirections[index] === 1 ? " ▲" : " ▼";
+                } else {
+                    span.textContent = " ▲";  // Resetowanie innych strzałek
+                }
             });
         }
         
