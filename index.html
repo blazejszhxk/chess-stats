@@ -70,13 +70,13 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
             border-radius: 12px;
             overflow: hidden;
-            font-size: 14px;
+            font-size: 12px;
         }
         
         th, td {
             border: 1px solid #ddd;
             padding: 8px;
-            font-size: 14px;
+            font-size: 13px;
         }
         
         th {
@@ -152,6 +152,14 @@
         .red { color: red; }
         .white { color: black; }
 
+        .stream-status {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            width: 100%;
+        }
+
         @media (max-width: 768px) {
             .made-by, .footer, .disclaimer, .changes-info, .info-web {
                 display: none;
@@ -177,13 +185,13 @@
 </head>
 <body>
     <div class="made-by">made by <a href="https://twitch.tv/biazej" target="_blank">blazej</a></div>
-    <h1 class="info-web" style="text-align: center; font-size: 24px; font-weight: bold; margin-bottom: 100px; color: #333;">STRONA OD 00:00 BĘDZIE ZBIERAĆ DANE WSZYSTKIE POPRAWNIE!</h1>
     <div class="table-container">
         <div class="update-info" id="update-time">Aktualizuje tabelę...</div>
         <table>
             <thead>
                 <tr>
         <th>Nick</th>
+        <th>Stream</th>
         <th onclick="sortTable(0)">Rating Rapid <span> ▲</span></th>
         <th onclick="sortTable(1)">Rating Zadania <span> ▲</span></th>
         <th onclick="sortTable(2)">Gry Rapid <span> ▲</span></th>
@@ -209,19 +217,19 @@
 
     <script>
         const usersMap = {
-            "Kasix": { username: "kasix909", link: "https://imgur.com/a/v9ZS3aR" },
-            "Delord": { username: "Pablosabre", link: "https://streamable.com/t1mn1x" },
+            "Kasix": { username: "kasix909", link: "https://twitch.tv/kasix" },
+            "Delord": { username: "Pablosabre", link: "https://twitch.tv/delordione" },
             "Nieuczesana": { username: "nieuczeszek", link: "https://twitch.tv/nieuczesana" },
             "Diables": { username: "xdiables", link: "https://twitch.tv/diables" },
             "TheNitroZyniak": { username: "nitro69penetrator", link: "https://kick.com/niter" },
-            "Tomasz Fornal": { username: "TomaszFornal", link: "https://www.youtube.com/@FornalTV" },
-            "Netrodal": { username: "didaskyler", link: "https://www.youtube.com/watch?v=sn-uQlqPwcg" },
-            "RandomBruceTV": { username: "szachowytapir", link: "https://www.youtube.com/watch?v=OxPrpt9ppb8" },
+            "Tomasz Fornal": { username: "TomaszFornal", link: "https://twitch.tv/tytusc" },
+            "Netrodal": { username: "didaskyler", link: "https://twitch.tv/netrodalo" },
+            "RandomBruceTV": { username: "szachowytapir", link: "https://twitch.tv/randombrucetv" },
             "Bagietka Michael": { username: "bagietkaofficial", link: "https://twitch.tv/mbagietson" },
-            "MokrySpuchar": { username: "mokrysucharek", link: "https://streamable.com/jnkp9t" },
+            "MokrySpuchar": { username: "mokrysucharek", link: "https://kick.com/mokrysuchar" },
             "Hiszpanitos": { username: "jakubjd", link: "https://twitch.tv/hiszpanitos" },
             "Overpow": { username: "szachowychogath", link: "https://twitch.tv/overpow" },
-            "Kubon_": { username: "JaKubon000", link: "https://www.youtube.com/shorts/-QLUsEa1-gI" },
+            "Kubon_": { username: "JaKubon000", link: "https://twitch.tv/kubon_" },
             "demonzz1": { username: "demonzz1", link: "https://twitch.tv/demonzz1" }
         };
     
@@ -237,7 +245,7 @@
             document.getElementById("update-time").textContent = `Tabela została zaktualizowana o godz. ${formattedTime}`;
         }
 
-        let sortDirections = [1, 1, 1, 1, 1, 1, 1, 1, 1];	
+        let sortDirections = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1];	
         function sortTable(colIndex) {
             const tbody = document.getElementById("stats-body");
             let rows = Array.from(tbody.rows);
@@ -245,8 +253,8 @@
             rows.sort((a, b) => {
                 let aVal, bVal;
         
-                let aCell = a.cells[colIndex + 1]; 
-                let bCell = b.cells[colIndex + 1];
+                let aCell = a.cells[colIndex + 2]; 
+                let bCell = b.cells[colIndex + 2];
         
                 if (!aCell || !bCell) return 0;
         
@@ -330,13 +338,39 @@
             }
         }
 
+        async function checkStreamStatus(username, link) {
+            if (link.includes('twitch.tv')) {
+                const twitchUsername = link.split('/')[3];
+                const apiUrl = `https://decapi.me/twitch/uptime/${twitchUsername}`;
+                try {
+                    const response = await fetch(apiUrl);
+                    const data = await response.text();
+                    return data.includes("offline") ? "Offline" : "Online";
+                } catch (error) {
+                    console.error(`Błąd sprawdzania statusu streamu Twitcha dla ${username}:`, error);
+                    return "Offline";
+                }
+            } else if (link.includes('kick.com')) {
+                const kickUsername = link.split('/')[3];
+                const apiUrl = `https://kick.com/api/v2/channels/${kickUsername}`;
+                try {
+                    const response = await fetch(apiUrl);
+                    const data = await response.json();
+                    return data.livestream === null ? "Offline" : "Online";
+                } catch (error) {
+                    console.error(`Błąd sprawdzania statusu streamu Kicka dla ${username}:`, error);
+                    return "Offline";
+                }
+            }
+            return "Offline";
+        }
+
         async function getChessStats(displayName, chessComData) {
             const url = `https://www.chess.com/callback/member/stats/${chessComData.username}`;
             const localData = await fetchLocalData(chessComData.username);
             
             try {
                 const jsonData = await fetchWithProxy(url);
-            
                 let tacticsRating = "Brak danych";
                 let rapidRating = "Brak danych";
                 let lastGame = "Brak danych";
@@ -395,6 +429,8 @@
                     return `${hours}h ${minutes}m ${sec}s`;
                 }
         
+                const streamStatus = await checkStreamStatus(displayName, chessComData.link);
+                
                 return { 
                     displayName, 
                     tacticsRating: formatRating(tacticsRating, prevTacticsRating), 
@@ -405,7 +441,8 @@
                     tacticsGamesToday,
                     lastGame,
                     timeOnTactics: formatTime(totalTacticsTime),
-                    link: chessComData.link 
+                    link: chessComData.link,
+                    streamStatus
                 };
             } catch (error) {
                 console.error(`Błąd dla ${displayName}: ${error.message}`);
@@ -419,32 +456,58 @@
                     tacticsGamesToday: "Błąd", 
                     lastGame: "Błąd", 
                     timeOnTactics: "Błąd",
-                    link: chessComData.link 
+                    link: chessComData.link,
+                    streamStatus: "Błąd"
                 };
             }
         }
-        
+
         async function populateTable() {
             const tbody = document.getElementById("stats-body");
             tbody.innerHTML = "";
         
             const statsArray = await Promise.all(
-                Object.entries(usersMap).map(([displayName, chessComData]) => 
-                    getChessStats(displayName, chessComData)
-                )
+                Object.entries(usersMap).map(async ([displayName, chessComData]) => {
+                    const chessStats = await getChessStats(displayName, chessComData);
+                    const streamStatus = await checkStreamStatus(displayName, chessComData.link);
+                    return {
+                        ...chessStats,
+                        streamStatus
+                    };
+                })
             );
         
             statsArray.sort((a, b) => parseInt(b.rapidRating) - parseInt(a.rapidRating));
         
-            statsArray.forEach(({ displayName, tacticsRating, rapidRating, rapidGames, rapidGamesToday, tacticsGames, tacticsGamesToday, lastGame, timeOnTactics, link }) => {
-                const nameCell = link ? `<a href='${link}' target='_blank' style='color: #007bff; font-weight: 300; text-decoration: none;'>${displayName}</a>` : displayName;
-                tbody.innerHTML += `<tr><td>${nameCell}</td><td>${rapidRating}</td><td>${tacticsRating}</td><td>${rapidGames}</td><td>${rapidGamesToday}</td><td>${tacticsGames}</td><td>${tacticsGamesToday}</td><td>${timeOnTactics}</td><td>${lastGame}</td></tr>`;
-            });
+        const rows = statsArray.map(({ displayName, tacticsRating, rapidRating, rapidGames, rapidGamesToday, tacticsGames, tacticsGamesToday, lastGame, timeOnTactics, link, streamStatus }) => {
+            const nameCell = link 
+                ? `<a href='${link}' target='_blank' style='color: #007bff; font-weight: 300; text-decoration: none;'>${displayName}</a>` 
+                : displayName;
+            
+        const streamIcon = streamStatus === "Online"
+            ? "<div class='stream-status'><img src='https://i.imgur.com/WQFquis.png' alt='Online' width='18' height='18' /></div>"
+            : "<div class='stream-status'><img src='https://i.imgur.com/IH9wGGK.png' alt='Offline' width='18' height='18' /></div>";
+        
+            
+            return `<tr>
+                        <td>${nameCell}</td>
+                        <td>${streamIcon}</td>
+                        <td>${rapidRating}</td>
+                        <td>${tacticsRating}</td>
+                        <td>${rapidGames}</td>
+                        <td>${rapidGamesToday}</td>
+                        <td>${tacticsGames}</td>
+                        <td>${tacticsGamesToday}</td>
+                        <td>${timeOnTactics}</td>
+                        <td>${lastGame}</td>
+                    </tr>`;
+        });
+        
+            tbody.innerHTML = rows.join("");
         
             updateTimestamp();
         }
-        
-                populateTable();
+        populateTable();
     </script>
 </body>
 </html>
