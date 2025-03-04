@@ -334,17 +334,21 @@ async function getChessStats(displayName, chessComData) {
             lastGame = lastTimestamp === lastDateTactics ? `${date} (Z)` : `${date} (R)`;
         }
 
-        function formatRating(rating, prevRating) {
-            if (rating === "Brak danych") return "Brak danych";
-            let changeText = "";
-            if (prevRating !== null) {
-                let change = rating - prevRating;
-                let absChange = Math.abs(change);
-                let color = change > 0 ? "green" : change < 0 ? "red" : "black";
-                changeText = ` (<span style='color:${color}'>${change > 0 ? "+" : "-"}${absChange}</span>)`;
-            }
-            return `${rating}${changeText}`;
+function formatRating(rating, prevRating) {
+    if (rating === "Brak danych") return "Brak danych";
+    
+    let changeText = "";
+    if (prevRating !== null) {
+        let change = rating - prevRating;
+        let absChange = Math.abs(change);
+        let color = change > 0 ? "green" : change < 0 ? "red" : "black";
+
+        if (change !== 0) {
+            changeText = ` (<span style='color:${color}'>${change > 0 ? "+" : ""}${absChange}</span>)`;
         }
+    }
+    return `${rating}${changeText}`;
+}
 
         return { 
             displayName, 
