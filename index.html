@@ -234,38 +234,38 @@
             document.getElementById("update-time").textContent = `Tabela została zaktualizowana o godz. ${formattedTime}`;
         }
 
-let sortDirections = {}; 
+let sortDirections = [1, 1, 1, 1, 1, 1]; // Dodajemy kierunki sortowania dla każdej kolumny
 
 function sortTable(colIndex) {
     const tbody = document.getElementById("stats-body");
     let rows = Array.from(tbody.rows);
 
-    // Zainicjalizowanie kierunku sortowania, jeśli nie istnieje
-    if (!sortDirections[colIndex]) {
-        sortDirections[colIndex] = 1;
-    } else {
-        sortDirections[colIndex] *= -1;
-    }
-
     rows.sort((a, b) => {
         let aVal = a.cells[colIndex].textContent.trim();
         let bVal = b.cells[colIndex].textContent.trim();
 
-        // Jeśli kolumna zawiera liczby, konwertujemy je do porównania
-        if (!isNaN(parseFloat(aVal)) && !isNaN(parseFloat(bVal))) {
-            return (parseFloat(aVal) - parseFloat(bVal)) * sortDirections[colIndex];
+        // Jeśli kolumna to "Last Game" (data)
+        if (colIndex === 4) { 
+            aVal = new Date(aVal.split(" (")[0]) || 0;
+            bVal = new Date(bVal.split(" (")[0]) || 0;
+        } 
+        // Jeśli kolumna zawiera liczby
+        else if (!isNaN(aVal) && !isNaN(bVal)) { 
+            aVal = parseInt(aVal) || 0;
+            bVal = parseInt(bVal) || 0;
+        } 
+        // Sortowanie tekstowe (gdy nie jest liczbą ani datą)
+        else {
+            return aVal.localeCompare(bVal) * sortDirections[colIndex];
         }
 
-        // Jeśli sortujemy po dacie
-        if (colIndex === 7) {
-            let dateA = new Date(aVal.split(" (")[0]) || 0;
-            let dateB = new Date(bVal.split(" (")[0]) || 0;
-            return (dateA - dateB) * sortDirections[colIndex];
-        }
-
-        return aVal.localeCompare(bVal) * sortDirections[colIndex];
+        return (aVal - bVal) * sortDirections[colIndex];
     });
 
+    // Odwrócenie kierunku sortowania dla danej kolumny
+    sortDirections[colIndex] *= -1;
+
+    // Wstawienie posortowanych wierszy do tabeli
     tbody.innerHTML = "";
     rows.forEach(row => tbody.appendChild(row));
 
@@ -275,13 +275,10 @@ function sortTable(colIndex) {
 function updateSortIcons(colIndex) {
     const headers = document.querySelectorAll("th span");
     headers.forEach((span, index) => {
-        if (index === colIndex) {
-            span.textContent = sortDirections[colIndex] === 1 ? " ▲" : " ▼";
-        } else {
-            span.textContent = " ▲";
-        }
+        span.textContent = index === colIndex ? (sortDirections[colIndex] === 1 ? " ▲" : " ▼") : " ▲";
     });
 }
+
         
         async function fetchWithProxy(url, proxyIndex = 0) {
             if (proxyIndex >= proxies.length) {
