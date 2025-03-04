@@ -234,65 +234,41 @@
             document.getElementById("update-time").textContent = `Tabela została zaktualizowana o godz. ${formattedTime}`;
         }
 
-let sortDirections = {};
+let sortDirections = [1, 1, 1, 1, 1, 1, 1, 1];
 
 function sortTable(colIndex) {
     const tbody = document.getElementById("stats-body");
     let rows = Array.from(tbody.rows);
-
-    // Odwrócenie kierunku sortowania
-    sortDirections[colIndex] = sortDirections[colIndex] === -1 ? 1 : -1;
-
+    
     rows.sort((a, b) => {
         let aVal = a.cells[colIndex].textContent.trim();
         let bVal = b.cells[colIndex].textContent.trim();
 
-        if (colIndex === 0) {  
-            // Sortowanie alfabetyczne dla nicków
+        if (colIndex === 0) { // Sortowanie po nazwie użytkownika (Nick)
             return aVal.localeCompare(bVal) * sortDirections[colIndex];
-        } else if (colIndex === 7) { 
-            // Sortowanie po dacie ostatniej gry
-            let dateA = extractDate(aVal);
-            let dateB = extractDate(bVal);
-            return (dateA - dateB) * sortDirections[colIndex];
-        } else {
-            // Sortowanie po wartościach liczbowych (wraz ze zmianami ratingu)
-            let numA = extractNumber(aVal);
-            let numB = extractNumber(bVal);
-            return (numA - numB) * sortDirections[colIndex];
         }
+        
+        let aNum = extractNumericValue(aVal);
+        let bNum = extractNumericValue(bVal);
+        
+        return (aNum - bNum) * sortDirections[colIndex];
     });
-
+    
+    sortDirections[colIndex] *= -1;
     tbody.innerHTML = "";
     rows.forEach(row => tbody.appendChild(row));
-    updateSortIcons(colIndex);
+    updateSortIcons();
 }
 
-// Funkcja do pobierania wartości liczbowych, obsługuje też wartości z (+/-)
-function extractNumber(text) {
-    let match = text.match(/-?\d+/);
+function extractNumericValue(text) {
+    let match = text.match(/-?\d+/g);
     return match ? parseInt(match[0], 10) : 0;
 }
 
-// Funkcja do parsowania daty
-function extractDate(text) {
-    let match = text.match(/(\d{2})\.(\d{2}) (\d{2}):(\d{2}):(\d{2})/);
-    if (match) {
-        let now = new Date();
-        return new Date(now.getFullYear(), match[2] - 1, match[1], match[3], match[4], match[5]).getTime();
-    }
-    return 0;
-}
-
-// Funkcja aktualizująca strzałki sortowania
-function updateSortIcons(colIndex) {
+function updateSortIcons() {
     const headers = document.querySelectorAll("th span");
     headers.forEach((span, index) => {
-        if (index === colIndex) {
-            span.textContent = sortDirections[colIndex] === 1 ? " ▲" : " ▼";
-        } else {
-            span.textContent = " ▲";
-        }
+        span.textContent = sortDirections[index] === 1 ? " ▲" : " ▼";
     });
 }
     
