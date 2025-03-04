@@ -244,9 +244,9 @@
                 let aVal = a.cells[colIndex + 1].textContent.trim();
                 let bVal = b.cells[colIndex + 1].textContent.trim();
         
-                // Zamiana wartości tekstowych na liczby lub ustawienie ich jako -Infinity
-                aVal = aVal === "Brak danych" || aVal === "Błąd" ? -Infinity : parseInt(aVal.match(/-?\d+/) || 0);
-                bVal = bVal === "Brak danych" || bVal === "Błąd" ? -Infinity : parseInt(bVal.match(/-?\d+/) || 0);
+                // Zamiana wartości "Brak danych" na -1, aby były sortowane poniżej zera
+                aVal = aVal === "Brak danych" || aVal === "Błąd" ? -1 : parseInt(aVal.match(/-?\d+/) || 0);
+                bVal = bVal === "Brak danych" || bVal === "Błąd" ? -1 : parseInt(bVal.match(/-?\d+/) || 0);
         
                 return (aVal - bVal) * sortDirections[colIndex];
             });
@@ -254,8 +254,9 @@
             sortDirections[colIndex] *= -1;
             tbody.innerHTML = "";
             rows.forEach(row => tbody.appendChild(row));
-            updateSortIcons();
+            updateSortIcons(colIndex);
         }
+
   
         function updateSortIcons(activeIndex) {
             const headers = document.querySelectorAll("th span");
