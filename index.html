@@ -313,23 +313,31 @@ async function getChessStats(displayName, chessComData) {
         let lastDateTactics = null;
         let rapidGames = "Brak danych";
         let tacticsGames = "Brak danych";
+        let rapidGamesToday = "Brak danych";
+        let tacticsGamesToday = "Brak danych";
 
+        // Pobranie danych z lokalnych plików, jeśli istnieją
         let prevTacticsRating = localData?.stats.find(s => s.key === "tactics")?.stats?.rating || null;
         let prevRapidRating = localData?.stats.find(s => s.key === "rapid")?.stats?.rating || null;
+        let prevRapidGames = localData?.stats.find(s => s.key === "rapid")?.stats?.total_game_count || 0;
+        let prevTacticsGames = localData?.stats.find(s => s.key === "tactics")?.stats?.attempt_count || 0;
 
         jsonData.stats.forEach(stat => {
             if (stat.key === "tactics" && stat.stats) {
                 tacticsRating = stat.stats.rating ?? "Brak danych";
                 lastDateTactics = stat.stats.last_attempt_at ? new Date(stat.stats.last_attempt_at * 1000).getTime() : null;
                 tacticsGames = `${stat.stats.attempt_count} (<span class='green'>${stat.stats.passed_count ?? 0}</span>/<span class='red'>${stat.stats.failed_count ?? 0}</span>)`;
+                tacticsGamesToday = stat.stats.attempt_count - prevTacticsGames;
             }
             if (stat.key === "rapid" && stat.stats) {
                 rapidRating = stat.stats.rating ?? "Brak danych";
                 lastDateRapid = stat.stats.last_game_at ? new Date(stat.stats.last_game_at * 1000).getTime() : null;
                 rapidGames = `${stat.stats.total_game_count} (<span class='green'>${stat.stats.total_win_count ?? 0}</span>/<span class='red'>${stat.stats.total_loss_count ?? 0}</span>/<span class='white'>${stat.stats.total_draw_count ?? 0}</span>)`;
+                rapidGamesToday = stat.stats.total_game_count - prevRapidGames;
             }
         });
 
+        // Poprawne ustawienie daty ostatniej gry
         const lastTimestamp = Math.max(lastDateRapid || 0, lastDateTactics || 0);
         if (lastTimestamp > 0) {
             const date = new Date(lastTimestamp).toLocaleString("pl-PL", { 
@@ -356,7 +364,9 @@ async function getChessStats(displayName, chessComData) {
             tacticsRating: formatRating(tacticsRating, prevTacticsRating), 
             rapidRating: formatRating(rapidRating, prevRapidRating), 
             rapidGames, 
+            rapidGamesToday,
             tacticsGames,
+            tacticsGamesToday,
             lastGame,
             link: chessComData.link 
         };
@@ -367,7 +377,9 @@ async function getChessStats(displayName, chessComData) {
             tacticsRating: "Błąd", 
             rapidRating: "Błąd", 
             rapidGames: "Błąd", 
+            rapidGamesToday: "Błąd", 
             tacticsGames: "Błąd", 
+            tacticsGamesToday: "Błąd", 
             lastGame: "Błąd", 
             link: chessComData.link 
         };
