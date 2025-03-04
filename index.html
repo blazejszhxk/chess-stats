@@ -337,17 +337,15 @@ async function getChessStats(displayName, chessComData) {
 function formatRating(rating, prevRating) {
     if (rating === "Brak danych") return "Brak danych";
     
-    let changeText = "";
     if (prevRating !== null) {
         let change = rating - prevRating;
-        let absChange = Math.abs(change);
-        let color = change > 0 ? "green" : change < 0 ? "red" : "black";
-
         if (change !== 0) {
-            changeText = ` (<span style='color:${color}'>${absChange}</span>)`;
+            let color = change > 0 ? "green" : "red";
+            let sign = change > 0 ? "+" : "-";
+            return `${rating} (<span style='color:${color}'>${sign}${Math.abs(change)}</span>)`;
         }
     }
-    return `${rating}${changeText}`;
+    return `${rating}`;
 }
 
         return { 
