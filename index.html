@@ -309,44 +309,35 @@ async function getChessStats(displayName, chessComData) {
         let tacticsRating = "Brak danych";
         let rapidRating = "Brak danych";
         let lastGame = "Brak danych";
-        let rapidGames = 0;
-        let tacticsGames = 0;
-        let rapidGamesToday = 0;
-        let tacticsGamesToday = 0;
+        let lastDateRapid = null;
+        let lastDateTactics = null;
+        let rapidGames = "Brak danych";
+        let tacticsGames = "Brak danych";
 
-        let prevTacticsRating = localData?.stats?.find(s => s.key === "tactics")?.stats?.rating || null;
-        let prevRapidRating = localData?.stats?.find(s => s.key === "rapid")?.stats?.rating || null;
-        let prevRapidGames = localData?.stats?.find(s => s.key === "rapid")?.stats?.total_game_count || 0;
-        let prevTacticsGames = localData?.stats?.find(s => s.key === "tactics")?.stats?.attempt_count || 0;
-
-        let lastDateRapid = 0;
-        let lastDateTactics = 0;
+        let prevTacticsRating = localData?.stats.find(s => s.key === "tactics")?.stats?.rating || null;
+        let prevRapidRating = localData?.stats.find(s => s.key === "rapid")?.stats?.rating || null;
 
         jsonData.stats.forEach(stat => {
             if (stat.key === "tactics" && stat.stats) {
                 tacticsRating = stat.stats.rating ?? "Brak danych";
-                tacticsGames = stat.stats.attempt_count ?? 0;
-                lastDateTactics = stat.stats.last_attempt_at ?? 0;
-                tacticsGamesToday = tacticsGames - prevTacticsGames;
+                lastDateTactics = stat.stats.last_attempt_at ? new Date(stat.stats.last_attempt_at * 1000).getTime() : null;
+                tacticsGames = `${stat.stats.attempt_count} (<span class='green'>${stat.stats.passed_count ?? 0}</span>/<span class='red'>${stat.stats.failed_count ?? 0}</span>)`;
             }
             if (stat.key === "rapid" && stat.stats) {
                 rapidRating = stat.stats.rating ?? "Brak danych";
-                rapidGames = stat.stats.total_game_count ?? 0;
-                lastDateRapid = stat.stats.last_game_at ?? 0;
-                rapidGamesToday = rapidGames - prevRapidGames;
+                lastDateRapid = stat.stats.last_game_at ? new Date(stat.stats.last_game_at * 1000).getTime() : null;
+                rapidGames = `${stat.stats.total_game_count} (<span class='green'>${stat.stats.total_win_count ?? 0}</span>/<span class='red'>${stat.stats.total_loss_count ?? 0}</span>/<span class='white'>${stat.stats.total_draw_count ?? 0}</span>)`;
             }
         });
 
-        // Obsługa ostatniego rozegranego meczu
-        const lastTimestamp = Math.max(lastDateRapid, lastDateTactics);
+        const lastTimestamp = Math.max(lastDateRapid || 0, lastDateTactics || 0);
         if (lastTimestamp > 0) {
-            const date = new Date(lastTimestamp * 1000).toLocaleString("pl-PL", { 
+            const date = new Date(lastTimestamp).toLocaleString("pl-PL", { 
                 day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' 
             });
             lastGame = lastTimestamp === lastDateTactics ? `${date} (Z)` : `${date} (R)`;
         }
 
-        // Funkcja formatująca ranking z kolorami
         function formatRating(rating, prevRating) {
             if (rating === "Brak danych") return "Brak danych";
             if (prevRating !== null) {
@@ -365,9 +356,7 @@ async function getChessStats(displayName, chessComData) {
             tacticsRating: formatRating(tacticsRating, prevTacticsRating), 
             rapidRating: formatRating(rapidRating, prevRapidRating), 
             rapidGames, 
-            rapidGamesToday,
             tacticsGames,
-            tacticsGamesToday,
             lastGame,
             link: chessComData.link 
         };
@@ -378,9 +367,7 @@ async function getChessStats(displayName, chessComData) {
             tacticsRating: "Błąd", 
             rapidRating: "Błąd", 
             rapidGames: "Błąd", 
-            rapidGamesToday: "Błąd", 
             tacticsGames: "Błąd", 
-            tacticsGamesToday: "Błąd", 
             lastGame: "Błąd", 
             link: chessComData.link 
         };
