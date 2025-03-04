@@ -190,7 +190,7 @@
         <th onclick="sortTable(4)">Liczba gier Rapid dziś <span> ▲</span></th>
         <th onclick="sortTable(5)">Liczba gier Zadania <span> ▲</span></th>
         <th onclick="sortTable(6)">Liczba gier Zadania dziś <span> ▲</span></th>
-        <th onclick="sortTable(7)">Last Game <span> ▲</span></th>
+        <th onclick="sortTable(4)">Last Game <span> ▲</span></th>
                 </tr>
             </thead>
             <tbody id="stats-body">
@@ -234,26 +234,6 @@
             document.getElementById("update-time").textContent = `Tabela została zaktualizowana o godz. ${formattedTime}`;
         }
 
-            const proxyUrl = proxies[proxyIndex] + encodeURIComponent(url);
-            try {
-                const response = await fetch(proxyUrl);
-    
-                if (response.status === 429) {
-                    console.warn(`Rate limit na proxy ${proxyIndex}, przełączam na kolejne.`);
-                    return fetchWithProxy(url, proxyIndex + 1);
-                }
-    
-                if (!response.ok) {
-                    throw new Error(`HTTP error ${response.status}`);
-                }
-    
-                return response.json();
-            } catch (error) {
-                console.error(`Błąd proxy ${proxyIndex}: ${error.message}`);
-                return fetchWithProxy(url, proxyIndex + 1);
-            }
-        }
-
         let sortDirections = [1, 1, 1, 1, 1];
         function sortTable(colIndex) {
             const tbody = document.getElementById("stats-body");
@@ -282,6 +262,30 @@
             headers.forEach((span, index) => {
                 span.textContent = sortDirections[index] === 1 ? " ▲" : " ▼";
             });
+        }
+        async function fetchWithProxy(url, proxyIndex = 0) {
+            if (proxyIndex >= proxies.length) {
+                throw new Error("Wszystkie proxy zawiodły.");
+            }
+    
+            const proxyUrl = proxies[proxyIndex] + encodeURIComponent(url);
+            try {
+                const response = await fetch(proxyUrl);
+    
+                if (response.status === 429) {
+                    console.warn(`Rate limit na proxy ${proxyIndex}, przełączam na kolejne.`);
+                    return fetchWithProxy(url, proxyIndex + 1);
+                }
+    
+                if (!response.ok) {
+                    throw new Error(`HTTP error ${response.status}`);
+                }
+    
+                return response.json();
+            } catch (error) {
+                console.error(`Błąd proxy ${proxyIndex}: ${error.message}`);
+                return fetchWithProxy(url, proxyIndex + 1);
+            }
         }
     
 async function fetchLocalData(username) {
@@ -320,15 +324,15 @@ async function getChessStats(displayName, chessComData) {
 
         jsonData.stats.forEach(stat => {
             if (stat.key === "tactics" && stat.stats) {
-                tacticsRating = stat.stats.rating;
-                lastDateTactics = new Date(stat.lastDate).getTime();
-                tacticsGames = `${stat.stats.attempt_count} (<span class='green'>${stat.stats.passed_count}</span>/<span class='red'>${stat.stats.failed_count}</span>)`
+                tacticsRating = stat.stats.rating ?? "Brak danych";
+                lastDateTactics = stat.stats.last_attempt_at ? new Date(stat.stats.last_attempt_at * 1000).getTime() : null;
+                tacticsGames = `${stat.stats.attempt_count} (<span class='green'>${stat.stats.passed_count ?? 0}</span>/<span class='red'>${stat.stats.failed_count ?? 0}</span>)`;
                 tacticsGamesToday = stat.stats.attempt_count - prevTacticsGames;
             }
             if (stat.key === "rapid" && stat.stats) {
-                rapidRating = stat.stats.rating;
-                lastDateRapid = new Date(stat.lastDate).getTime();
-                rapidGames = `${stat.stats.total_game_count} (<span class='green'>${stat.stats.total_win_count}</span>/<span class='red'>${stat.stats.total_loss_count}</span>/<span class='white'>${stat.stats.total_draw_count}</span>)`;
+                rapidRating = stat.stats.rating ?? "Brak danych";
+                lastDateRapid = stat.stats.last_game_at ? new Date(stat.stats.last_game_at * 1000).getTime() : null;
+                rapidGames = `${stat.stats.total_game_count} (<span class='green'>${stat.stats.total_win_count ?? 0}</span>/<span class='red'>${stat.stats.total_loss_count ?? 0}</span>/<span class='white'>${stat.stats.total_draw_count ?? 0}</span>)`;
                 rapidGamesToday = stat.stats.total_game_count - prevRapidGames;
             }
         });
@@ -336,7 +340,9 @@ async function getChessStats(displayName, chessComData) {
         // Poprawne ustawienie daty ostatniej gry
         const lastTimestamp = Math.max(lastDateRapid || 0, lastDateTactics || 0);
         if (lastTimestamp > 0) {
-            const date = new Date(lastTimestamp).toLocaleString("pl-PL", { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            const date = new Date(lastTimestamp).toLocaleString("pl-PL", { 
+                day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' 
+            });
             lastGame = lastTimestamp === lastDateTactics ? `${date} (Z)` : `${date} (R)`;
         }
 
@@ -390,30 +396,11 @@ async function populateTable() {
         )
     );
 
-    statsArray.sort((a, b) => {
-        const extractRating = (ratingText) => {
-            if (!ratingText || ratingText.includes("Błąd") || ratingText.includes("Brak danych")) {
-                return 0;
-            }
-            const match = ratingText.match(/\d+/);
-            return match ? parseInt(match[0], 10) : 0;
-        };
-
-        return extractRating(b.rapidRating) - extractRating(a.rapidRating);
-    });
+    statsArray.sort((a, b) => parseInt(b.rapidRating) - parseInt(a.rapidRating));
 
     statsArray.forEach(({ displayName, tacticsRating, rapidRating, rapidGames, rapidGamesToday, tacticsGames, tacticsGamesToday, lastGame, link }) => {
         const nameCell = link ? `<a href='${link}' target='_blank' style='color: #007bff; font-weight: 300; text-decoration: none;'>${displayName}</a>` : displayName;
-        tbody.innerHTML += `<tr>
-            <td>${nameCell}</td>
-            <td>${rapidRating}</td>
-            <td>${tacticsRating}</td>
-            <td>${rapidGames}</td>
-            <td>${rapidGamesToday}</td>
-            <td>${tacticsGames}</td>
-            <td>${tacticsGamesToday}</td>
-            <td>${lastGame}</td>
-        </tr>`;
+        tbody.innerHTML += `<tr><td>${nameCell}</td><td>${rapidRating}</td><td>${tacticsRating}</td><td>${rapidGames}</td><td>${rapidGamesToday}</td><td>${tacticsGames}</td><td>${tacticsGamesToday}</td><td>${lastGame}</td></tr>`;
     });
 
     updateTimestamp();
