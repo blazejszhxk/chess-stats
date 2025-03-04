@@ -234,17 +234,20 @@
             document.getElementById("update-time").textContent = `Tabela została zaktualizowana o godz. ${formattedTime}`;
         }
 
-        let sortDirections = [1, 1, 1, 1, 1, 1, 1, 1]; // 8 kolumn
+        let sortDirections = [1, 1, 1, 1, 1, 1, 1]; // 7 kolumn (bez Nick)
         
         function sortTable(colIndex) {
             const tbody = document.getElementById("stats-body");
             let rows = Array.from(tbody.rows);
         
-            rows.sort((a, b) => {
-                let aVal = a.cells[colIndex].textContent.trim();
-                let bVal = b.cells[colIndex].textContent.trim();
+            // Przesunięcie indeksu, bo Nick (0) nie jest sortowany
+            const actualIndex = colIndex + 1;
         
-                if (colIndex === 7) { // Sortowanie daty (Last Game)
+            rows.sort((a, b) => {
+                let aVal = a.cells[actualIndex].textContent.trim();
+                let bVal = b.cells[actualIndex].textContent.trim();
+        
+                if (actualIndex === 7) { // Last Game (porównujemy daty)
                     aVal = new Date(aVal.split(" (")[0]);
                     bVal = new Date(bVal.split(" (")[0]);
         
