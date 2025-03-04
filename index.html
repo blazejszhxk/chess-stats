@@ -234,7 +234,27 @@
             document.getElementById("update-time").textContent = `Tabela została zaktualizowana o godz. ${formattedTime}`;
         }
 
-        let sortDirections = [1, 1, 1, 1, 1, 1, 1];
+            const proxyUrl = proxies[proxyIndex] + encodeURIComponent(url);
+            try {
+                const response = await fetch(proxyUrl);
+    
+                if (response.status === 429) {
+                    console.warn(`Rate limit na proxy ${proxyIndex}, przełączam na kolejne.`);
+                    return fetchWithProxy(url, proxyIndex + 1);
+                }
+    
+                if (!response.ok) {
+                    throw new Error(`HTTP error ${response.status}`);
+                }
+    
+                return response.json();
+            } catch (error) {
+                console.error(`Błąd proxy ${proxyIndex}: ${error.message}`);
+                return fetchWithProxy(url, proxyIndex + 1);
+            }
+        }
+
+        let sortDirections = [1, 1, 1, 1, 1];
         function sortTable(colIndex) {
             const tbody = document.getElementById("stats-body");
             let rows = Array.from(tbody.rows);
@@ -262,26 +282,6 @@
             headers.forEach((span, index) => {
                 span.textContent = sortDirections[index] === 1 ? " ▲" : " ▼";
             });
-        }
-    
-            const proxyUrl = proxies[proxyIndex] + encodeURIComponent(url);
-            try {
-                const response = await fetch(proxyUrl);
-    
-                if (response.status === 429) {
-                    console.warn(`Rate limit na proxy ${proxyIndex}, przełączam na kolejne.`);
-                    return fetchWithProxy(url, proxyIndex + 1);
-                }
-    
-                if (!response.ok) {
-                    throw new Error(`HTTP error ${response.status}`);
-                }
-    
-                return response.json();
-            } catch (error) {
-                console.error(`Błąd proxy ${proxyIndex}: ${error.message}`);
-                return fetchWithProxy(url, proxyIndex + 1);
-            }
         }
     
 async function fetchLocalData(username) {
