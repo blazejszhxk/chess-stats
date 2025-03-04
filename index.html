@@ -235,27 +235,29 @@
         }
 
         let sortDirections = [1, 1, 1, 1, 1, 1, 1]; // 7 kolumn (bez Nick)
-        
+    
         function sortTable(colIndex) {
             const tbody = document.getElementById("stats-body");
             let rows = Array.from(tbody.rows);
         
-            // Przesunięcie indeksu, bo Nick (0) nie jest sortowany
-            const actualIndex = colIndex + 1;
-        
             rows.sort((a, b) => {
-                let aVal = a.cells[actualIndex].textContent.trim();
-                let bVal = b.cells[actualIndex].textContent.trim();
+                let aVal, bVal;
         
-                if (actualIndex === 7) { // Last Game (porównujemy daty)
-                    aVal = new Date(aVal.split(" (")[0]);
-                    bVal = new Date(bVal.split(" (")[0]);
-        
-                    if (isNaN(aVal)) aVal = new Date(0); // Jeśli niepoprawna data, ustaw 0
-                    if (isNaN(bVal)) bVal = new Date(0);
-                } else {
-                    aVal = parseFloat(aVal.replace(/[^0-9.-]/g, "")) || 0; // Usuwamy inne znaki
-                    bVal = parseFloat(bVal.replace(/[^0-9.-]/g, "")) || 0;
+                switch (colIndex) {
+                    case 0: // Rating Rapid
+                    case 1: // Rating Zadania
+                    case 2: // Liczba gier Rapid
+                    case 3: // Liczba gier Rapid dziś
+                    case 4: // Liczba gier Zadania
+                    case 5: // Liczba gier Zadania dziś
+                        aVal = parseInt(a.cells[colIndex + 1].textContent.match(/-?\d+/g)) || 0;
+                        bVal = parseInt(b.cells[colIndex + 1].textContent.match(/-?\d+/g)) || 0;
+                        break;
+                    
+                    case 6: // Last Game (data)
+                        aVal = new Date(a.cells[7].textContent.split(" (")[0]) || new Date(0);
+                        bVal = new Date(b.cells[7].textContent.split(" (")[0]) || new Date(0);
+                        break;
                 }
         
                 return (aVal - bVal) * sortDirections[colIndex];
