@@ -244,13 +244,14 @@
                 let aVal = a.cells[colIndex + 1].textContent.trim();
                 let bVal = b.cells[colIndex + 1].textContent.trim();
         
+                // Zamiana wartości na liczby - "Brak danych" traktujemy jako bardzo niską wartość
                 let aNum = aVal.includes("Brak danych") || aVal.includes("Błąd") ? -99999 : parseInt(aVal.match(/-?\d+/) || 0);
                 let bNum = bVal.includes("Brak danych") || bVal.includes("Błąd") ? -99999 : parseInt(bVal.match(/-?\d+/) || 0);
         
                 return (aNum - bNum) * sortDirections[colIndex];
             });
         
-            sortDirections[colIndex] *= -1;
+            sortDirections[colIndex] *= -1; // Odwrócenie kierunku sortowania
             tbody.innerHTML = "";
             rows.forEach(row => tbody.appendChild(row));
             updateSortIcons(colIndex);
@@ -262,7 +263,7 @@
                 if (index === activeIndex) {
                     span.textContent = sortDirections[index] === 1 ? " ▲" : " ▼";
                 } else {
-                    span.textContent = " ▲";
+                    span.textContent = " ▲";  // Resetowanie innych strzałek
                 }
             });
         }
@@ -315,11 +316,12 @@ async function getChessStats(displayName, chessComData) {
         let lastGame = "Brak danych";
         let lastDateRapid = null;
         let lastDateTactics = null;
-        let rapidGames = "0";
-        let tacticsGames = "0";
-        let rapidGamesToday = "0";
-        let tacticsGamesToday = "0";
+        let rapidGames = "Brak danych";
+        let tacticsGames = "Brak danych";
+        let rapidGamesToday = "Brak danych";
+        let tacticsGamesToday = "Brak danych";
 
+        // Pobranie danych z lokalnych plików, jeśli istnieją
         let prevTacticsRating = localData?.stats.find(s => s.key === "tactics")?.stats?.rating || null;
         let prevRapidRating = localData?.stats.find(s => s.key === "rapid")?.stats?.rating || null;
         let prevRapidGames = localData?.stats.find(s => s.key === "rapid")?.stats?.total_game_count || 0;
@@ -329,17 +331,18 @@ async function getChessStats(displayName, chessComData) {
             if (stat.key === "tactics" && stat.stats) {
                 tacticsRating = stat.stats.rating ?? "Brak danych";
                 lastDateTactics = new Date(stat.lastDate).getTime();
-                tacticsGames = stat.stats.attempt_count ? `${stat.stats.attempt_count} (<span class='green'>${stat.stats.passed_count ?? 0}</span>/<span class='red'>${stat.stats.failed_count ?? 0}</span>)` : "0";
-                tacticsGamesToday = stat.stats.attempt_count - prevTacticsGames || "0";
+                tacticsGames = `${stat.stats.attempt_count} (<span class='green'>${stat.stats.passed_count ?? 0}</span>/<span class='red'>${stat.stats.failed_count ?? 0}</span>)`;
+                tacticsGamesToday = stat.stats.attempt_count - prevTacticsGames;
             }
             if (stat.key === "rapid" && stat.stats) {
                 rapidRating = stat.stats.rating ?? "Brak danych";
                 lastDateRapid = new Date(stat.lastDate).getTime();
-                rapidGames = stat.stats.total_game_count ? `${stat.stats.total_game_count} (<span class='green'>${stat.stats.total_win_count ?? 0}</span>/<span class='red'>${stat.stats.total_loss_count ?? 0}</span>/<span class='white'>${stat.stats.total_draw_count ?? 0}</span>)` : "0";
-                rapidGamesToday = stat.stats.total_game_count - prevRapidGames || "0";
+                rapidGames = `${stat.stats.total_game_count} (<span class='green'>${stat.stats.total_win_count ?? 0}</span>/<span class='red'>${stat.stats.total_loss_count ?? 0}</span>/<span class='white'>${stat.stats.total_draw_count ?? 0}</span>)`;
+                rapidGamesToday = stat.stats.total_game_count - prevRapidGames;
             }
         });
 
+        // Poprawne ustawienie daty ostatniej gry
         const lastTimestamp = Math.max(lastDateRapid || 0, lastDateTactics || 0);
         if (lastTimestamp > 0) {
             const date = new Date(lastTimestamp).toLocaleString("pl-PL", { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' });
