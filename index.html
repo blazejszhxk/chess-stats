@@ -32,8 +32,8 @@
         }
         
         .table-container {
-            width: 50%;
-            max-width: 90%;
+            width: 70%;
+            max-width: 95%;
             position: relative;
         }
         
@@ -72,7 +72,6 @@
             border-radius: 12px;
             overflow: hidden;
             font-size: 14px;
-            transform: scale(0.85);
         }
         
         th, td {
@@ -175,7 +174,6 @@
                 white-space: nowrap;
             }
         }
-
 </style>
 </head>
 <body>
@@ -198,7 +196,7 @@
             <tbody id="stats-body">
             </tbody>
         </table>
-    <div class="changes-info">Cyfry w () (rating) to zmiany rankingu od 00:00. (będzie działać od 00:00 dopiero 04.03)</div>
+    <div class="changes-info">Liczby w () (rating) to zmiany rankingu od 00:00. (będzie działać od 00:00 dopiero 04.03, tak jak reszta)</div>
     </div>
 
     <div class="footer">
@@ -227,6 +225,7 @@
         };
     
         const proxies = [
+            "http://cors-bypass.blazejpdw123.workers.dev/?url=",
             "https://api.allorigins.win/raw?url=",
             "https://corsproxy.io/"
         ];
