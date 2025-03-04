@@ -183,14 +183,12 @@
         <table>
             <thead>
                 <tr>
-            <th>Nick</th>
-            <th onclick="sortTable(0)">Rating Rapid <span>▲</span></th>
-            <th onclick="sortTable(1)">Rating Zadania <span>▲</span></th>
-            <th onclick="sortTable(2)">Liczba gier Rapid <span>▲</span></th>
-            <th onclick="sortTable(3)">Liczba gier Rapid dziś <span>▲</span></th>
-            <th onclick="sortTable(4)">Liczba gier Zadania <span>▲</span></th>
-            <th onclick="sortTable(5)">Liczba gier Zadania dziś <span>▲</span></th>
-            <th onclick="sortTable(6)">Last Game <span>▲</span></th>
+        <th>Nick</th>
+        <th onclick="sortTable(0)">Rating Rapid <span> ▲</span></th>
+        <th onclick="sortTable(1)">Rating Zadania <span> ▲</span></th>
+        <th onclick="sortTable(2)">Liczba gier Rapid <span> ▲</span></th>
+        <th onclick="sortTable(3)">Liczba gier Zadania <span> ▲</span></th>
+        <th onclick="sortTable(4)">Last Game <span> ▲</span></th>
                 </tr>
             </thead>
             <tbody id="stats-body">
@@ -309,10 +307,10 @@ async function getChessStats(displayName, chessComData) {
         let tacticsRating = "Brak danych";
         let rapidRating = "Brak danych";
         let lastGame = "Brak danych";
+        let lastDateRapid = null;
+        let lastDateTactics = null;
         let rapidGames = "Brak danych";
         let tacticsGames = "Brak danych";
-        let rapidGamesToday = 0;
-        let tacticsGamesToday = 0;
 
         let prevTacticsRating = localData?.stats.find(s => s.key === "tactics")?.stats?.rating || null;
         let prevRapidRating = localData?.stats.find(s => s.key === "rapid")?.stats?.rating || null;
@@ -320,23 +318,13 @@ async function getChessStats(displayName, chessComData) {
         jsonData.stats.forEach(stat => {
             if (stat.key === "tactics" && stat.stats.rating) {
                 tacticsRating = stat.stats.rating;
+                lastDateTactics = new Date(stat.lastDate).getTime();
                 tacticsGames = `${stat.stats.attempt_count} (<span class='green'>${stat.stats.passed_count}</span>/<span class='red'>${stat.stats.failed_count}</span>)`;
-                
-                const today = new Date().setHours(0, 0, 0, 0);
-                const statDate = new Date(stat.lastDate).setHours(0, 0, 0, 0);
-                if (statDate === today) {
-                    tacticsGamesToday = stat.stats.attempt_count;
-                }
             }
             if (stat.key === "rapid" && stat.stats.rating) {
                 rapidRating = stat.stats.rating;
+                lastDateRapid = new Date(stat.lastDate).getTime();
                 rapidGames = `${stat.stats.total_game_count} (<span class='green'>${stat.stats.total_win_count}</span>/<span class='red'>${stat.stats.total_loss_count}</span>/<span class='white'>${stat.stats.total_draw_count}</span>)`;
-                
-                const today = new Date().setHours(0, 0, 0, 0);
-                const statDate = new Date(stat.lastDate).setHours(0, 0, 0, 0);
-                if (statDate === today) {
-                    rapidGamesToday = stat.stats.total_game_count;
-                }
             }
         });
 
@@ -346,18 +334,19 @@ async function getChessStats(displayName, chessComData) {
             lastGame = lastTimestamp === lastDateTactics ? `${date} (Z)` : `${date} (R)`;
         }
 
-        function formatRating(rating, prevRating) {
-            if (rating === "Brak danych") return "Brak danych";
-            if (prevRating !== null) {
-                let change = rating - prevRating;
-                if (change !== 0) {
-                    let color = change > 0 ? "green" : "red";
-                    let sign = change > 0 ? "+" : "-";
-                    return `${rating} (<span style='color:${color}'>${sign}${Math.abs(change)}</span>)`;
-                }
-            }
-            return `${rating}`;
+function formatRating(rating, prevRating) {
+    if (rating === "Brak danych") return "Brak danych";
+    
+    if (prevRating !== null) {
+        let change = rating - prevRating;
+        if (change !== 0) {
+            let color = change > 0 ? "green" : "red";
+            let sign = change > 0 ? "+" : "-";
+            return `${rating} (<span style='color:${color}'>${sign}${Math.abs(change)}</span>)`;
         }
+    }
+    return `${rating}`;
+}
 
         return { 
             displayName, 
@@ -365,8 +354,6 @@ async function getChessStats(displayName, chessComData) {
             rapidRating: formatRating(rapidRating, prevRapidRating), 
             rapidGames,
             tacticsGames,
-            rapidGamesToday,
-            tacticsGamesToday,
             lastGame, 
             link: chessComData.link 
         };
@@ -378,31 +365,41 @@ async function getChessStats(displayName, chessComData) {
             rapidRating: "Błąd", 
             rapidGames: "Błąd", 
             tacticsGames: "Błąd", 
-            rapidGamesToday: "Błąd", 
-            tacticsGamesToday: "Błąd", 
             lastGame: "Błąd", 
             link: chessComData.link 
         };
     }
 }
 
-async function populateTable() {
-    const tbody = document.getElementById("stats-body");
-    tbody.innerHTML = "";
-
-    const statsArray = await Promise.all(
-        Object.entries(usersMap).map(([displayName, chessComData]) => 
-            getChessStats(displayName, chessComData)
-        )
-    );
-
-    statsArray.forEach(({ displayName, tacticsRating, rapidRating, rapidGames, tacticsGames, rapidGamesToday, tacticsGamesToday, lastGame, link }) => {
-        const nameCell = link ? `<a href='${link}' target='_blank' style='color: #007bff; font-weight: 300; text-decoration: none;'>${displayName}</a>` : displayName;
-        tbody.innerHTML += `<tr><td>${nameCell}</td><td>${rapidRating}</td><td>${tacticsRating}</td><td>${rapidGames}</td><td>${tacticsGames}</td><td>${rapidGamesToday}</td><td>${tacticsGamesToday}</td><td>${lastGame}</td></tr>`;
-    });
-
-    updateTimestamp();
-}
+        async function populateTable() {
+            const tbody = document.getElementById("stats-body");
+            tbody.innerHTML = "";
+        
+            const statsArray = await Promise.all(
+                Object.entries(usersMap).map(([displayName, chessComData]) => 
+                    getChessStats(displayName, chessComData)
+                )
+            );
+        
+            statsArray.sort((a, b) => {
+                const extractRating = (ratingText) => {
+                    if (!ratingText || ratingText.includes("Błąd") || ratingText.includes("Brak danych")) {
+                        return 0;
+                    }
+                    const match = ratingText.match(/\d+/);
+                    return match ? parseInt(match[0], 10) : 0;
+                };
+        
+                return extractRating(b.rapidRating) - extractRating(a.rapidRating);
+            });
+        
+            statsArray.forEach(({ displayName, tacticsRating, rapidRating, rapidGames, tacticsGames, lastGame, link }) => {
+                const nameCell = link ? `<a href='${link}' target='_blank' style='color: #007bff; font-weight: 300; text-decoration: none;'>${displayName}</a>` : displayName;
+                tbody.innerHTML += `<tr><td>${nameCell}</td><td>${rapidRating}</td><td>${tacticsRating}</td><td>${rapidGames}</td><td>${tacticsGames}</td><td>${lastGame}</td></tr>`;
+            });
+        
+            updateTimestamp();
+        }
         populateTable();
     </script>
 </body>
