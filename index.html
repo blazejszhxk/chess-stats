@@ -234,7 +234,7 @@
             document.getElementById("update-time").textContent = `Tabela została zaktualizowana o godz. ${formattedTime}`;
         }
 
-let sortDirections = [1, 1, 1, 1, 1, 1, 1, 1]; // Dostosowane do 8 kolumn sortowanych
+let sortDirections = [1, 1, 1, 1, 1, 1, 1]; // Dla 7 kolumn (bez "Nick")
 
 function sortTable(colIndex) {
     const tbody = document.getElementById("stats-body");
@@ -243,13 +243,13 @@ function sortTable(colIndex) {
     rows.sort((a, b) => {
         let aVal, bVal;
         
-        // Pobranie wartości komórki według poprawnego indeksu
+        // Poprawne indeksowanie kolumn (pomijamy "Nick")
         let aCell = a.cells[colIndex + 1]; 
         let bCell = b.cells[colIndex + 1];
 
         if (!aCell || !bCell) return 0; // Zapobieganie błędom
 
-        if (colIndex === 7) { // Sortowanie dat w kolumnie "Last Game"
+        if (colIndex === 6) { // Sortowanie dat w kolumnie "Last Game"
             aVal = new Date(aCell.textContent.split(" (")[0]) || 0;
             bVal = new Date(bCell.textContent.split(" (")[0]) || 0;
         } else { // Sortowanie liczb
