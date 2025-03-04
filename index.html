@@ -189,7 +189,8 @@
         <th onclick="sortTable(3)">Gry Rapid Dziś <span> ▲</span></th>
         <th onclick="sortTable(4)">Zadania <span> ▲</span></th>
         <th onclick="sortTable(5)">Zadania dziś <span> ▲</span></th>
-        <th onclick="sortTable(6)">Last Game <span> ▲</span></th>
+        <th onclick="sortTable(6)">Czas na zadaniach <span> ▲</span></th>
+        <th onclick="sortTable(7)">Last Game <span> ▲</span></th>
                 </tr>
             </thead>
             <tbody id="stats-body">
@@ -235,23 +236,25 @@
             document.getElementById("update-time").textContent = `Tabela została zaktualizowana o godz. ${formattedTime}`;
         }
 
-        let sortDirections = [1, 1, 1, 1, 1, 1, 1];
-        
+        let sortDirections = [1, 1, 1, 1, 1, 1, 1, 1, 1];	
         function sortTable(colIndex) {
             const tbody = document.getElementById("stats-body");
             let rows = Array.from(tbody.rows);
         
             rows.sort((a, b) => {
                 let aVal, bVal;
-                
+        
                 let aCell = a.cells[colIndex + 1]; 
                 let bCell = b.cells[colIndex + 1];
         
                 if (!aCell || !bCell) return 0;
         
-                if (colIndex === 6) {
-                    aVal = new Date(aCell.textContent.split(" (")[0]) || 0;
-                    bVal = new Date(bCell.textContent.split(" (")[0]) || 0;
+                if (colIndex === 7) {
+                    aVal = new Date(aCell.textContent).getTime();
+                    bVal = new Date(bCell.textContent).getTime();
+                } else if (colIndex === 6) {
+                    aVal = timeToSeconds(aCell.textContent);
+                    bVal = timeToSeconds(bCell.textContent);
                 } else {
                     aVal = parseInt(aCell.textContent.match(/\d+/)) || 0;
                     bVal = parseInt(bCell.textContent.match(/\d+/)) || 0;
@@ -266,7 +269,18 @@
         
             updateSortIcons(colIndex);
         }
-        
+        	
+        function timeToSeconds(timeStr) {
+            const timeParts = timeStr.match(/(\d+)h (\d+)m (\d+)s/);
+            if (timeParts) {
+                const hours = parseInt(timeParts[1], 10);
+                const minutes = parseInt(timeParts[2], 10);
+                const seconds = parseInt(timeParts[3], 10);
+                return (hours * 3600) + (minutes * 60) + seconds;
+            }
+            return 0;
+        }
+
         function updateSortIcons(activeIndex) {
             const headers = document.querySelectorAll("th span");
         
@@ -321,7 +335,7 @@
             
             try {
                 const jsonData = await fetchWithProxy(url);
-        
+            
                 let tacticsRating = "Brak danych";
                 let rapidRating = "Brak danych";
                 let lastGame = "Brak danych";
@@ -331,6 +345,7 @@
                 let tacticsGames = "0";
                 let rapidGamesToday = "0";
                 let tacticsGamesToday = "0";
+                let totalTacticsTime = 0;
         
                 let prevTacticsRating = localData?.stats.find(s => s.key === "tactics")?.stats?.rating || null;
                 let prevRapidRating = localData?.stats.find(s => s.key === "rapid")?.stats?.rating || null;
@@ -343,6 +358,7 @@
                         lastDateTactics = new Date(stat.lastDate).getTime();
                         tacticsGames = stat.stats.attempt_count ? `${stat.stats.attempt_count} (<span class='green'>${stat.stats.passed_count ?? 0}</span>/<span class='red'>${stat.stats.failed_count ?? 0}</span>)` : "0";
                         tacticsGamesToday = stat.stats.attempt_count - prevTacticsGames || "0";
+                        totalTacticsTime = stat.stats.total_seconds || 0;  // Przypisanie czasu
                     }
                     if (stat.key === "rapid" && stat.stats) {
                         rapidRating = stat.stats.rating ?? "Brak danych";
@@ -371,6 +387,13 @@
                     return `${rating}`;
                 }
         
+                function formatTime(seconds) {
+                    const hours = Math.floor(seconds / 3600);
+                    const minutes = Math.floor((seconds % 3600) / 60);
+                    const sec = seconds % 60;
+                    return `${hours}h ${minutes}m ${sec}s`;
+                }
+        
                 return { 
                     displayName, 
                     tacticsRating: formatRating(tacticsRating, prevTacticsRating), 
@@ -380,6 +403,7 @@
                     tacticsGames,
                     tacticsGamesToday,
                     lastGame,
+                    timeOnTactics: formatTime(totalTacticsTime),
                     link: chessComData.link 
                 };
             } catch (error) {
@@ -393,6 +417,7 @@
                     tacticsGames: "Błąd", 
                     tacticsGamesToday: "Błąd", 
                     lastGame: "Błąd", 
+                    timeOnTactics: "Błąd",
                     link: chessComData.link 
                 };
             }
@@ -410,14 +435,15 @@
         
             statsArray.sort((a, b) => parseInt(b.rapidRating) - parseInt(a.rapidRating));
         
-            statsArray.forEach(({ displayName, tacticsRating, rapidRating, rapidGames, rapidGamesToday, tacticsGames, tacticsGamesToday, lastGame, link }) => {
+            statsArray.forEach(({ displayName, tacticsRating, rapidRating, rapidGames, rapidGamesToday, tacticsGames, tacticsGamesToday, lastGame, timeOnTactics, link }) => {
                 const nameCell = link ? `<a href='${link}' target='_blank' style='color: #007bff; font-weight: 300; text-decoration: none;'>${displayName}</a>` : displayName;
-                tbody.innerHTML += `<tr><td>${nameCell}</td><td>${rapidRating}</td><td>${tacticsRating}</td><td>${rapidGames}</td><td>${rapidGamesToday}</td><td>${tacticsGames}</td><td>${tacticsGamesToday}</td><td>${lastGame}</td></tr>`;
+                tbody.innerHTML += `<tr><td>${nameCell}</td><td>${rapidRating}</td><td>${tacticsRating}</td><td>${rapidGames}</td><td>${rapidGamesToday}</td><td>${tacticsGames}</td><td>${tacticsGamesToday}</td><td>${timeOnTactics}</td><td>${lastGame}</td></tr>`;
             });
         
             updateTimestamp();
         }
-        populateTable();
+        
+                populateTable();
     </script>
 </body>
 </html>
