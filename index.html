@@ -242,25 +242,34 @@
             let rows = Array.from(tbody.rows);
         
             rows.sort((a, b) => {
-                let aVal = a.cells[colIndex + 1].textContent.trim();
-                let bVal = b.cells[colIndex + 1].textContent.trim();
+                let aVal, bVal;
+                
+                let aCell = a.cells[colIndex + 1]; 
+                let bCell = b.cells[colIndex + 1];
         
-                let aNum = aVal.includes("Brak danych") || aVal.includes("Błąd") ? -99999 : parseInt(aVal.match(/-?\d+/) || 0);
-                let bNum = bVal.includes("Brak danych") || bVal.includes("Błąd") ? -99999 : parseInt(bVal.match(/-?\d+/) || 0);
+                if (!aCell || !bCell) return 0;
         
-                return (aNum - bNum) * sortDirections[colIndex];
+                if (colIndex === 6) {
+                    aVal = new Date(aCell.textContent.split(" (")[0]) || 0;
+                    bVal = new Date(bCell.textContent.split(" (")[0]) || 0;
+                } else {
+                    aVal = parseInt(aCell.textContent.match(/\d+/)) || 0;
+                    bVal = parseInt(bCell.textContent.match(/\d+/)) || 0;
+                }
+        
+                return (aVal - bVal) * sortDirections[colIndex];
             });
         
             sortDirections[colIndex] *= -1;
-        
-            tbody.innerHTML = "";
+            tbody.innerHTML = ""; 
             rows.forEach(row => tbody.appendChild(row));
         
             updateSortIcons(colIndex);
         }
-  
+        
         function updateSortIcons(activeIndex) {
             const headers = document.querySelectorAll("th span");
+        
             headers.forEach((span, index) => {
                 if (index === activeIndex) {
                     span.textContent = sortDirections[index] === 1 ? " ▲" : " ▼";
