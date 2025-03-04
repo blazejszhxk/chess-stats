@@ -211,24 +211,26 @@
     <div class="footer">
         <img src="https://img.icons8.com/ios-glyphs/30/chess-com.png" alt="chess-com"/>
         <span>Organizowane przez <a href="https://twitch.tv/xntentacion" target="_blank">xntentacion</a></span>
-    </div> 
+    </div>
+    
     <div class="disclaimer">This website is not associated with Chess.com</div>
+
     <script>
         const usersMap = {
             "Kasix": { username: "kasix909", link: "https://twitch.tv/kasix" },
-            "Delord": { username: "Pablosabre", link: "https://twitch.tv/delordione", link2: "https://kick.com/delordione" },
+            "Delord": { username: "Pablosabre", link: "https://twitch.tv/delordione" },
             "Nieuczesana": { username: "nieuczeszek", link: "https://twitch.tv/nieuczesana" },
             "Diables": { username: "xdiables", link: "https://twitch.tv/diables" },
-            "TheNitroZyniak": { username: "nitro69penetrator", link: "https://twitch.tv/thenitrozyniak", link2: "https://kick.com/niter" },
+            "TheNitroZyniak": { username: "nitro69penetrator", link: "https://kick.com/niter" },
             "Tomasz Fornal": { username: "TomaszFornal", link: "https://twitch.tv/tytusc" },
             "Netrodal": { username: "didaskyler", link: "https://twitch.tv/netrodalo" },
             "RandomBruceTV": { username: "szachowytapir", link: "https://twitch.tv/randombrucetv" },
             "Bagietka Michael": { username: "bagietkaofficial", link: "https://twitch.tv/mbagietson" },
-            "MokrySpuchar": { username: "mokrysucharek", link: "https://twitch.tv/mokrysuchar", link2: "https://kick.com/mokrysuchar" },
+            "MokrySpuchar": { username: "mokrysucharek", link: "https://kick.com/mokrysuchar" },
             "Hiszpanitos": { username: "jakubjd", link: "https://twitch.tv/hiszpanitos" },
             "Overpow": { username: "szachowychogath", link: "https://twitch.tv/overpow" },
-            "Kubon_": { username: "JaKubon000", link: "https://twitch.tv/kubon_", link2: "https://kick.com/kubon" },
-            "demonzz1": { username: "demonzz1", link: "https://twitch.tv/demonzz1", link2: "https://kick.com/demonzz1" }
+            "Kubon_": { username: "JaKubon000", link: "https://twitch.tv/kubon_" },
+            "demonzz1": { username: "demonzz1", link: "https://twitch.tv/demonzz1" }
         };
     
         const proxies = [
@@ -336,38 +338,31 @@
             }
         }
 
-        async function checkStreamStatus(username, link, link2) {
-            let streamStatus = "Offline";
-            
+        async function checkStreamStatus(username, link) {
             if (link.includes('twitch.tv')) {
                 const twitchUsername = link.split('/')[3];
                 const apiUrl = `https://decapi.me/twitch/uptime/${twitchUsername}`;
                 try {
                     const response = await fetch(apiUrl);
                     const data = await response.text();
-                    if (!data.includes("offline")) {
-                        streamStatus = "Online";
-                    }
+                    return data.includes("offline") ? "Offline" : "Online";
                 } catch (error) {
                     console.error(`Błąd sprawdzania statusu streamu Twitcha dla ${username}:`, error);
+                    return "Offline";
                 }
-            }
-            
-            if (streamStatus === "Offline" && link2 && link2.includes('kick.com')) {
-                const kickUsername = link2.split('/')[3];
+            } else if (link.includes('kick.com')) {
+                const kickUsername = link.split('/')[3];
                 const apiUrl = `https://kick.com/api/v2/channels/${kickUsername}`;
                 try {
                     const response = await fetch(apiUrl);
                     const data = await response.json();
-                    if (data.livestream !== null) {
-                        streamStatus = "Online";
-                    }
+                    return data.livestream === null ? "Offline" : "Online";
                 } catch (error) {
                     console.error(`Błąd sprawdzania statusu streamu Kicka dla ${username}:`, error);
+                    return "Offline";
                 }
             }
-        
-            return streamStatus;
+            return "Offline";
         }
 
         async function getChessStats(displayName, chessComData) {
@@ -447,7 +442,7 @@
                     lastGame,
                     timeOnTactics: formatTime(totalTacticsTime),
                     link: chessComData.link,
-                    streamStatus // Add the stream status
+                    streamStatus
                 };
             } catch (error) {
                 console.error(`Błąd dla ${displayName}: ${error.message}`);
@@ -475,18 +470,22 @@
                 Object.entries(usersMap).map(async ([displayName, chessComData]) => {
                     const chessStats = await getChessStats(displayName, chessComData);
                     const streamStatus = await checkStreamStatus(displayName, chessComData.link, chessComData.link2);
+        
+                    const finalLink = streamStatus === "Online" && chessComData.link2 ? chessComData.link2 : chessComData.link;
+        
                     return {
                         ...chessStats,
-                        streamStatus
+                        streamStatus,
+                        finalLink
                     };
                 })
             );
             
             statsArray.sort((a, b) => parseInt(b.rapidRating) - parseInt(a.rapidRating));
         
-            const rows = statsArray.map(({ displayName, tacticsRating, rapidRating, rapidGames, rapidGamesToday, tacticsGames, tacticsGamesToday, lastGame, timeOnTactics, link, streamStatus }) => {
-                const nameCell = link
-                    ? `<a href='${link}' target='_blank' style='color: #007bff; font-weight: 300; text-decoration: none;'>${displayName}</a>`
+            const rows = statsArray.map(({ displayName, tacticsRating, rapidRating, rapidGames, rapidGamesToday, tacticsGames, tacticsGamesToday, lastGame, timeOnTactics, finalLink, streamStatus }) => {
+                const nameCell = finalLink
+                    ? `<a href='${finalLink}' target='_blank' style='color: #007bff; font-weight: 300; text-decoration: none;'>${displayName}</a>`
                     : displayName;
         
                 const streamIcon = streamStatus === "Online"
