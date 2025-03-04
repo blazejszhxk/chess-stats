@@ -344,7 +344,7 @@ function formatRating(rating, prevRating) {
         let color = change > 0 ? "green" : change < 0 ? "red" : "black";
 
         if (change !== 0) {
-            changeText = ` (<span style='color:${color}'>${change > 0 ? "+" : ""}${absChange}</span>)`;
+            changeText = ` (<span style='color:${color}'>${absChange}</span>)`;
         }
     }
     return `${rating}${changeText}`;
