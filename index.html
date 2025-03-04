@@ -234,7 +234,7 @@
             document.getElementById("update-time").textContent = `Tabela została zaktualizowana o godz. ${formattedTime}`;
         }
 
-let sortDirections = [1, 1, 1, 1, 1, 1, 1, 1]; // Zaktualizowana tablica kierunków sortowania
+let sortDirections = [1, 1, 1, 1, 1, 1, 1, 1]; // Dostosowane do 8 kolumn sortowanych
 
 function sortTable(colIndex) {
     const tbody = document.getElementById("stats-body");
@@ -243,33 +243,41 @@ function sortTable(colIndex) {
     rows.sort((a, b) => {
         let aVal, bVal;
         
-        // "Last Game" (kolumna 7) zawiera datę, więc trzeba ją parsować
-        if (colIndex === 7) { 
-            aVal = new Date(a.cells[colIndex + 1].textContent.split(" (")[0]) || 0;
-            bVal = new Date(b.cells[colIndex + 1].textContent.split(" (")[0]) || 0;
-        } else {
-            // Pobranie liczby z tekstu (np. "123" z "123 gier")
-            aVal = parseInt(a.cells[colIndex + 1].textContent.match(/\d+/) || 0);
-            bVal = parseInt(b.cells[colIndex + 1].textContent.match(/\d+/) || 0);
+        // Pobranie wartości komórki według poprawnego indeksu
+        let aCell = a.cells[colIndex + 1]; 
+        let bCell = b.cells[colIndex + 1];
+
+        if (!aCell || !bCell) return 0; // Zapobieganie błędom
+
+        if (colIndex === 7) { // Sortowanie dat w kolumnie "Last Game"
+            aVal = new Date(aCell.textContent.split(" (")[0]) || 0;
+            bVal = new Date(bCell.textContent.split(" (")[0]) || 0;
+        } else { // Sortowanie liczb
+            aVal = parseInt(aCell.textContent.match(/\d+/)) || 0;
+            bVal = parseInt(bCell.textContent.match(/\d+/)) || 0;
         }
 
         return (aVal - bVal) * sortDirections[colIndex];
     });
 
-    sortDirections[colIndex] *= -1; // Odwrócenie kierunku sortowania
+    sortDirections[colIndex] *= -1; // Zmiana kierunku sortowania
     tbody.innerHTML = ""; 
     rows.forEach(row => tbody.appendChild(row));
 
-    updateSortIcons();
+    updateSortIcons(colIndex);
 }
 
-function updateSortIcons() {
+function updateSortIcons(activeIndex) {
     const headers = document.querySelectorAll("th span");
+
     headers.forEach((span, index) => {
-        span.textContent = sortDirections[index] === 1 ? " ▲" : " ▼";
+        if (index === activeIndex) {
+            span.textContent = sortDirections[index] === 1 ? " ▲" : " ▼";
+        } else {
+            span.textContent = " ▲"; // Reset strzałek w innych kolumnach
+        }
     });
 }
-
         
         async function fetchWithProxy(url, proxyIndex = 0) {
             if (proxyIndex >= proxies.length) {
