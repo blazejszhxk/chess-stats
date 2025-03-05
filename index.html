@@ -380,13 +380,12 @@
                 return "Offline";
             };
         
-            let streamStatus = await checkLink(link);
+            const promises = [checkLink(link)];
+            if (link2) promises.push(checkLink(link2));
         
-            if (streamStatus === "Offline" && link2) {
-                streamStatus = await checkLink(link2);
-            }
+            const statuses = await Promise.all(promises);
         
-            return streamStatus;
+            return statuses.find(status => status === "Online") || "Offline";
         }
 
         async function updateFooterStreamStatus() {
