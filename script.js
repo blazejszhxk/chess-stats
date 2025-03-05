@@ -3,7 +3,7 @@ import path from 'path';
 
 const usersMap = {
     "Kasix": { username: "kasix909" },
-    "Delord": { username: "Pablosabre" },
+    "Delordione": { username: "Pablosabre" },
     "Nieuczesana": { username: "nieuczeszek" },
     "Diables": { username: "xdiables" },
     "TheNitroZyniak": { username: "nitro69penetrator" },
@@ -11,7 +11,7 @@ const usersMap = {
     "Netrodal": { username: "didaskyler" },
     "RandomBruceTV": { username: "szachowytapir" },
     "Bagietka Michael": { username: "bagietkaofficial" },
-    "MokrySpuchar": { username: "mokrysucharek" },
+    "MokrySuchar": { username: "mokrysucharek" },
     "Hiszpanitos": { username: "jakubjd" },
     "Overpow": { username: "szachowychogath" },
     "Kubon_": { username: "JaKubon000" },
@@ -27,13 +27,26 @@ async function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+function deleteExistingFiles() {
+    const files = fs.readdirSync(dataDir);
+    for (const file of files) {
+        const filePath = path.join(dataDir, file);
+        if (fs.existsSync(filePath)) {
+            fs.unlinkSync(filePath);
+            console.log(`Usunięto plik: ${filePath}`);
+        }
+    }
+}
+
 async function fetchChessStats(username) {
     const url = `https://www.chess.com/callback/member/stats/${username}`;
     try {
         const response = await fetch(url);
         if (!response.ok) throw new Error(`HTTP error ${response.status}`);
         const jsonData = await response.json();
+
         const filePath = path.join(dataDir, `${username}.json`);
+        
         fs.writeFileSync(filePath, JSON.stringify(jsonData, null, 2));
         console.log(`Dane zapisane w pliku ${filePath}`);
     } catch (error) {
@@ -42,9 +55,11 @@ async function fetchChessStats(username) {
 }
 
 async function fetchAllStats() {
+    deleteExistingFiles();
+    
     for (const userData of Object.values(usersMap)) {
         await fetchChessStats(userData.username);
-        await delay(3000);
+        await delay(1000);
     }
 }
 
