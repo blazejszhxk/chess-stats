@@ -94,7 +94,11 @@
             background-color: #e2e6ea;
             transition: 0.3s;
         }
-        
+   
+        .stream-status-icon {
+            margin-left: 8px;
+        }
+     
         .footer {
             position: fixed;
             bottom: 15px;
@@ -108,11 +112,11 @@
             padding: 10px;
             font-weight: 600;
         }
-        
+
         .footer img {
             width: 24px;
             height: 24px;
-            margin-right: 8px;
+            margin-right: 4px;
         }
         
         .footer span {
@@ -376,6 +380,37 @@
             return streamStatus;
         }
 
+        async function updateFooterStreamStatus() {
+            const footerSpan = document.querySelector(".footer span");
+        
+            const twitchLink = "https://twitch.tv/xntentacion";
+            const kickLink = "https://kick.com/xntentacion";
+        
+            let streamStatusTwitch = await checkStreamStatus("xntentacion", twitchLink);
+            
+            if (streamStatusTwitch === "Online") {
+                footerSpan.innerHTML = `Organizowane przez 
+                    <a href="${twitchLink}" target="_blank">xntentacion</a> 
+                    <img src='https://i.imgur.com/WQFquis.png' alt='Online' class='stream-status-icon' />`;
+                return;
+            }
+        
+            let streamStatusKick = await checkStreamStatus("xntentacion", kickLink);
+        
+            if (streamStatusKick === "Online") {
+                footerSpan.innerHTML = `Organizowane przez 
+                    <a href="${kickLink}" target="_blank">xntentacion</a> 
+                    <img src='https://i.imgur.com/WQFquis.png' alt='Online' class='stream-status-icon' />`;
+                return;
+            }
+        
+            footerSpan.innerHTML = `Organizowane przez 
+                <a href="${twitchLink}" target="_blank">xntentacion</a> 
+                <img src='https://i.imgur.com/IH9wGGK.png' alt='Offline' class='stream-status-icon' />`;
+        }
+        
+        updateFooterStreamStatus();
+        
         async function getChessStats(displayName, chessComData) {
             const url = `https://www.chess.com/callback/member/stats/${chessComData.username}`;
             const localData = await fetchLocalData(chessComData.username);
@@ -471,37 +506,6 @@
                 };
             }
         }
-
-        async function updateFooterStreamStatus() {
-            const footerSpan = document.querySelector(".footer span");
-        
-            const twitchLink = "https://twitch.tv/xntentacion";
-            const kickLink = "https://kick.com/xntentacion";
-        
-            let streamStatusTwitch = await checkStreamStatus("xntentacion", twitchLink);
-            
-            if (streamStatusTwitch === "Online") {
-                footerSpan.innerHTML = `Organizowane przez 
-                    <a href="${twitchLink}" target="_blank">xntentacion</a> 
-                    <img src='https://i.imgur.com/WQFquis.png' alt='Online' width='18' height='18' style='margin-left:5px;' />`;
-                return;
-            }
-        
-            let streamStatusKick = await checkStreamStatus("xntentacion", kickLink);
-        
-            if (streamStatusKick === "Online") {
-                footerSpan.innerHTML = `Organizowane przez 
-                    <a href="${kickLink}" target="_blank">xntentacion</a> 
-                    <img src='https://i.imgur.com/WQFquis.png' alt='Online' width='18' height='18' style='margin-left:5px;' />`;
-                return;
-            }
-        
-            footerSpan.innerHTML = `Organizowane przez 
-                <a href="${twitchLink}" target="_blank">xntentacion</a> 
-                <img src='https://i.imgur.com/IH9wGGK.png' alt='Offline' width='18' height='18' style='margin-left:5px;' />`;
-        }
-        
-        updateFooterStreamStatus();
 
         async function populateTable() {
             const tbody = document.getElementById("stats-body");
