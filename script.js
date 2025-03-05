@@ -3,7 +3,7 @@ import path from 'path';
 
 const usersMap = {
     "Kasix": { username: "kasix909" },
-    "Delordione": { username: "Pablosabre" },
+    "Delord": { username: "Pablosabre" },
     "Nieuczesana": { username: "nieuczeszek" },
     "Diables": { username: "xdiables" },
     "TheNitroZyniak": { username: "nitro69penetrator" },
@@ -11,7 +11,7 @@ const usersMap = {
     "Netrodal": { username: "didaskyler" },
     "RandomBruceTV": { username: "szachowytapir" },
     "Bagietka Michael": { username: "bagietkaofficial" },
-    "MokrySuchar": { username: "mokrysucharek" },
+    "MokrySpuchar": { username: "mokrysucharek" },
     "Hiszpanitos": { username: "jakubjd" },
     "Overpow": { username: "szachowychogath" },
     "Kubon_": { username: "JaKubon000" },
@@ -28,13 +28,25 @@ async function delay(ms) {
 }
 
 function deleteExistingFiles() {
-    const files = fs.readdirSync(dataDir);
-    for (const file of files) {
-        const filePath = path.join(dataDir, file);
-        if (fs.existsSync(filePath)) {
-            fs.unlinkSync(filePath);
-            console.log(`Usunięto plik: ${filePath}`);
+    try {
+        const files = fs.readdirSync(dataDir);
+        if (files.length === 0) {
+            console.log('Brak plików do usunięcia.');
         }
+
+        for (const file of files) {
+            const filePath = path.join(dataDir, file);
+            if (fs.existsSync(filePath)) {
+                try {
+                    fs.unlinkSync(filePath);
+                    console.log(`Usunięto plik: ${filePath}`);
+                } catch (err) {
+                    console.error(`Błąd przy usuwaniu pliku: ${filePath}`, err);
+                }
+            }
+        }
+    } catch (err) {
+        console.error('Błąd przy odczytywaniu plików z katalogu', err);
     }
 }
 
