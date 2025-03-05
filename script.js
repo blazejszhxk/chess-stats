@@ -44,7 +44,7 @@ async function fetchChessStats(username) {
 async function fetchAllStats() {
     for (const userData of Object.values(usersMap)) {
         await fetchChessStats(userData.username);
-        await delay(2000);
+        await delay(3000);
     }
 }
 
