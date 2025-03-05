@@ -3,14 +3,14 @@
     {
       "key": "rapid",
       "stats": {
-        "rating": 582,
+        "rating": 590,
         "highest_rating": 599,
         "highest_rating_date": "2021-01-25T05:02:27-08:00",
         "rating_time_change_days": 30,
         "rating_time_change_value": 453,
-        "total_game_count": 573,
+        "total_game_count": 572,
         "total_win_count": 266,
-        "total_loss_count": 269,
+        "total_loss_count": 268,
         "total_draw_count": 38,
         "avg_opponent_rating": 402.284,
         "highest_opponent_rating": 900,
