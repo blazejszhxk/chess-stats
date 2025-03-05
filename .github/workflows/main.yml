@@ -19,15 +19,34 @@ jobs:
         with:
           node-version: "20"
 
+      - name: Install dependencies (if package.json exists)
+        run: |
+          if [ -f package.json ]; then
+            npm install
+          else
+            echo "No package.json found, skipping npm install"
+          fi
+
       - name: Run script.js
         run: node script.js
+
+      - name: Debug - list files in 'dane' directory
+        run: ls -la dane/
 
       - name: Commit and push the generated files
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
-          git add dane/
-          if git diff --staged --quiet; then
+
+          # Debugging - sprawdź, jakie pliki zmieniły się po uruchomieniu script.js
+          git status
+          git diff
+
+          # Wymuś dodanie wszystkich zmian
+          git add -A
+
+          # Sprawdź, czy są zmiany do commitowania
+          if git diff --quiet && git diff --staged --quiet; then
             echo "No changes to commit."
           else
             git commit -m "Add generated chess stats"
