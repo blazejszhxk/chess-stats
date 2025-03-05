@@ -354,33 +354,39 @@
 
         async function checkStreamStatus(username, link, link2 = null) {
             const checkLink = async (streamLink) => {
-                try {
-                    if (streamLink.includes('twitch.tv')) {
-                        const twitchUsername = streamLink.split('/')[3];
-                        const apiUrl = `https://decapi.me/twitch/uptime/${twitchUsername}`;
+                if (streamLink.includes('twitch.tv')) {
+                    const twitchUsername = streamLink.split('/')[3];
+                    const apiUrl = `https://decapi.me/twitch/uptime/${twitchUsername}`;
+                    try {
                         const response = await fetch(apiUrl);
                         const data = await response.text();
                         return data.includes("offline") ? "Offline" : "Online";
-                    } else if (streamLink.includes('kick.com')) {
-                        const kickUsername = streamLink.split('/')[3];
-                        const apiUrl = `https://kick.com/api/v2/channels/${kickUsername}`;
+                    } catch (error) {
+                        console.error(`Błąd sprawdzania statusu streamu Twitcha dla ${username}:`, error);
+                        return "Offline";
+                    }
+                } else if (streamLink.includes('kick.com')) {
+                    const kickUsername = streamLink.split('/')[3];
+                    const apiUrl = `https://kick.com/api/v2/channels/${kickUsername}`;
+                    try {
                         const response = await fetch(apiUrl);
                         const data = await response.json();
                         return data.livestream === null ? "Offline" : "Online";
+                    } catch (error) {
+                        console.error(`Błąd sprawdzania statusu streamu Kicka dla ${username}:`, error);
+                        return "Offline";
                     }
-                    return "Offline";
-                } catch (error) {
-                    console.error(`Błąd sprawdzania statusu streamu dla ${streamLink}:`, error);
-                    return "Offline";
                 }
+                return "Offline";
             };
         
-            const results = await Promise.all([
-                checkLink(link),
-                link2 ? checkLink(link2) : Promise.resolve("Offline")
-            ]);
+            let streamStatus = await checkLink(link);
         
-            return results.includes("Online") ? "Online" : "Offline";
+            if (streamStatus === "Offline" && link2) {
+                streamStatus = await checkLink(link2);
+            }
+        
+            return streamStatus;
         }
 
         async function updateFooterStreamStatus() {
