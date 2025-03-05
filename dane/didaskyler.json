@@ -3,11 +3,11 @@
     {
       "key": "tactics",
       "stats": {
-        "rating": 966,
+        "rating": 1092,
         "highest_rating": 1135,
         "highest_rating_date": 1741075772,
         "rating_time_change_days": 30,
-        "rating_time_change_value": 578,
+        "rating_time_change_value": 704,
         "highest_rating_info": {
           "timestamp": 1741075772,
           "rating": 1135
@@ -16,30 +16,30 @@
           "timestamp": 1705355471,
           "rating": 358
         },
-        "total_seconds": 4721,
+        "total_seconds": 5599,
         "lowest_rating": 358,
         "lowest_rating_date": 1705355471,
-        "attempt_count": 395,
-        "passed_count": 227,
-        "failed_count": 168,
-        "last_date": "2025-03-04T07:18:33-08:00"
+        "attempt_count": 468,
+        "passed_count": 271,
+        "failed_count": 197,
+        "last_date": "2025-03-05T15:00:11-08:00"
       },
-      "gameCount": 395,
+      "gameCount": 468,
       "lastPlayed": true,
-      "lastDate": "2025-03-04T07:18:33-08:00"
+      "lastDate": "2025-03-05T15:00:11-08:00"
     },
     {
       "key": "rapid",
       "stats": {
-        "rating": 450,
+        "rating": 451,
         "highest_rating": 552,
         "highest_rating_date": "2023-02-16T12:59:31-08:00",
         "rating_time_change_days": 30,
-        "rating_time_change_value": 43,
-        "total_game_count": 380,
-        "total_win_count": 175,
-        "total_loss_count": 189,
-        "total_draw_count": 16,
+        "rating_time_change_value": 44,
+        "total_game_count": 387,
+        "total_win_count": 177,
+        "total_loss_count": 193,
+        "total_draw_count": 17,
         "avg_opponent_rating": 634.029,
         "highest_opponent_rating": 1952,
         "best_win_opponent": {
@@ -62,9 +62,9 @@
         },
         "best_win_opponent_id": 137486306
       },
-      "gameCount": 380,
+      "gameCount": 387,
       "lastPlayed": false,
-      "lastDate": "2025-03-04T06:50:43-08:00"
+      "lastDate": "2025-03-05T14:36:57-08:00"
     },
     {
       "key": "bullet",

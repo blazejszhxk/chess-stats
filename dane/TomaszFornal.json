@@ -8,10 +8,10 @@
         "highest_rating_date": "2021-05-04T02:55:58-07:00",
         "rating_time_change_days": 30,
         "rating_time_change_value": 148,
-        "total_game_count": 241,
-        "total_win_count": 105,
-        "total_loss_count": 126,
-        "total_draw_count": 10,
+        "total_game_count": 246,
+        "total_win_count": 107,
+        "total_loss_count": 128,
+        "total_draw_count": 11,
         "avg_opponent_rating": 696.264,
         "highest_opponent_rating": 664,
         "best_win_opponent": {
@@ -37,7 +37,7 @@
         },
         "best_win_opponent_id": 17727314
       },
-      "gameCount": 241,
+      "gameCount": 246,
       "lastPlayed": true,
       "lastDate": "2025-03-04T10:11:17-08:00"
     },
@@ -76,7 +76,7 @@
         "highest_rating": 957,
         "highest_rating_date": "2021-05-22T15:06:21-07:00",
         "rating_time_change_days": 30,
-        "rating_time_change_value": -104,
+        "rating_time_change_value": -45,
         "total_game_count": 59,
         "total_win_count": 15,
         "total_loss_count": 43,

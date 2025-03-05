@@ -3,14 +3,14 @@
     {
       "key": "rapid",
       "stats": {
-        "rating": 507,
+        "rating": 523,
         "highest_rating": 726,
         "highest_rating_date": "2021-04-16T12:34:02-07:00",
         "rating_time_change_days": 30,
-        "rating_time_change_value": 152,
-        "total_game_count": 260,
-        "total_win_count": 117,
-        "total_loss_count": 130,
+        "rating_time_change_value": 168,
+        "total_game_count": 264,
+        "total_win_count": 120,
+        "total_loss_count": 131,
         "total_draw_count": 13,
         "avg_opponent_rating": 656.473,
         "highest_opponent_rating": 1219,
@@ -34,18 +34,18 @@
         },
         "best_win_opponent_id": 80701590
       },
-      "gameCount": 260,
+      "gameCount": 264,
       "lastPlayed": true,
-      "lastDate": "2025-03-04T13:14:47-08:00"
+      "lastDate": "2025-03-05T14:59:14-08:00"
     },
     {
       "key": "tactics",
       "stats": {
-        "rating": 1303,
+        "rating": 1240,
         "highest_rating": 1559,
         "highest_rating_date": 1740089883,
         "rating_time_change_days": 30,
-        "rating_time_change_value": 505,
+        "rating_time_change_value": 442,
         "highest_rating_info": {
           "timestamp": 1740089883,
           "rating": 1559
@@ -54,17 +54,17 @@
           "timestamp": 1618868433,
           "rating": 387
         },
-        "total_seconds": 35098,
+        "total_seconds": 35262,
         "lowest_rating": 387,
         "lowest_rating_date": 1618868433,
-        "attempt_count": 1478,
-        "passed_count": 810,
-        "failed_count": 668,
-        "last_date": "2025-03-04T12:21:34-08:00"
+        "attempt_count": 1488,
+        "passed_count": 813,
+        "failed_count": 675,
+        "last_date": "2025-03-05T07:38:14-08:00"
       },
-      "gameCount": 1478,
+      "gameCount": 1488,
       "lastPlayed": false,
-      "lastDate": "2025-03-04T12:21:34-08:00"
+      "lastDate": "2025-03-05T07:38:14-08:00"
     },
     {
       "key": "bullet",
@@ -94,7 +94,7 @@
           "username": "rodbf",
           "country_id": 27,
           "location": "",
-          "last_login_date": "2025-03-04T05:24:24-08:00",
+          "last_login_date": "2025-03-05T04:52:57-08:00",
           "points": 0,
           "is_enabled": true,
           "membership_level": 50
