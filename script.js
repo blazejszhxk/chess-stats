@@ -20,7 +20,11 @@ const usersMap = {
 
 const dataDir = path.join(process.cwd(), 'dane');
 if (!fs.existsSync(dataDir)) {
-    fs.mkdirSync(dataDir);
+    fs.mkdirSync(dataDir, { recursive: true });
+}
+
+async function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
 }
 
 async function fetchChessStats(username) {
@@ -40,6 +44,7 @@ async function fetchChessStats(username) {
 async function fetchAllStats() {
     for (const userData of Object.values(usersMap)) {
         await fetchChessStats(userData.username);
+        await delay(2000);
     }
 }
 
