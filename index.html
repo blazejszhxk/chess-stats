@@ -432,6 +432,11 @@
                 let prevRapidRating = localData?.stats.find(s => s.key === "rapid")?.stats?.rating || null;
                 let prevRapidGames = localData?.stats.find(s => s.key === "rapid")?.stats?.total_game_count || 0;
                 let prevTacticsGames = localData?.stats.find(s => s.key === "tactics")?.stats?.attempt_count || 0;
+                let prevTacticsPassed = localData?.stats.find(s => s.key === "tactics")?.stats?.passed_count || 0;
+                let prevTacticsFailed = localData?.stats.find(s => s.key === "tactics")?.stats?.failed_count || 0;
+                let prevRapidWins = localData?.stats.find(s => s.key === "rapid")?.stats?.total_win_count || 0;
+                let prevRapidLosses = localData?.stats.find(s => s.key === "rapid")?.stats?.total_loss_count || 0;
+                let prevRapidDraws = localData?.stats.find(s => s.key === "rapid")?.stats?.total_draw_count || 0;
         
                 jsonData.stats.forEach(stat => {
                     if (stat.key === "tactics" && stat.stats) {
@@ -439,13 +444,15 @@
                         lastDateTactics = new Date(stat.lastDate).getTime();
                         tacticsGames = stat.stats.attempt_count ? `${stat.stats.attempt_count} (<span class='green'>${stat.stats.passed_count ?? 0}</span>/<span class='red'>${stat.stats.failed_count ?? 0}</span>)` : "0";
                         tacticsGamesToday = stat.stats.attempt_count - prevTacticsGames || "0";
-                        totalTacticsTime = stat.stats.total_seconds || 0;  // Przypisanie czasu
+                        tacticsGamesToday = `${stat.stats.attempt_count - prevTacticsGames} (<span class='green'>${stat.stats.passed_count - prevTacticsPassed}</span>/<span class='red'>${stat.stats.failed_count - prevTacticsFailed}</span>)`;
+                        totalTacticsTime = stat.stats.total_seconds || 0;
                     }
                     if (stat.key === "rapid" && stat.stats) {
                         rapidRating = stat.stats.rating ?? "Brak danych";
                         lastDateRapid = new Date(stat.lastDate).getTime();
                         rapidGames = stat.stats.total_game_count ? `${stat.stats.total_game_count} (<span class='green'>${stat.stats.total_win_count ?? 0}</span>/<span class='red'>${stat.stats.total_loss_count ?? 0}</span>/<span class='white'>${stat.stats.total_draw_count ?? 0}</span>)` : "0";
                         rapidGamesToday = stat.stats.total_game_count - prevRapidGames || "0";
+                        rapidGamesToday = `${stat.stats.total_game_count - prevRapidGames} (<span class='green'>${stat.stats.total_win_count - prevRapidWins}</span>/<span class='red'>${stat.stats.total_loss_count - prevRapidLosses}</span>/<span class='white'>${stat.stats.total_draw_count - prevRapidDraws}</span>)`;
                     }
                 });
         
@@ -479,7 +486,7 @@
                     displayName, 
                     tacticsRating: formatRating(tacticsRating, prevTacticsRating), 
                     rapidRating: formatRating(rapidRating, prevRapidRating), 
-                    rapidGames, 
+                    rapidGames,
                     rapidGamesToday,
                     tacticsGames,
                     tacticsGamesToday,
