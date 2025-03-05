@@ -443,16 +443,24 @@
                         tacticsRating = stat.stats.rating ?? "Brak danych";
                         lastDateTactics = new Date(stat.lastDate).getTime();
                         tacticsGames = stat.stats.attempt_count ? `${stat.stats.attempt_count} (<span class='green'>${stat.stats.passed_count ?? 0}</span>/<span class='red'>${stat.stats.failed_count ?? 0}</span>)` : "0";
-                        tacticsGamesToday = stat.stats.attempt_count - prevTacticsGames || "0";
-                        tacticsGamesToday = `${stat.stats.attempt_count - prevTacticsGames} (<span class='green'>${stat.stats.passed_count - prevTacticsPassed}</span>/<span class='red'>${stat.stats.failed_count - prevTacticsFailed}</span>)`;
+                        tacticsGamesToday = stat.stats.attempt_count - prevTacticsGames || 0;
+                        if (tacticsGamesToday === 0) {
+                            tacticsGamesToday = "0";
+                        } else {
+                            tacticsGamesToday = `${stat.stats.attempt_count - prevTacticsGames} (<span class='green'>${stat.stats.passed_count - prevTacticsPassed}</span>/<span class='red'>${stat.stats.failed_count - prevTacticsFailed}</span>)`;
+                        }
                         totalTacticsTime = stat.stats.total_seconds || 0;
                     }
                     if (stat.key === "rapid" && stat.stats) {
                         rapidRating = stat.stats.rating ?? "Brak danych";
                         lastDateRapid = new Date(stat.lastDate).getTime();
                         rapidGames = stat.stats.total_game_count ? `${stat.stats.total_game_count} (<span class='green'>${stat.stats.total_win_count ?? 0}</span>/<span class='red'>${stat.stats.total_loss_count ?? 0}</span>/<span class='white'>${stat.stats.total_draw_count ?? 0}</span>)` : "0";
-                        rapidGamesToday = stat.stats.total_game_count - prevRapidGames || "0";
-                        rapidGamesToday = `${stat.stats.total_game_count - prevRapidGames} (<span class='green'>${stat.stats.total_win_count - prevRapidWins}</span>/<span class='red'>${stat.stats.total_loss_count - prevRapidLosses}</span>/<span class='white'>${stat.stats.total_draw_count - prevRapidDraws}</span>)`;
+                        rapidGamesToday = stat.stats.total_game_count - prevRapidGames || 0;
+                        if (rapidGamesToday === 0) {
+                            rapidGamesToday = "0";
+                        } else {
+                            rapidGamesToday = `${stat.stats.total_game_count - prevRapidGames} (<span class='green'>${stat.stats.total_win_count - prevRapidWins}</span>/<span class='red'>${stat.stats.total_loss_count - prevRapidLosses}</span>/<span class='white'>${stat.stats.total_draw_count - prevRapidDraws}</span>)`;
+                        }
                     }
                 });
         
