@@ -7,10 +7,10 @@
         "highest_rating": 599,
         "highest_rating_date": "2021-01-25T05:02:27-08:00",
         "rating_time_change_days": 30,
-        "rating_time_change_value": 453,
-        "total_game_count": 572,
-        "total_win_count": 266,
-        "total_loss_count": 268,
+        "rating_time_change_value": 461,
+        "total_game_count": 574,
+        "total_win_count": 267,
+        "total_loss_count": 269,
         "total_draw_count": 38,
         "avg_opponent_rating": 402.284,
         "highest_opponent_rating": 900,
@@ -34,9 +34,9 @@
         },
         "best_win_opponent_id": 107399908
       },
-      "gameCount": 573,
+      "gameCount": 574,
       "lastPlayed": true,
-      "lastDate": "2025-03-05T15:04:51-08:00"
+      "lastDate": "2025-03-05T15:23:47-08:00"
     },
     {
       "key": "tactics",
