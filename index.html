@@ -534,22 +534,31 @@
         async function populateTable() {
             const tbody = document.getElementById("stats-body");
             tbody.innerHTML = "";
-            
+        
             const statsArray = await Promise.all(
                 Object.entries(usersMap).map(async ([displayName, chessComData]) => {
                     const chessStats = await getChessStats(displayName, chessComData);
-                    const streamStatus = await checkStreamStatus(displayName, chessComData.link, chessComData.link2);
-            
-                    const finalLink = streamStatus === "Online" && chessComData.link2 ? chessComData.link2 : chessComData.link;
-            
+                    
+                    const streamStatusLink1 = await checkStreamStatus(displayName, chessComData.link);
+        
+                    let streamStatusLink2 = "Offline";
+                    if (streamStatusLink1 === "Offline" && chessComData.link2) {
+                        streamStatusLink2 = await checkStreamStatus(displayName, chessComData.link2);
+                    }
+        
+                    let finalLink = chessComData.link;
+                    if (streamStatusLink1 === "Offline" && streamStatusLink2 === "Online") {
+                        finalLink = chessComData.link2;
+                    }
+        
                     return {
                         ...chessStats,
-                        streamStatus,
+                        streamStatus: streamStatusLink1 === "Online" ? "Online" : streamStatusLink2,
                         finalLink
                     };
                 })
             );
-            
+        
             statsArray.sort((a, b) => parseInt(b.rapidRating) - parseInt(a.rapidRating));
         
             const rows = statsArray.map(({ displayName, tacticsRating, rapidRating, rapidGames, rapidGamesToday, tacticsGames, tacticsGamesToday, lastGame, timeOnTactics, finalLink, streamStatus }) => {
