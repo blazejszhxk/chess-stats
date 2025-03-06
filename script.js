@@ -6,7 +6,7 @@ const usersMap = {
     "Delord": { username: "Pablosabre" },
     "Nieuczesana": { username: "nieuczeszek" },
     "Diables": { username: "xdiables" },
-    "TheNitroZyniak": { username: "Niter77" },
+    "TheNitroZyniak": { username: "niter77" },
     "Tomasz Fornal": { username: "TomaszFornal" },
     "Netrodal": { username: "didaskyler" },
     "RandomBruceTV": { username: "szachowytapir" },
