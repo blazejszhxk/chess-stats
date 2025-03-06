@@ -27,13 +27,13 @@ async function fetchChessStats(username) {
     const url = `https://www.chess.com/callback/member/stats/${username}`;
     try {
         const response = await fetch(url);
-        if (!response.ok) throw new Error(HTTP error ${response.status}));
+        if (!response.ok) throw new Error(`HTTP error ${response.status}`);
         const jsonData = await response.json();
-        const filePath = path.join(dataDir, ${username}.json);
+        const filePath = path.join(dataDir, `${username}.json`);
         fs.writeFileSync(filePath, JSON.stringify(jsonData, null, 2));
-        console.log(Dane zapisane w pliku ${filePath});
+        console.log(`Dane zapisane w pliku ${filePath}`);
     } catch (error) {
-        console.error(Błąd pobierania danych dla ${username}: ${error.message});
+        console.error(`Błąd pobierania danych dla ${username}: ${error.message}`);
     }
 }
 
