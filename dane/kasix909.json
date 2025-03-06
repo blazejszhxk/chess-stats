@@ -3,15 +3,15 @@
     {
       "key": "rapid",
       "stats": {
-        "rating": 523,
+        "rating": 559,
         "highest_rating": 726,
         "highest_rating_date": "2021-04-16T12:34:02-07:00",
         "rating_time_change_days": 30,
-        "rating_time_change_value": 168,
-        "total_game_count": 264,
-        "total_win_count": 120,
-        "total_loss_count": 131,
-        "total_draw_count": 13,
+        "rating_time_change_value": 204,
+        "total_game_count": 271,
+        "total_win_count": 125,
+        "total_loss_count": 132,
+        "total_draw_count": 14,
         "avg_opponent_rating": 656.473,
         "highest_opponent_rating": 1219,
         "best_win_opponent": {
@@ -34,18 +34,18 @@
         },
         "best_win_opponent_id": 80701590
       },
-      "gameCount": 264,
+      "gameCount": 271,
       "lastPlayed": true,
-      "lastDate": "2025-03-05T14:59:14-08:00"
+      "lastDate": "2025-03-06T13:36:46-08:00"
     },
     {
       "key": "tactics",
       "stats": {
-        "rating": 1240,
+        "rating": 1325,
         "highest_rating": 1559,
         "highest_rating_date": 1740089883,
         "rating_time_change_days": 30,
-        "rating_time_change_value": 442,
+        "rating_time_change_value": 527,
         "highest_rating_info": {
           "timestamp": 1740089883,
           "rating": 1559
@@ -54,17 +54,17 @@
           "timestamp": 1618868433,
           "rating": 387
         },
-        "total_seconds": 35262,
+        "total_seconds": 35828,
         "lowest_rating": 387,
         "lowest_rating_date": 1618868433,
-        "attempt_count": 1488,
-        "passed_count": 813,
-        "failed_count": 675,
-        "last_date": "2025-03-05T07:38:14-08:00"
+        "attempt_count": 1512,
+        "passed_count": 828,
+        "failed_count": 684,
+        "last_date": "2025-03-06T11:34:29-08:00"
       },
-      "gameCount": 1488,
+      "gameCount": 1512,
       "lastPlayed": false,
-      "lastDate": "2025-03-05T07:38:14-08:00"
+      "lastDate": "2025-03-06T11:34:29-08:00"
     },
     {
       "key": "bullet",
@@ -134,7 +134,7 @@
           "first_name": "",
           "last_name": "",
           "country_id": 112,
-          "last_login_date": "2025-03-03T12:07:00-08:00",
+          "last_login_date": "2025-03-06T09:40:58-08:00",
           "points": 0,
           "is_enabled": true,
           "membership_level": 50

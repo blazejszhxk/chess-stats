@@ -1,55 +1,36 @@
 {
   "stats": [
     {
-      "key": "bullet",
+      "key": "rapid",
       "stats": {
-        "rating": 318,
-        "highest_rating": 462,
-        "highest_rating_date": "2025-01-08T15:21:17-08:00",
+        "rating": 953,
+        "highest_rating": 873,
+        "highest_rating_date": "2025-02-25T15:31:25-08:00",
         "rating_time_change_days": 30,
-        "rating_time_change_value": 93,
-        "total_game_count": 66,
-        "total_win_count": 31,
-        "total_loss_count": 33,
-        "total_draw_count": 2,
-        "avg_opponent_rating": 315.518,
-        "highest_opponent_rating": 434,
-        "best_win_opponent": {
-          "country": {
-            "id": 76,
-            "code": "IT",
-            "name": "Italy",
-            "iso3": "ITA",
-            "currency_code": "EUR",
-            "phone_code": 39
-          },
-          "id": 368609871,
-          "create_date": "2024-06-09T10:06:36-07:00",
-          "username": "scorpio_it",
-          "country_id": 76,
-          "last_login_date": "2025-03-03T12:29:47-08:00",
-          "points": 0,
-          "is_enabled": true,
-          "membership_level": 10
-        },
-        "best_win_opponent_id": 368609871
+        "rating_time_change_value": 289,
+        "total_game_count": 84,
+        "total_win_count": 60,
+        "total_loss_count": 18,
+        "total_draw_count": 6,
+        "avg_opponent_rating": 612.267,
+        "highest_opponent_rating": 0
       },
-      "gameCount": 66,
+      "gameCount": 84,
       "lastPlayed": true,
-      "lastDate": "2025-03-04T17:16:58-08:00"
+      "lastDate": "2025-03-05T18:33:46-08:00"
     },
     {
       "key": "lightning",
       "stats": {
-        "rating": 637,
+        "rating": 590,
         "highest_rating": 715,
         "highest_rating_date": "2021-05-04T18:53:01-07:00",
         "rating_time_change_days": 30,
-        "rating_time_change_value": 332,
-        "total_game_count": 557,
-        "total_win_count": 282,
-        "total_loss_count": 231,
-        "total_draw_count": 44,
+        "rating_time_change_value": 270,
+        "total_game_count": 565,
+        "total_win_count": 285,
+        "total_loss_count": 235,
+        "total_draw_count": 45,
         "avg_opponent_rating": 573.376,
         "highest_opponent_rating": 613,
         "best_win_opponent": {
@@ -72,28 +53,47 @@
         },
         "best_win_opponent_id": 138306982
       },
-      "gameCount": 557,
+      "gameCount": 565,
       "lastPlayed": false,
-      "lastDate": "2025-03-04T17:08:52-08:00"
+      "lastDate": "2025-03-05T17:23:06-08:00"
     },
     {
-      "key": "rapid",
+      "key": "bullet",
       "stats": {
-        "rating": 929,
-        "highest_rating": 873,
-        "highest_rating_date": "2025-02-25T15:31:25-08:00",
+        "rating": 324,
+        "highest_rating": 462,
+        "highest_rating_date": "2025-01-08T15:21:17-08:00",
         "rating_time_change_days": 30,
-        "rating_time_change_value": 265,
-        "total_game_count": 79,
-        "total_win_count": 56,
-        "total_loss_count": 17,
-        "total_draw_count": 6,
-        "avg_opponent_rating": 612.267,
-        "highest_opponent_rating": 0
+        "rating_time_change_value": 99,
+        "total_game_count": 67,
+        "total_win_count": 32,
+        "total_loss_count": 33,
+        "total_draw_count": 2,
+        "avg_opponent_rating": 315.518,
+        "highest_opponent_rating": 434,
+        "best_win_opponent": {
+          "country": {
+            "id": 76,
+            "code": "IT",
+            "name": "Italy",
+            "iso3": "ITA",
+            "currency_code": "EUR",
+            "phone_code": 39
+          },
+          "id": 368609871,
+          "create_date": "2024-06-09T10:06:36-07:00",
+          "username": "scorpio_it",
+          "country_id": 76,
+          "last_login_date": "2025-03-05T20:32:58-08:00",
+          "points": 0,
+          "is_enabled": true,
+          "membership_level": 10
+        },
+        "best_win_opponent_id": 368609871
       },
-      "gameCount": 79,
+      "gameCount": 67,
       "lastPlayed": false,
-      "lastDate": "2025-03-04T17:00:23-08:00"
+      "lastDate": "2025-03-05T16:48:19-08:00"
     },
     {
       "key": "tactics",
@@ -102,7 +102,7 @@
         "highest_rating": 2152,
         "highest_rating_date": 1741135403,
         "rating_time_change_days": 30,
-        "rating_time_change_value": 1498,
+        "rating_time_change_value": 1470,
         "highest_rating_info": {
           "timestamp": 1741135403,
           "rating": 2152
@@ -139,7 +139,7 @@
       "lastPlayed": false
     }
   ],
-  "lastType": "liveBullet",
+  "lastType": "liveStandard",
   "versus": {
     "total": 0
   },

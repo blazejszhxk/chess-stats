@@ -3,16 +3,16 @@
     {
       "key": "rapid",
       "stats": {
-        "rating": 264,
+        "rating": 215,
         "highest_rating": 901,
         "highest_rating_date": "2020-12-18T00:50:12-08:00",
         "rating_time_change_days": 30,
-        "rating_time_change_value": -109,
-        "total_game_count": 172,
-        "total_win_count": 39,
-        "total_loss_count": 117,
+        "rating_time_change_value": -158,
+        "total_game_count": 183,
+        "total_win_count": 42,
+        "total_loss_count": 125,
         "total_draw_count": 16,
-        "avg_opponent_rating": 767.654,
+        "avg_opponent_rating": 769.017,
         "highest_opponent_rating": 819,
         "best_win_opponent": {
           "country": {
@@ -37,37 +37,37 @@
         },
         "best_win_opponent_id": 95424894
       },
-      "gameCount": 172,
+      "gameCount": 183,
       "lastPlayed": true,
-      "lastDate": "2025-03-05T09:40:52-08:00"
+      "lastDate": "2025-03-06T14:17:30-08:00"
     },
     {
       "key": "tactics",
       "stats": {
-        "rating": 825,
-        "highest_rating": 844,
-        "highest_rating_date": 1741194118,
+        "rating": 972,
+        "highest_rating": 1008,
+        "highest_rating_date": 1741249862,
         "rating_time_change_days": 30,
-        "rating_time_change_value": 425,
+        "rating_time_change_value": 572,
         "highest_rating_info": {
-          "timestamp": 1741194118,
-          "rating": 844
+          "timestamp": 1741249862,
+          "rating": 1008
         },
         "lowest_rating_info": {
           "timestamp": 1608279878,
           "rating": 400
         },
-        "total_seconds": 2520,
+        "total_seconds": 3392,
         "lowest_rating": 400,
         "lowest_rating_date": 1608279878,
-        "attempt_count": 116,
-        "passed_count": 80,
-        "failed_count": 36,
-        "last_date": "2025-03-05T09:02:37-08:00"
+        "attempt_count": 179,
+        "passed_count": 120,
+        "failed_count": 59,
+        "last_date": "2025-03-06T00:34:08-08:00"
       },
-      "gameCount": 116,
+      "gameCount": 179,
       "lastPlayed": false,
-      "lastDate": "2025-03-05T09:02:37-08:00"
+      "lastDate": "2025-03-06T00:34:08-08:00"
     },
     {
       "key": "bullet",
