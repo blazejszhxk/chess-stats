@@ -40,7 +40,7 @@ async function fetchChessStats(username) {
 async function fetchAllStats() {
     for (const userData of Object.values(usersMap)) {
         await fetchChessStats(userData.username);
-        await new Promise(resolve => setTimeout(resolve, 2000));
+        await new Promise(resolve => setTimeout(resolve, 1000));
     }
 }
 
