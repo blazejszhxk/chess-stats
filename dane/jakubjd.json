@@ -3,15 +3,15 @@
     {
       "key": "rapid",
       "stats": {
-        "rating": 520,
+        "rating": 547,
         "highest_rating": 599,
         "highest_rating_date": "2021-01-25T05:02:27-08:00",
         "rating_time_change_days": 30,
-        "rating_time_change_value": 391,
-        "total_game_count": 597,
-        "total_win_count": 273,
-        "total_loss_count": 284,
-        "total_draw_count": 40,
+        "rating_time_change_value": 418,
+        "total_game_count": 654,
+        "total_win_count": 302,
+        "total_loss_count": 310,
+        "total_draw_count": 42,
         "avg_opponent_rating": 402.284,
         "highest_opponent_rating": 900,
         "best_win_opponent": {
@@ -34,18 +34,18 @@
         },
         "best_win_opponent_id": 107399908
       },
-      "gameCount": 597,
+      "gameCount": 654,
       "lastPlayed": true,
-      "lastDate": "2025-03-06T14:29:41-08:00"
+      "lastDate": "2025-03-07T14:43:45-08:00"
     },
     {
       "key": "tactics",
       "stats": {
-        "rating": 1601,
+        "rating": 1608,
         "highest_rating": 1617,
         "highest_rating_date": 1741288247,
         "rating_time_change_days": 30,
-        "rating_time_change_value": 1227,
+        "rating_time_change_value": 1234,
         "highest_rating_info": {
           "timestamp": 1741288247,
           "rating": 1617
@@ -54,17 +54,17 @@
           "timestamp": 1739306379,
           "rating": 372
         },
-        "total_seconds": 50234,
+        "total_seconds": 52026,
         "lowest_rating": 372,
         "lowest_rating_date": 1739306379,
-        "attempt_count": 698,
-        "passed_count": 449,
-        "failed_count": 249,
-        "last_date": "2025-03-06T11:31:39-08:00"
+        "attempt_count": 709,
+        "passed_count": 456,
+        "failed_count": 253,
+        "last_date": "2025-03-07T10:56:36-08:00"
       },
-      "gameCount": 698,
+      "gameCount": 709,
       "lastPlayed": false,
-      "lastDate": "2025-03-06T11:31:39-08:00"
+      "lastDate": "2025-03-07T10:56:36-08:00"
     },
     {
       "key": "lightning",
@@ -93,7 +93,7 @@
           "create_date": "2021-05-04T12:55:21-07:00",
           "username": "Niter77",
           "country_id": 112,
-          "last_login_date": "2025-03-05T15:17:01-08:00",
+          "last_login_date": "2025-03-07T14:44:26-08:00",
           "points": 0,
           "is_enabled": true,
           "membership_level": 50
