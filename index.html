@@ -263,7 +263,7 @@
         button.style.left = '15px';
         button.style.padding = '10px';
         button.style.border = 'none';
-        button.style.borderRadius = '50%';
+        button.style.borderRadius = '50	%';
         button.style.cursor = 'pointer';
         button.style.background = '#222';
         button.style.color = 'white';
@@ -289,7 +289,30 @@
             footerImg.src = isDarkMode 
                 ? 'https://img.icons8.com/ios-glyphs/30/FFFFFF/chess-com.png' 
                 : 'https://img.icons8.com/ios-glyphs/30/chess-com.png';
+    
+            updateColorClasses(isDarkMode);
         });
+    
+        function updateColorClasses(isDarkMode) {
+            const greenSpans = document.querySelectorAll('.green');
+            const redSpans = document.querySelectorAll('.red');
+            const whiteSpans = document.querySelectorAll('.white');
+        
+            greenSpans.forEach(span => {
+                span.classList.toggle('dark-green', isDarkMode);
+                span.classList.toggle('green', !isDarkMode);
+            });
+        
+            redSpans.forEach(span => {
+                span.classList.toggle('dark-red', isDarkMode);
+                span.classList.toggle('red', !isDarkMode);
+            });
+        
+            whiteSpans.forEach(span => {
+                span.classList.toggle('dark-white', isDarkMode);
+                span.classList.toggle('white', !isDarkMode);
+            });
+        }
     
         const darkModeStyle = document.createElement('style');
         darkModeStyle.innerHTML = `
@@ -357,7 +380,6 @@
             .dark-mode .green { color: #50fa7b; }
             .dark-mode .red { color: #ff5555; }
             .dark-mode .white { color: #f8f8f2; }
-    
         `;
         document.head.appendChild(darkModeStyle);
         
