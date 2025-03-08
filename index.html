@@ -310,12 +310,10 @@
             headers.forEach((span, index) => {
                 if (index === activeIndex) {
                     span.textContent = sortDirections[index] === 1 ? " ▲" : " ▼";
-                } else {
-                    span.textContent = " ▲";
                 }
             });
         }
-        
+
         async function fetchWithProxy(url, proxyIndex = 0) {
             if (proxyIndex >= proxies.length) {
                 throw new Error("Wszystkie proxy zawiodły.");
