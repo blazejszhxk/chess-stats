@@ -13,7 +13,6 @@
       gtag('js', new Date());
       gtag('config', 'G-CHG6P8VTBN');
     </script>
-
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
         html, body {
@@ -73,7 +72,7 @@
             overflow: hidden;
             font-size: 12px;
         }
-        
+
         th, td {
             border: 1px solid #ddd;
             padding: 8px;
@@ -165,18 +164,6 @@
         .red { color: red; }
         .white { color: black; }
 
-        .dark-mode .green {
-            color: #50fa7b !important;
-        }
-        
-        .dark-mode .red {
-            color: #ff5555 !important;
-        }
-        
-        .dark-mode .white {
-            color: #f8f8f2 !important;
-        }
-        
         .stream-status {
             display: flex;
             justify-content: center;
@@ -186,7 +173,7 @@
         }
 
         @media (max-width: 768px) {
-            .made-by, .footer, .disclaimer, .changes-info, .changes2-info, .update-info {
+            .made-by, .footer, .disclaimer, .changes-info, .changes2-info, .update-info, #toggle-dark-mode {
                 display: none;
             }
             
@@ -206,7 +193,7 @@
                 white-space: nowrap;
             }
         }
-    </style>
+</style>
 </head>
 <body>
     <button id="toggle-dark-mode">🌙</button>
@@ -266,6 +253,105 @@
             "https://api.allorigins.win/raw?url=",
             "https://corsproxy.io/"
         ];
+    
+        function updateTimestamp() {
+            const now = new Date();
+            const formattedTime = now.toLocaleTimeString("pl-PL", { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+            document.getElementById("update-time").textContent = `Tabela została zaktualizowana o godz. ${formattedTime}`;
+        }
+
+        let sortDirections = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1];	
+        function sortTable(colIndex) {
+            const tbody = document.getElementById("stats-body");
+            let rows = Array.from(tbody.rows);
+        
+            rows.sort((a, b) => {
+                let aVal, bVal;
+        
+                let aCell = a.cells[colIndex + 2]; 
+                let bCell = b.cells[colIndex + 2];
+        
+                if (!aCell || !bCell) return 0;
+        
+                if (colIndex === 7) {
+                    aVal = new Date(aCell.textContent).getTime();
+                    bVal = new Date(bCell.textContent).getTime();
+                } else if (colIndex === 6) {
+                    aVal = timeToSeconds(aCell.textContent);
+                    bVal = timeToSeconds(bCell.textContent);
+                } else {
+                    aVal = parseInt(aCell.textContent.match(/\d+/)) || 0;
+                    bVal = parseInt(bCell.textContent.match(/\d+/)) || 0;
+                }
+        
+                return (aVal - bVal) * sortDirections[colIndex];
+            });
+        
+            sortDirections[colIndex] *= -1;
+            tbody.innerHTML = ""; 
+            rows.forEach(row => tbody.appendChild(row));
+        
+            updateSortIcons(colIndex);
+        }
+        	
+        function timeToSeconds(timeStr) {
+            const timeParts = timeStr.match(/(\d+)h (\d+)m (\d+)s/);
+            if (timeParts) {
+                const hours = parseInt(timeParts[1], 10);
+                const minutes = parseInt(timeParts[2], 10);
+                const seconds = parseInt(timeParts[3], 10);
+                return (hours * 3600) + (minutes * 60) + seconds;
+            }
+            return 0;
+        }
+
+        function updateSortIcons(activeIndex) {
+            const headers = document.querySelectorAll("th span");
+        
+            headers.forEach((span, index) => {
+                if (index === activeIndex) {
+                    span.textContent = sortDirections[index] === 1 ? " ▲" : " ▼";
+                } else {
+                    span.textContent = " ▲";
+                }
+            });
+        }
+        
+        async function fetchWithProxy(url, proxyIndex = 0) {
+            if (proxyIndex >= proxies.length) {
+                throw new Error("Wszystkie proxy zawiodły.");
+            }
+    
+            const proxyUrl = proxies[proxyIndex] + encodeURIComponent(url);
+            try {
+                const response = await fetch(proxyUrl);
+    
+                if (response.status === 429) {
+                    console.warn(`Rate limit na proxy ${proxyIndex}, przełączam na kolejne.`);
+                    return fetchWithProxy(url, proxyIndex + 1);
+                }
+    
+                if (!response.ok) {
+                    throw new Error(`HTTP error ${response.status}`);
+                }
+    
+                return response.json();
+            } catch (error) {
+                console.error(`Błąd proxy ${proxyIndex}: ${error.message}`);
+                return fetchWithProxy(url, proxyIndex + 1);
+            }
+        }
+            
+        async function fetchLocalData(username) {
+            try {
+                const response = await fetch(`dane/${username}.json`);
+                if (!response.ok) throw new Error("Błąd ładowania pliku JSON");
+                return await response.json();
+            } catch (error) {
+                console.error(`Błąd ładowania lokalnych danych dla ${username}:`, error);
+                return null;
+            }
+        }
 
         const button = document.getElementById('toggle-dark-mode');
         const footerImg = document.querySelector(".footer img");
@@ -305,15 +391,19 @@
         });
         
         function updateColorClasses(isDarkMode) {
+            // No need to toggle specific dark-green, dark-red, dark-white classes
+            // Just rely on the dark-mode styles being applied
             const greenSpans = document.querySelectorAll('.green');
             const redSpans = document.querySelectorAll('.red');
             const whiteSpans = document.querySelectorAll('.white');
         
+            // If dark mode is on, add the .green, .red, .white styles automatically
             if (isDarkMode) {
                 greenSpans.forEach(span => span.style.color = '#50fa7b');
                 redSpans.forEach(span => span.style.color = '#ff5555');
                 whiteSpans.forEach(span => span.style.color = '#f8f8f2');
             } else {
+                // Revert to default colors if not in dark mode
                 greenSpans.forEach(span => span.style.color = '');
                 redSpans.forEach(span => span.style.color = '');
                 whiteSpans.forEach(span => span.style.color = '');
@@ -383,108 +473,12 @@
                 color: #ff6b81;
             }
         
+            /* Colors for green, red, and white in dark mode */
             .dark-mode .green { color: #50fa7b; }
             .dark-mode .red { color: #ff5555; }
             .dark-mode .white { color: #f8f8f2; }
         `;
         document.head.appendChild(darkModeStyle);
-        
-        function updateTimestamp() {
-            const now = new Date();
-            const formattedTime = now.toLocaleTimeString("pl-PL", { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-            document.getElementById("update-time").textContent = `Tabela została zaktualizowana o godz. ${formattedTime}`;
-        }
-
-        let sortDirections = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1];	
-        function sortTable(colIndex) {
-            const tbody = document.getElementById("stats-body");
-            let rows = Array.from(tbody.rows);
-        
-            rows.sort((a, b) => {
-                let aVal, bVal;
-        
-                let aCell = a.cells[colIndex + 2]; 
-                let bCell = b.cells[colIndex + 2];
-        
-                if (!aCell || !bCell) return 0;
-        
-                if (colIndex === 7) {
-                    aVal = new Date(aCell.textContent).getTime();
-                    bVal = new Date(bCell.textContent).getTime();
-                } else if (colIndex === 6) {
-                    aVal = timeToSeconds(aCell.textContent);
-                    bVal = timeToSeconds(bCell.textContent);
-                } else {
-                    aVal = parseInt(aCell.textContent.match(/\d+/)) || 0;
-                    bVal = parseInt(bCell.textContent.match(/\d+/)) || 0;
-                }
-        
-                return (aVal - bVal) * sortDirections[colIndex];
-            });
-        
-            sortDirections[colIndex] *= -1;
-            tbody.innerHTML = ""; 
-            rows.forEach(row => tbody.appendChild(row));
-        
-            updateSortIcons(colIndex);
-        }
-        	
-        function timeToSeconds(timeStr) {
-            const timeParts = timeStr.match(/(\d+)h (\d+)m (\d+)s/);
-            if (timeParts) {
-                const hours = parseInt(timeParts[1], 10);
-                const minutes = parseInt(timeParts[2], 10);
-                const seconds = parseInt(timeParts[3], 10);
-                return (hours * 3600) + (minutes * 60) + seconds;
-            }
-            return 0;
-        }
-
-        function updateSortIcons(activeIndex) {
-            const headers = document.querySelectorAll("th span");
-        
-            headers.forEach((span, index) => {
-                if (index === activeIndex) {
-                    span.textContent = sortDirections[index] === 1 ? " ▲" : " ▼";
-                }
-            });
-        }
-
-        async function fetchWithProxy(url, proxyIndex = 0) {
-            if (proxyIndex >= proxies.length) {
-                throw new Error("Wszystkie proxy zawiodły.");
-            }
-    
-            const proxyUrl = proxies[proxyIndex] + encodeURIComponent(url);
-            try {
-                const response = await fetch(proxyUrl);
-    
-                if (response.status === 429) {
-                    console.warn(`Rate limit na proxy ${proxyIndex}, przełączam na kolejne.`);
-                    return fetchWithProxy(url, proxyIndex + 1);
-                }
-    
-                if (!response.ok) {
-                    throw new Error(`HTTP error ${response.status}`);
-                }
-    
-                return response.json();
-            } catch (error) {
-                console.error(`Błąd proxy ${proxyIndex}: ${error.message}`);
-                return fetchWithProxy(url, proxyIndex + 1);
-            }
-        }
-            
-        async function fetchLocalData(username) {
-            try {
-                const response = await fetch(`dane/${username}.json`);
-                if (!response.ok) throw new Error("Błąd ładowania pliku JSON");
-                return await response.json();
-            } catch (error) {
-                console.error(`Błąd ładowania lokalnych danych dla ${username}:`, error);
-                return null;
-            }
-        }
 
         async function checkStreamStatus(username, link, link2 = null) {
             const checkLink = async (streamLink) => {
@@ -584,28 +578,40 @@
                     if (stat.key === "tactics" && stat.stats) {
                         tacticsRating = stat.stats.rating ?? "Brak danych";
                         lastDateTactics = new Date(stat.lastDate).getTime();
-                        tacticsGames = stat.stats.attempt_count ? `${stat.stats.attempt_count} (<span class='green'>${stat.stats.passed_count ?? 0}</span>/<span class='red'>${stat.stats.failed_count ?? 0}</span>)` : "0";
+                        tacticsGames = stat.stats.attempt_count 
+                            ? `${stat.stats.attempt_count} (<span class='green'>${stat.stats.passed_count ?? 0}</span>/<span class='red'>${stat.stats.failed_count ?? 0}</span>)` 
+                            : "0";
                         tacticsGamesToday = stat.stats.attempt_count - prevTacticsGames || 0;
                         if (tacticsGamesToday === 0) {
                             tacticsGamesToday = "0";
                         } else {
-                            tacticsGamesToday = `${stat.stats.attempt_count - prevTacticsGames} (<span class='green'>${stat.stats.passed_count - prevTacticsPassed}</span>/<span class='red'>${stat.stats.failed_count - prevTacticsFailed}</span>)`;
+                            tacticsGamesToday = `${stat.stats.attempt_count - prevTacticsGames} 
+                                (<span class='green'>${stat.stats.passed_count - prevTacticsPassed}</span>/
+                                <span class='red'>${stat.stats.failed_count - prevTacticsFailed}</span>)`;
                         }
                         totalTacticsTime = stat.stats.total_seconds || 0;
                     }
                     if (stat.key === "rapid" && stat.stats) {
                         rapidRating = stat.stats.rating ?? "Brak danych";
                         lastDateRapid = new Date(stat.lastDate).getTime();
-                        rapidGames = stat.stats.total_game_count ? `${stat.stats.total_game_count} (<span class='green'>${stat.stats.total_win_count ?? 0}</span>/<span class='red'>${stat.stats.total_loss_count ?? 0}</span>/<span class='white'>${stat.stats.total_draw_count ?? 0}</span>)` : "0";
+                        rapidGames = stat.stats.total_game_count 
+                            ? `${stat.stats.total_game_count} 
+                                (<span class='green'>${stat.stats.total_win_count ?? 0}</span>/
+                                <span class='red'>${stat.stats.total_loss_count ?? 0}</span>/
+                                <span class='white'>${stat.stats.total_draw_count ?? 0}</span>)` 
+                            : "0";
                         rapidGamesToday = stat.stats.total_game_count - prevRapidGames || 0;
                         if (rapidGamesToday === 0) {
                             rapidGamesToday = "0";
                         } else {
-                            rapidGamesToday = `${stat.stats.total_game_count - prevRapidGames} (<span class='green'>${stat.stats.total_win_count - prevRapidWins}</span>/<span class='red'>${stat.stats.total_loss_count - prevRapidLosses}</span>/<span class='white'>${stat.stats.total_draw_count - prevRapidDraws}</span>)`;
+                            rapidGamesToday = `${stat.stats.total_game_count - prevRapidGames} 
+                                (<span class='green'>${stat.stats.total_win_count - prevRapidWins}</span>/
+                                <span class='red'>${stat.stats.total_loss_count - prevRapidLosses}</span>/
+                                <span class='white'>${stat.stats.total_draw_count - prevRapidDraws}</span>)`;
                         }
                     }
                 });
-        
+
                 const lastTimestamp = Math.max(lastDateRapid || 0, lastDateTactics || 0);
                 if (lastTimestamp > 0) {
                     const date = new Date(lastTimestamp).toLocaleString("pl-PL", { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' });
