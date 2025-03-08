@@ -586,7 +586,7 @@
                             tacticsGamesToday = "0";
                         } else {
                             tacticsGamesToday = `${stat.stats.attempt_count - prevTacticsGames} 
-                                (<span class='green'>${stat.stats.passed_count - prevTacticsPassed}</span>/
+                                (<span class='green'>${stat.stats.passed_count - prevTacticsPassed}</span>/ 
                                 <span class='red'>${stat.stats.failed_count - prevTacticsFailed}</span>)`;
                         }
                         totalTacticsTime = stat.stats.total_seconds || 0;
@@ -596,8 +596,8 @@
                         lastDateRapid = new Date(stat.lastDate).getTime();
                         rapidGames = stat.stats.total_game_count 
                             ? `${stat.stats.total_game_count} 
-                                (<span class='green'>${stat.stats.total_win_count ?? 0}</span>/
-                                <span class='red'>${stat.stats.total_loss_count ?? 0}</span>/
+                                (<span class='green'>${stat.stats.total_win_count ?? 0}</span>/ 
+                                <span class='red'>${stat.stats.total_loss_count ?? 0}</span>/ 
                                 <span class='white'>${stat.stats.total_draw_count ?? 0}</span>)` 
                             : "0";
                         rapidGamesToday = stat.stats.total_game_count - prevRapidGames || 0;
@@ -605,8 +605,8 @@
                             rapidGamesToday = "0";
                         } else {
                             rapidGamesToday = `${stat.stats.total_game_count - prevRapidGames} 
-                                (<span class='green'>${stat.stats.total_win_count - prevRapidWins}</span>/
-                                <span class='red'>${stat.stats.total_loss_count - prevRapidLosses}</span>/
+                                (<span class='green'>${stat.stats.total_win_count - prevRapidWins}</span>/ 
+                                <span class='red'>${stat.stats.total_loss_count - prevRapidLosses}</span>/ 
                                 <span class='white'>${stat.stats.total_draw_count - prevRapidDraws}</span>)`;
                         }
                     }
