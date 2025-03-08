@@ -197,6 +197,7 @@
     </style>
 </head>
 <body>
+    <button id="toggle-dark-mode">🌙</button>
     <div class="made-by">handmade by <a href="https://twitch.tv/biazej" target="_blank">blazej</a></div>
     <div class="table-container">
         <div class="update-info" id="update-time">Aktualizuje tabelę...</div>
@@ -253,7 +254,113 @@
             "https://api.allorigins.win/raw?url=",
             "https://corsproxy.io/"
         ];
+
+        const button = document.getElementById('toggle-dark-mode');
+        const footerImg = document.querySelector(".footer img");
     
+        button.style.position = 'fixed';
+        button.style.top = '15px';
+        button.style.left = '15px';
+        button.style.padding = '10px';
+        button.style.border = 'none';
+        button.style.borderRadius = '50%';
+        button.style.cursor = 'pointer';
+        button.style.background = '#222';
+        button.style.color = 'white';
+        button.style.fontSize = '20px';
+        button.style.width = '40px';
+        button.style.height = '40px';
+        button.style.display = 'flex';
+        button.style.alignItems = 'center';
+        button.style.justifyContent = 'center';
+        button.style.boxShadow = '0px 4px 10px rgba(0, 0, 0, 0.3)';
+        button.style.transition = 'background 0.3s ease, color 0.3s ease';
+    
+        let isDarkMode = false;
+    
+        button.addEventListener('click', () => {
+            isDarkMode = !isDarkMode;
+            document.body.classList.toggle('dark-mode');
+            button.textContent = isDarkMode ? '☀️' : '🌙';
+            button.style.background = isDarkMode ? '#f4f4f4' : '#222';
+            button.style.color = isDarkMode ? '#222' : 'white';
+    
+    
+            footerImg.src = isDarkMode 
+                ? 'https://img.icons8.com/ios-glyphs/30/FFFFFF/chess-com.png' 
+                : 'https://img.icons8.com/ios-glyphs/30/chess-com.png';
+        });
+    
+        const darkModeStyle = document.createElement('style');
+        darkModeStyle.innerHTML = `
+            .dark-mode {
+                background-color: #2b2b2b;
+                color: #e0e0e0;
+            }
+    
+            .dark-mode table {
+                background-color: #3b3b3b;
+                color: #e0e0e0;
+                border-collapse: separate;
+                border-spacing: 0;
+            }
+    
+            .dark-mode th, .dark-mode td {
+                border: 1px solid #444;
+            }
+    
+            .dark-mode th {
+                background-color: #555;
+                color: white;
+            }
+    
+            .dark-mode tr:nth-child(even) {
+                background-color: #2b2b2b;
+            }
+    
+            .dark-mode tr:hover {
+                background-color: #555;
+            }
+    
+            .dark-mode table thead tr:first-child th:first-child {
+                border-top-left-radius: 12px;
+            }
+            .dark-mode table thead tr:first-child th:last-child {
+                border-top-right-radius: 12px;
+            }
+            .dark-mode table tbody tr:last-child td:first-child {
+                border-bottom-left-radius: 12px;
+            }
+            .dark-mode table tbody tr:last-child td:last-child {
+                border-bottom-right-radius: 12px;
+            }
+    
+            .dark-mode .footer {
+                color: #ccc;
+            }
+    
+            .dark-mode .footer a {
+                color: #1e90ff;
+            }
+    
+            .dark-mode .made-by,
+            .dark-mode .update-info,
+            .dark-mode .changes-info,
+            .dark-mode .changes2-info {
+                color: #bbb;
+            }
+    
+            .dark-mode .made-by a {
+                color: #ff6b81;
+            }
+    
+            .dark-mode .green { color: #50fa7b; }
+            .dark-mode .red { color: #ff5555; }
+            .dark-mode .white { color: #f8f8f2; }
+    
+        `;
+        document.head.appendChild(darkModeStyle);
+        
         function updateTimestamp() {
             const now = new Date();
             const formattedTime = now.toLocaleTimeString("pl-PL", { hour: '2-digit', minute: '2-digit', second: '2-digit' });
