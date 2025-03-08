@@ -257,7 +257,7 @@
 
         const button = document.getElementById('toggle-dark-mode');
         const footerImg = document.querySelector(".footer img");
-    
+        
         button.style.position = 'fixed';
         button.style.top = '15px';
         button.style.left = '15px';
@@ -275,76 +275,70 @@
         button.style.justifyContent = 'center';
         button.style.boxShadow = '0px 4px 10px rgba(0, 0, 0, 0.3)';
         button.style.transition = 'background 0.3s ease, color 0.3s ease';
-    
+        
         let isDarkMode = false;
-    
+        
         button.addEventListener('click', () => {
             isDarkMode = !isDarkMode;
             document.body.classList.toggle('dark-mode');
             button.textContent = isDarkMode ? '☀️' : '🌙';
             button.style.background = isDarkMode ? '#f4f4f4' : '#222';
             button.style.color = isDarkMode ? '#222' : 'white';
-    
-    
+        
             footerImg.src = isDarkMode 
                 ? 'https://img.icons8.com/ios-glyphs/30/FFFFFF/chess-com.png' 
                 : 'https://img.icons8.com/ios-glyphs/30/chess-com.png';
-    
+        
             updateColorClasses(isDarkMode);
         });
-    
+        
         function updateColorClasses(isDarkMode) {
             const greenSpans = document.querySelectorAll('.green');
             const redSpans = document.querySelectorAll('.red');
             const whiteSpans = document.querySelectorAll('.white');
         
-            greenSpans.forEach(span => {
-                span.classList.toggle('dark-green', isDarkMode);
-                span.classList.toggle('green', !isDarkMode);
-            });
-        
-            redSpans.forEach(span => {
-                span.classList.toggle('dark-red', isDarkMode);
-                span.classList.toggle('red', !isDarkMode);
-            });
-        
-            whiteSpans.forEach(span => {
-                span.classList.toggle('dark-white', isDarkMode);
-                span.classList.toggle('white', !isDarkMode);
-            });
+            if (isDarkMode) {
+                greenSpans.forEach(span => span.style.color = '#50fa7b');
+                redSpans.forEach(span => span.style.color = '#ff5555');
+                whiteSpans.forEach(span => span.style.color = '#f8f8f2');
+            } else {
+                greenSpans.forEach(span => span.style.color = '');
+                redSpans.forEach(span => span.style.color = '');
+                whiteSpans.forEach(span => span.style.color = '');
+            }
         }
-    
+        
         const darkModeStyle = document.createElement('style');
         darkModeStyle.innerHTML = `
             .dark-mode {
                 background-color: #2b2b2b;
                 color: #e0e0e0;
             }
-    
+        
             .dark-mode table {
                 background-color: #3b3b3b;
                 color: #e0e0e0;
                 border-collapse: separate;
                 border-spacing: 0;
             }
-    
+        
             .dark-mode th, .dark-mode td {
                 border: 1px solid #444;
             }
-    
+        
             .dark-mode th {
                 background-color: #555;
                 color: white;
             }
-    
+        
             .dark-mode tr:nth-child(even) {
                 background-color: #2b2b2b;
             }
-    
+        
             .dark-mode tr:hover {
                 background-color: #555;
             }
-    
+        
             .dark-mode table thead tr:first-child th:first-child {
                 border-top-left-radius: 12px;
             }
@@ -357,26 +351,26 @@
             .dark-mode table tbody tr:last-child td:last-child {
                 border-bottom-right-radius: 12px;
             }
-    
+        
             .dark-mode .footer {
                 color: #ccc;
             }
-    
+        
             .dark-mode .footer a {
                 color: #1e90ff;
             }
-    
+        
             .dark-mode .made-by,
             .dark-mode .update-info,
             .dark-mode .changes-info,
             .dark-mode .changes2-info {
                 color: #bbb;
             }
-    
+        
             .dark-mode .made-by a {
                 color: #ff6b81;
             }
-    
+        
             .dark-mode .green { color: #50fa7b; }
             .dark-mode .red { color: #ff5555; }
             .dark-mode .white { color: #f8f8f2; }
