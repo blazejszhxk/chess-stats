@@ -35,7 +35,7 @@
         "highest_rating": 693,
         "highest_rating_date": "2023-01-10T04:12:44-08:00",
         "rating_time_change_days": 30,
-        "rating_time_change_value": -121,
+        "rating_time_change_value": -16,
         "total_game_count": 438,
         "total_win_count": 207,
         "total_loss_count": 191,
@@ -96,7 +96,7 @@
           "last_name": "mathew",
           "country_id": 69,
           "location": "kerala",
-          "last_login_date": "2025-03-07T23:12:39-08:00",
+          "last_login_date": "2025-03-10T10:15:04-07:00",
           "points": 0,
           "is_enabled": true,
           "membership_level": 10

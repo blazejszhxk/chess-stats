@@ -3,13 +3,13 @@
     {
       "key": "rapid",
       "stats": {
-        "rating": 485,
+        "rating": 533,
         "highest_rating": 689,
         "highest_rating_date": "2020-12-14T11:04:48-08:00",
         "rating_time_change_days": 30,
-        "rating_time_change_value": -192,
-        "total_game_count": 175,
-        "total_win_count": 89,
+        "rating_time_change_value": -144,
+        "total_game_count": 181,
+        "total_win_count": 95,
         "total_loss_count": 71,
         "total_draw_count": 15,
         "avg_opponent_rating": 588.247,
@@ -37,37 +37,37 @@
         },
         "best_win_opponent_id": 62134274
       },
-      "gameCount": 175,
+      "gameCount": 181,
       "lastPlayed": true,
-      "lastDate": "2025-03-09T10:58:50-07:00"
+      "lastDate": "2025-03-10T16:00:26-07:00"
     },
     {
       "key": "tactics",
       "stats": {
-        "rating": 1704,
-        "highest_rating": 1721,
-        "highest_rating_date": 1741541352,
+        "rating": 1761,
+        "highest_rating": 1763,
+        "highest_rating_date": 1741640020,
         "rating_time_change_days": 30,
-        "rating_time_change_value": 1252,
+        "rating_time_change_value": 1309,
         "highest_rating_info": {
-          "timestamp": 1741541352,
-          "rating": 1721
+          "timestamp": 1741640020,
+          "rating": 1763
         },
         "lowest_rating_info": {
           "timestamp": 1608141725,
           "rating": 373
         },
-        "total_seconds": 31640,
+        "total_seconds": 33486,
         "lowest_rating": 373,
         "lowest_rating_date": 1608141725,
-        "attempt_count": 472,
-        "passed_count": 334,
-        "failed_count": 138,
-        "last_date": "2025-03-09T10:31:31-07:00"
+        "attempt_count": 501,
+        "passed_count": 354,
+        "failed_count": 147,
+        "last_date": "2025-03-10T15:45:56-07:00"
       },
-      "gameCount": 472,
+      "gameCount": 501,
       "lastPlayed": false,
-      "lastDate": "2025-03-09T10:31:31-07:00"
+      "lastDate": "2025-03-10T15:45:56-07:00"
     },
     {
       "key": "bullet",

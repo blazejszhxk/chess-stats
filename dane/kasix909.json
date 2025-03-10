@@ -3,14 +3,14 @@
     {
       "key": "rapid",
       "stats": {
-        "rating": 543,
+        "rating": 527,
         "highest_rating": 726,
         "highest_rating_date": "2021-04-16T12:34:02-07:00",
         "rating_time_change_days": 30,
-        "rating_time_change_value": 188,
-        "total_game_count": 281,
+        "rating_time_change_value": 172,
+        "total_game_count": 283,
         "total_win_count": 129,
-        "total_loss_count": 138,
+        "total_loss_count": 140,
         "total_draw_count": 14,
         "avg_opponent_rating": 656.473,
         "highest_opponent_rating": 1219,
@@ -34,18 +34,18 @@
         },
         "best_win_opponent_id": 80701590
       },
-      "gameCount": 281,
+      "gameCount": 283,
       "lastPlayed": true,
-      "lastDate": "2025-03-09T15:54:46-07:00"
+      "lastDate": "2025-03-10T15:58:40-07:00"
     },
     {
       "key": "tactics",
       "stats": {
-        "rating": 1319,
+        "rating": 1517,
         "highest_rating": 1559,
         "highest_rating_date": 1740089883,
         "rating_time_change_days": 30,
-        "rating_time_change_value": 521,
+        "rating_time_change_value": 719,
         "highest_rating_info": {
           "timestamp": 1740089883,
           "rating": 1559
@@ -54,17 +54,17 @@
           "timestamp": 1618868433,
           "rating": 387
         },
-        "total_seconds": 37196,
+        "total_seconds": 38565,
         "lowest_rating": 387,
         "lowest_rating_date": 1618868433,
-        "attempt_count": 1631,
-        "passed_count": 885,
-        "failed_count": 746,
-        "last_date": "2025-03-09T04:15:49-07:00"
+        "attempt_count": 1692,
+        "passed_count": 923,
+        "failed_count": 769,
+        "last_date": "2025-03-10T15:40:54-07:00"
       },
-      "gameCount": 1631,
+      "gameCount": 1692,
       "lastPlayed": false,
-      "lastDate": "2025-03-09T04:15:49-07:00"
+      "lastDate": "2025-03-10T15:40:54-07:00"
     },
     {
       "key": "bullet",
