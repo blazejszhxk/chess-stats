@@ -15,7 +15,7 @@
     </script>
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@700&display=swap');
         html, body {
             font-family: 'Poppins', sans-serif;
             height: 100vh;
@@ -29,6 +29,7 @@
             align-items: center;
             justify-content: center;
             position: relative;
+            gap: 20px;
         }
         
         .table-container {
@@ -174,7 +175,7 @@
         }
 
         @media (max-width: 768px) {
-            .made-by, .footer, .disclaimer, .changes-info, .changes2-info, .update-info {
+            .made-by, .footer, .disclaimer, .changes-info, .changes2-info, .update-info, .image-container {
                 display: none;
             }
             
@@ -198,6 +199,9 @@
 </head>
 <body>
     <div class="made-by">handmade by <a href="https://twitch.tv/biazej" target="_blank">blazej</a></div>
+    <div class="image-container" style="position: absolute; top: 40px; left: 50%; transform: translateX(-50%);">
+        <img src="turniej.png" alt="Turniej Szachowy" style="width: auto; height: auto;">
+    </div>
     <div class="table-container">
         <div class="update-info" id="update-time">Aktualizuje tabelę...</div>
         <table>
@@ -244,7 +248,9 @@
             "Hiszpanitos": { username: "jakubjd", link: "https://twitch.tv/hiszpanitos" },
             "Overpow": { username: "szachowychogath", link: "https://twitch.tv/overpow" },
             "Kubon": { username: "JaKubon000", link: "https://twitch.tv/kubon_", link2: "https://kick.com/kubon" },
-            "demonzz1": { username: "demonzz1", link: "https://twitch.tv/demonzz1", link2: "https://kick.com/demonzz1" }
+            "demonzz1": { username: "demonzz1", link: "https://twitch.tv/demonzz1", link2: "https://kick.com/demonzz1" },
+            "Zwierzaaak": { username: "zwierzaak", link: "https://twitch.tv/zwierzaaak" },
+            "Bladii": { username: "kptbladii", link: "https://twitch.tv/bladii309" }
         };
     
         const proxies = [
