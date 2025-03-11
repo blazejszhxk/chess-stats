@@ -1,6 +1,25 @@
 {
   "stats": [
     {
+      "key": "rapid",
+      "stats": {
+        "rating": 464,
+        "highest_rating": 800,
+        "highest_rating_date": "2025-03-03T09:50:30-08:00",
+        "rating_time_change_days": 30,
+        "rating_time_change_value": -184,
+        "total_game_count": 51,
+        "total_win_count": 16,
+        "total_loss_count": 30,
+        "total_draw_count": 5,
+        "avg_opponent_rating": 0,
+        "highest_opponent_rating": 0
+      },
+      "gameCount": 51,
+      "lastPlayed": true,
+      "lastDate": "2025-03-11T15:47:20-07:00"
+    },
+    {
       "key": "tactics",
       "stats": {
         "rating": 665,
@@ -25,30 +44,11 @@
         "last_date": "2025-03-11T09:27:29-07:00"
       },
       "gameCount": 32,
-      "lastPlayed": true,
-      "lastDate": "2025-03-11T09:27:29-07:00"
-    },
-    {
-      "key": "rapid",
-      "stats": {
-        "rating": 478,
-        "highest_rating": 800,
-        "highest_rating_date": "2025-03-03T09:50:30-08:00",
-        "rating_time_change_days": 30,
-        "rating_time_change_value": -134,
-        "total_game_count": 43,
-        "total_win_count": 12,
-        "total_loss_count": 26,
-        "total_draw_count": 5,
-        "avg_opponent_rating": 0,
-        "highest_opponent_rating": 0
-      },
-      "gameCount": 43,
       "lastPlayed": false,
-      "lastDate": "2025-03-11T06:14:57-07:00"
+      "lastDate": "2025-03-11T09:27:29-07:00"
     }
   ],
-  "lastType": "tactics",
+  "lastType": "liveStandard",
   "versus": {
     "total": 0
   },
