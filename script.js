@@ -15,7 +15,9 @@ const usersMap = {
     "Hiszpanitos": { username: "jakubjd" },
     "Overpow": { username: "szachowychogath" },
     "Kubon_": { username: "JaKubon000" },
-    "demonzz1": { username: "demonzz1" }
+    "demonzz1": { username: "demonzz1" },
+    "Zwierzaaak": { username: "zwierzaak" },
+    "Bladii": { username: "kptbladii" }
 };
 
 const dataDir = path.join(process.cwd(), 'dane');
