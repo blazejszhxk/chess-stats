@@ -1,0 +1,68 @@
+{
+  "stats": [
+    {
+      "key": "tactics",
+      "stats": {
+        "rating": 665,
+        "highest_rating": 665,
+        "highest_rating_date": 1741710449,
+        "rating_time_change_days": 30,
+        "rating_time_change_value": 265,
+        "highest_rating_info": {
+          "timestamp": 1741710449,
+          "rating": 665
+        },
+        "lowest_rating_info": {
+          "timestamp": 1613662473,
+          "rating": 400
+        },
+        "total_seconds": 542,
+        "lowest_rating": 400,
+        "lowest_rating_date": 1613662473,
+        "attempt_count": 32,
+        "passed_count": 27,
+        "failed_count": 5,
+        "last_date": "2025-03-11T09:27:29-07:00"
+      },
+      "gameCount": 32,
+      "lastPlayed": true,
+      "lastDate": "2025-03-11T09:27:29-07:00"
+    },
+    {
+      "key": "rapid",
+      "stats": {
+        "rating": 478,
+        "highest_rating": 800,
+        "highest_rating_date": "2025-03-03T09:50:30-08:00",
+        "rating_time_change_days": 30,
+        "rating_time_change_value": -134,
+        "total_game_count": 43,
+        "total_win_count": 12,
+        "total_loss_count": 26,
+        "total_draw_count": 5,
+        "avg_opponent_rating": 0,
+        "highest_opponent_rating": 0
+      },
+      "gameCount": 43,
+      "lastPlayed": false,
+      "lastDate": "2025-03-11T06:14:57-07:00"
+    }
+  ],
+  "lastType": "tactics",
+  "versus": {
+    "total": 0
+  },
+  "ratingOnlyStats": [
+    "threecheck",
+    "kingofthehill",
+    "crazyhouse",
+    "bughouse",
+    "liveChess960"
+  ],
+  "officialRating": null,
+  "lessonLevel": {
+    "icon": "pawn-fill",
+    "name": "Learn to Play Chess",
+    "progress": 0
+  }
+}

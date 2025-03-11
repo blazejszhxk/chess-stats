@@ -1,0 +1,40 @@
+{
+  "stats": [
+    {
+      "key": "rapid",
+      "stats": {
+        "rating": 281,
+        "highest_rating": 221,
+        "highest_rating_date": "2025-03-04T11:44:29-08:00",
+        "rating_time_change_days": 30,
+        "rating_time_change_value": 0,
+        "total_game_count": 2,
+        "total_win_count": 0,
+        "total_loss_count": 1,
+        "total_draw_count": 1,
+        "avg_opponent_rating": 0,
+        "highest_opponent_rating": 0
+      },
+      "gameCount": 2,
+      "lastPlayed": true,
+      "lastDate": "2025-03-04T12:18:19-08:00"
+    }
+  ],
+  "lastType": "liveStandard",
+  "versus": {
+    "total": 0
+  },
+  "ratingOnlyStats": [
+    "threecheck",
+    "kingofthehill",
+    "crazyhouse",
+    "bughouse",
+    "liveChess960"
+  ],
+  "officialRating": null,
+  "lessonLevel": {
+    "icon": "pawn-fill",
+    "name": "Learn to Play Chess",
+    "progress": 0
+  }
+}
