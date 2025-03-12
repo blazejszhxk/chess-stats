@@ -3,30 +3,30 @@
     {
       "key": "tactics",
       "stats": {
-        "rating": 1971,
-        "highest_rating": 1971,
-        "highest_rating_date": 1741570043,
+        "rating": 1913,
+        "highest_rating": 1978,
+        "highest_rating_date": 1741742841,
         "rating_time_change_days": 30,
-        "rating_time_change_value": 971,
+        "rating_time_change_value": 846,
         "highest_rating_info": {
-          "timestamp": 1741570043,
-          "rating": 1971
+          "timestamp": 1741742841,
+          "rating": 1978
         },
         "lowest_rating_info": {
           "timestamp": 1608378338,
           "rating": 400
         },
-        "total_seconds": 38283,
+        "total_seconds": 40329,
         "lowest_rating": 400,
         "lowest_rating_date": 1608378338,
-        "attempt_count": 586,
-        "passed_count": 403,
-        "failed_count": 183,
-        "last_date": "2025-03-09T18:27:23-07:00"
+        "attempt_count": 610,
+        "passed_count": 415,
+        "failed_count": 195,
+        "last_date": "2025-03-12T09:33:06-07:00"
       },
-      "gameCount": 586,
+      "gameCount": 610,
       "lastPlayed": true,
-      "lastDate": "2025-03-09T18:27:23-07:00"
+      "lastDate": "2025-03-12T09:33:06-07:00"
     },
     {
       "key": "rapid",
@@ -35,7 +35,7 @@
         "highest_rating": 701,
         "highest_rating_date": "2021-01-06T15:32:17-08:00",
         "rating_time_change_days": 30,
-        "rating_time_change_value": 194,
+        "rating_time_change_value": 168,
         "total_game_count": 117,
         "total_win_count": 59,
         "total_loss_count": 56,
@@ -93,7 +93,7 @@
           "create_date": "2021-01-25T04:51:22-08:00",
           "username": "JakubJD",
           "country_id": 112,
-          "last_login_date": "2025-03-11T09:41:56-07:00",
+          "last_login_date": "2025-03-12T09:46:09-07:00",
           "points": 0,
           "is_enabled": true,
           "membership_level": 50
