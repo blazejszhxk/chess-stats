@@ -3,49 +3,49 @@
     {
       "key": "rapid",
       "stats": {
-        "rating": 254,
+        "rating": 299,
         "highest_rating": 221,
         "highest_rating_date": "2025-03-04T11:44:29-08:00",
         "rating_time_change_days": 30,
-        "rating_time_change_value": -27,
-        "total_game_count": 8,
-        "total_win_count": 1,
+        "rating_time_change_value": 18,
+        "total_game_count": 9,
+        "total_win_count": 2,
         "total_loss_count": 4,
         "total_draw_count": 3,
         "avg_opponent_rating": 0,
         "highest_opponent_rating": 0
       },
-      "gameCount": 8,
+      "gameCount": 9,
       "lastPlayed": true,
-      "lastDate": "2025-03-12T15:07:49-07:00"
+      "lastDate": "2025-03-13T12:04:04-07:00"
     },
     {
       "key": "tactics",
       "stats": {
-        "rating": 646,
-        "highest_rating": 646,
-        "highest_rating_date": 1741741753,
+        "rating": 655,
+        "highest_rating": 655,
+        "highest_rating_date": 1741891368,
         "rating_time_change_days": 30,
-        "rating_time_change_value": 246,
+        "rating_time_change_value": 255,
         "highest_rating_info": {
-          "timestamp": 1741741753,
-          "rating": 646
+          "timestamp": 1741891368,
+          "rating": 655
         },
         "lowest_rating_info": {
           "timestamp": 1676938336,
           "rating": 400
         },
-        "total_seconds": 522,
+        "total_seconds": 600,
         "lowest_rating": 400,
         "lowest_rating_date": 1676938336,
-        "attempt_count": 25,
-        "passed_count": 22,
-        "failed_count": 3,
-        "last_date": "2025-03-11T18:09:13-07:00"
+        "attempt_count": 28,
+        "passed_count": 24,
+        "failed_count": 4,
+        "last_date": "2025-03-13T11:42:48-07:00"
       },
-      "gameCount": 25,
+      "gameCount": 28,
       "lastPlayed": false,
-      "lastDate": "2025-03-11T18:09:13-07:00"
+      "lastDate": "2025-03-13T11:42:48-07:00"
     }
   ],
   "lastType": "liveStandard",
