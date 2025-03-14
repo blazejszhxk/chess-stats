@@ -7,7 +7,7 @@
         "highest_rating": 726,
         "highest_rating_date": "2021-04-16T12:34:02-07:00",
         "rating_time_change_days": 30,
-        "rating_time_change_value": 124,
+        "rating_time_change_value": 145,
         "total_game_count": 290,
         "total_win_count": 133,
         "total_loss_count": 142,
@@ -27,7 +27,7 @@
           "create_date": "2020-05-27T14:32:18-07:00",
           "username": "Slayprox",
           "country_id": 112,
-          "last_login_date": "2025-03-03T16:24:05-08:00",
+          "last_login_date": "2025-03-14T04:57:33-07:00",
           "points": 0,
           "is_enabled": true,
           "membership_level": 50
@@ -45,7 +45,7 @@
         "highest_rating": 1559,
         "highest_rating_date": 1740089883,
         "rating_time_change_days": 30,
-        "rating_time_change_value": 379,
+        "rating_time_change_value": 258,
         "highest_rating_info": {
           "timestamp": 1740089883,
           "rating": 1559

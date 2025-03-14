@@ -1,6 +1,34 @@
 {
   "stats": [
     {
+      "key": "tactics",
+      "stats": {
+        "rating": 1783,
+        "highest_rating": 1978,
+        "highest_rating_date": 1741546265,
+        "rating_time_change_days": 30,
+        "rating_time_change_value": 182,
+        "highest_rating_info": {
+          "timestamp": 1741546265,
+          "rating": 1978
+        },
+        "lowest_rating_info": {
+          "timestamp": 1609794358,
+          "rating": 387
+        },
+        "total_seconds": 92085,
+        "lowest_rating": 387,
+        "lowest_rating_date": 1609794358,
+        "attempt_count": 4317,
+        "passed_count": 2204,
+        "failed_count": 2113,
+        "last_date": "2025-03-14T02:47:02-07:00"
+      },
+      "gameCount": 4317,
+      "lastPlayed": false,
+      "lastDate": "2025-03-14T02:47:02-07:00"
+    },
+    {
       "key": "rapid",
       "stats": {
         "rating": 857,
@@ -8,9 +36,9 @@
         "highest_rating_date": "2022-09-09T08:18:30-07:00",
         "rating_time_change_days": 30,
         "rating_time_change_value": 160,
-        "total_game_count": 599,
-        "total_win_count": 316,
-        "total_loss_count": 252,
+        "total_game_count": 612,
+        "total_win_count": 323,
+        "total_loss_count": 258,
         "total_draw_count": 31,
         "avg_opponent_rating": 728.653,
         "highest_opponent_rating": 1449,
@@ -37,37 +65,9 @@
         },
         "best_win_opponent_id": 21522168
       },
-      "gameCount": 599,
+      "gameCount": 612,
       "lastPlayed": true,
-      "lastDate": "2025-03-13T12:46:04-07:00"
-    },
-    {
-      "key": "tactics",
-      "stats": {
-        "rating": 1707,
-        "highest_rating": 1978,
-        "highest_rating_date": 1741546265,
-        "rating_time_change_days": 30,
-        "rating_time_change_value": 106,
-        "highest_rating_info": {
-          "timestamp": 1741546265,
-          "rating": 1978
-        },
-        "lowest_rating_info": {
-          "timestamp": 1609794358,
-          "rating": 387
-        },
-        "total_seconds": 91274,
-        "lowest_rating": 387,
-        "lowest_rating_date": 1609794358,
-        "attempt_count": 4225,
-        "passed_count": 2158,
-        "failed_count": 2067,
-        "last_date": "2025-03-13T07:56:43-07:00"
-      },
-      "gameCount": 4225,
-      "lastPlayed": false,
-      "lastDate": "2025-03-13T07:56:43-07:00"
+      "lastDate": "2025-03-14T01:06:29-07:00"
     },
     {
       "key": "tactics_challenge",
@@ -113,7 +113,7 @@
           "create_date": "2019-08-09T10:02:26-07:00",
           "username": "fragoooo",
           "country_id": 112,
-          "last_login_date": "2025-03-13T03:22:14-07:00",
+          "last_login_date": "2025-03-14T13:32:56-07:00",
           "points": 0,
           "is_enabled": true,
           "membership_level": 40
