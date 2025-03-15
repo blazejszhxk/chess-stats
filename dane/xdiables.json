@@ -3,15 +3,15 @@
     {
       "key": "rapid",
       "stats": {
-        "rating": 325,
+        "rating": 360,
         "highest_rating": 901,
         "highest_rating_date": "2020-12-18T00:50:12-08:00",
         "rating_time_change_days": 30,
-        "rating_time_change_value": -48,
-        "total_game_count": 283,
-        "total_win_count": 83,
-        "total_loss_count": 173,
-        "total_draw_count": 27,
+        "rating_time_change_value": -86,
+        "total_game_count": 299,
+        "total_win_count": 88,
+        "total_loss_count": 181,
+        "total_draw_count": 30,
         "avg_opponent_rating": 769.017,
         "highest_opponent_rating": 819,
         "best_win_opponent": {
@@ -37,18 +37,18 @@
         },
         "best_win_opponent_id": 95424894
       },
-      "gameCount": 283,
+      "gameCount": 299,
       "lastPlayed": true,
-      "lastDate": "2025-03-14T14:33:11-07:00"
+      "lastDate": "2025-03-15T15:51:46-07:00"
     },
     {
       "key": "tactics",
       "stats": {
-        "rating": 1076,
+        "rating": 1134,
         "highest_rating": 1141,
         "highest_rating_date": 1741979748,
         "rating_time_change_days": 30,
-        "rating_time_change_value": 676,
+        "rating_time_change_value": 734,
         "highest_rating_info": {
           "timestamp": 1741979748,
           "rating": 1141
@@ -57,17 +57,17 @@
           "timestamp": 1608279878,
           "rating": 400
         },
-        "total_seconds": 6162,
+        "total_seconds": 6595,
         "lowest_rating": 400,
         "lowest_rating_date": 1608279878,
-        "attempt_count": 317,
-        "passed_count": 195,
-        "failed_count": 122,
-        "last_date": "2025-03-14T12:19:22-07:00"
+        "attempt_count": 339,
+        "passed_count": 209,
+        "failed_count": 130,
+        "last_date": "2025-03-15T11:00:18-07:00"
       },
-      "gameCount": 317,
+      "gameCount": 339,
       "lastPlayed": false,
-      "lastDate": "2025-03-14T12:19:22-07:00"
+      "lastDate": "2025-03-15T11:00:18-07:00"
     },
     {
       "key": "bullet",

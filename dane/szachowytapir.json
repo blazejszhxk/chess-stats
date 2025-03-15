@@ -7,7 +7,7 @@
         "highest_rating": 1175,
         "highest_rating_date": "2023-07-19T12:53:00-07:00",
         "rating_time_change_days": 30,
-        "rating_time_change_value": 169,
+        "rating_time_change_value": 178,
         "total_game_count": 4830,
         "total_win_count": 2187,
         "total_loss_count": 2400,
@@ -97,7 +97,7 @@
           "create_date": "2021-10-08T09:27:07-07:00",
           "username": "magicwinter123",
           "country_id": 112,
-          "last_login_date": "2025-03-14T10:33:57-07:00",
+          "last_login_date": "2025-03-15T09:34:15-07:00",
           "points": 1,
           "is_enabled": true,
           "membership_level": 10

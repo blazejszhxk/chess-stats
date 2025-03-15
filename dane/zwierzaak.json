@@ -3,49 +3,49 @@
     {
       "key": "rapid",
       "stats": {
-        "rating": 344,
+        "rating": 314,
         "highest_rating": 221,
         "highest_rating_date": "2025-03-04T11:44:29-08:00",
         "rating_time_change_days": 30,
-        "rating_time_change_value": 63,
-        "total_game_count": 16,
-        "total_win_count": 6,
-        "total_loss_count": 6,
-        "total_draw_count": 4,
+        "rating_time_change_value": 33,
+        "total_game_count": 27,
+        "total_win_count": 10,
+        "total_loss_count": 12,
+        "total_draw_count": 5,
         "avg_opponent_rating": 0,
         "highest_opponent_rating": 0
       },
-      "gameCount": 16,
+      "gameCount": 27,
       "lastPlayed": true,
-      "lastDate": "2025-03-14T14:33:11-07:00"
+      "lastDate": "2025-03-15T13:49:15-07:00"
     },
     {
       "key": "tactics",
       "stats": {
-        "rating": 686,
-        "highest_rating": 686,
-        "highest_rating_date": 1741914158,
+        "rating": 696,
+        "highest_rating": 698,
+        "highest_rating_date": 1742049259,
         "rating_time_change_days": 30,
-        "rating_time_change_value": 286,
+        "rating_time_change_value": 296,
         "highest_rating_info": {
-          "timestamp": 1741914158,
-          "rating": 686
+          "timestamp": 1742049259,
+          "rating": 698
         },
         "lowest_rating_info": {
           "timestamp": 1676938336,
           "rating": 400
         },
-        "total_seconds": 683,
+        "total_seconds": 746,
         "lowest_rating": 400,
         "lowest_rating_date": 1676938336,
-        "attempt_count": 31,
-        "passed_count": 27,
-        "failed_count": 4,
-        "last_date": "2025-03-13T18:02:38-07:00"
+        "attempt_count": 34,
+        "passed_count": 29,
+        "failed_count": 5,
+        "last_date": "2025-03-15T07:35:44-07:00"
       },
-      "gameCount": 31,
+      "gameCount": 34,
       "lastPlayed": false,
-      "lastDate": "2025-03-13T18:02:38-07:00"
+      "lastDate": "2025-03-15T07:35:44-07:00"
     }
   ],
   "lastType": "liveStandard",
