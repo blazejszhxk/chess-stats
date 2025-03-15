@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -319,8 +320,28 @@
                 if (!aCell || !bCell) return 0;
         
                 if (colIndex === 7) {
-                    aVal = new Date(aCell.textContent).getTime();
-                    bVal = new Date(bCell.textContent).getTime();
+                    let aText = aCell.textContent.trim();
+                    let bText = bCell.textContent.trim();
+                    
+                    if (aText === "Brak danych" || aText === "Błąd") return 1;
+                    if (bText === "Brak danych" || bText === "Błąd") return -1;
+                    if (aText === "Brak danych" && bText === "Brak danych") return 0;
+                    
+                    let aDate = aText.split(" (")[0];
+                    let bDate = bText.split(" (")[0];
+
+                    let [aDay, aRest] = aDate.split(", ");
+                    let [aDatePart, aTimePart] = [aDay, aRest];
+                    let [aDD, aMM] = aDatePart.split(".");
+                    
+                    let [bDay, bRest] = bDate.split(", ");
+                    let [bDatePart, bTimePart] = [bDay, bRest];
+                    let [bDD, bMM] = bDatePart.split(".");
+                    
+                    const currentYear = new Date().getFullYear();
+                    
+                    aVal = new Date(`${currentYear}-${aMM}-${aDD}T${aTimePart}`).getTime();
+                    bVal = new Date(`${currentYear}-${bMM}-${bDD}T${bTimePart}`).getTime();
                 } else if (colIndex === 6) {
                     aVal = timeToSeconds(aCell.textContent);
                     bVal = timeToSeconds(bCell.textContent);
