@@ -3,14 +3,14 @@
     {
       "key": "rapid",
       "stats": {
-        "rating": 527,
+        "rating": 530,
         "highest_rating": 726,
         "highest_rating_date": "2021-04-16T12:34:02-07:00",
         "rating_time_change_days": 30,
-        "rating_time_change_value": 136,
-        "total_game_count": 300,
-        "total_win_count": 137,
-        "total_loss_count": 148,
+        "rating_time_change_value": 133,
+        "total_game_count": 308,
+        "total_win_count": 141,
+        "total_loss_count": 152,
         "total_draw_count": 15,
         "avg_opponent_rating": 656.473,
         "highest_opponent_rating": 1219,
@@ -34,18 +34,18 @@
         },
         "best_win_opponent_id": 80701590
       },
-      "gameCount": 300,
+      "gameCount": 308,
       "lastPlayed": true,
-      "lastDate": "2025-03-15T15:49:24-07:00"
+      "lastDate": "2025-03-16T08:46:18-07:00"
     },
     {
       "key": "tactics",
       "stats": {
-        "rating": 1382,
+        "rating": 1401,
         "highest_rating": 1559,
         "highest_rating_date": 1740089883,
         "rating_time_change_days": 30,
-        "rating_time_change_value": 249,
+        "rating_time_change_value": 120,
         "highest_rating_info": {
           "timestamp": 1740089883,
           "rating": 1559
@@ -54,17 +54,17 @@
           "timestamp": 1618868433,
           "rating": 387
         },
-        "total_seconds": 43355,
+        "total_seconds": 43914,
         "lowest_rating": 387,
         "lowest_rating_date": 1618868433,
-        "attempt_count": 1971,
-        "passed_count": 1066,
-        "failed_count": 905,
-        "last_date": "2025-03-15T11:31:21-07:00"
+        "attempt_count": 2025,
+        "passed_count": 1094,
+        "failed_count": 931,
+        "last_date": "2025-03-16T08:03:59-07:00"
       },
-      "gameCount": 1971,
+      "gameCount": 2025,
       "lastPlayed": false,
-      "lastDate": "2025-03-15T11:31:21-07:00"
+      "lastDate": "2025-03-16T08:03:59-07:00"
     },
     {
       "key": "bullet",
