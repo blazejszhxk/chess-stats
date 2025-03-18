@@ -186,8 +186,8 @@
   ],
   "officialRating": null,
   "lessonLevel": {
-    "icon": "pawn-fill",
-    "name": "Learn to Play Chess",
-    "progress": 20
+    "icon": "king-fill",
+    "name": "Mastery",
+    "progress": 21
   }
 }

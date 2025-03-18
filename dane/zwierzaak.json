@@ -1,6 +1,34 @@
 {
   "stats": [
     {
+      "key": "tactics",
+      "stats": {
+        "rating": 981,
+        "highest_rating": 989,
+        "highest_rating_date": 1742311842,
+        "rating_time_change_days": 30,
+        "rating_time_change_value": 581,
+        "highest_rating_info": {
+          "timestamp": 1742311842,
+          "rating": 989
+        },
+        "lowest_rating_info": {
+          "timestamp": 1676938336,
+          "rating": 400
+        },
+        "total_seconds": 2730,
+        "lowest_rating": 400,
+        "lowest_rating_date": 1676938336,
+        "attempt_count": 166,
+        "passed_count": 112,
+        "failed_count": 54,
+        "last_date": "2025-03-18T08:33:21-07:00"
+      },
+      "gameCount": 166,
+      "lastPlayed": true,
+      "lastDate": "2025-03-18T08:33:21-07:00"
+    },
+    {
       "key": "rapid",
       "stats": {
         "rating": 357,
@@ -16,39 +44,11 @@
         "highest_opponent_rating": 0
       },
       "gameCount": 34,
-      "lastPlayed": true,
-      "lastDate": "2025-03-15T19:06:31-07:00"
-    },
-    {
-      "key": "tactics",
-      "stats": {
-        "rating": 696,
-        "highest_rating": 698,
-        "highest_rating_date": 1742049259,
-        "rating_time_change_days": 30,
-        "rating_time_change_value": 296,
-        "highest_rating_info": {
-          "timestamp": 1742049259,
-          "rating": 698
-        },
-        "lowest_rating_info": {
-          "timestamp": 1676938336,
-          "rating": 400
-        },
-        "total_seconds": 746,
-        "lowest_rating": 400,
-        "lowest_rating_date": 1676938336,
-        "attempt_count": 34,
-        "passed_count": 29,
-        "failed_count": 5,
-        "last_date": "2025-03-15T07:35:44-07:00"
-      },
-      "gameCount": 34,
       "lastPlayed": false,
-      "lastDate": "2025-03-15T07:35:44-07:00"
+      "lastDate": "2025-03-15T19:06:31-07:00"
     }
   ],
-  "lastType": "liveStandard",
+  "lastType": "tactics",
   "versus": {
     "total": 0
   },
