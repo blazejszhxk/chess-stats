@@ -3,30 +3,30 @@
     {
       "key": "tactics",
       "stats": {
-        "rating": 1770,
-        "highest_rating": 1770,
-        "highest_rating_date": 1742322414,
+        "rating": 1845,
+        "highest_rating": 1845,
+        "highest_rating_date": 1742410287,
         "rating_time_change_days": 30,
-        "rating_time_change_value": 1370,
+        "rating_time_change_value": 1445,
         "highest_rating_info": {
-          "timestamp": 1742322414,
-          "rating": 1770
+          "timestamp": 1742410287,
+          "rating": 1845
         },
         "lowest_rating_info": {
           "timestamp": 1739898032,
           "rating": 400
         },
-        "total_seconds": 77769,
+        "total_seconds": 84167,
         "lowest_rating": 400,
         "lowest_rating_date": 1739898032,
-        "attempt_count": 1086,
-        "passed_count": 697,
-        "failed_count": 389,
-        "last_date": "2025-03-18T11:26:54-07:00"
+        "attempt_count": 1126,
+        "passed_count": 726,
+        "failed_count": 400,
+        "last_date": "2025-03-19T11:51:27-07:00"
       },
-      "gameCount": 1086,
-      "lastPlayed": false,
-      "lastDate": "2025-03-18T11:26:54-07:00"
+      "gameCount": 1126,
+      "lastPlayed": true,
+      "lastDate": "2025-03-19T11:51:27-07:00"
     },
     {
       "key": "rapid",
@@ -44,11 +44,11 @@
         "highest_opponent_rating": 0
       },
       "gameCount": 21,
-      "lastPlayed": true,
+      "lastPlayed": false,
       "lastDate": "2025-03-18T06:14:39-07:00"
     }
   ],
-  "lastType": "liveStandard",
+  "lastType": "tactics",
   "versus": {
     "total": 0
   },

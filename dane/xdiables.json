@@ -3,15 +3,15 @@
     {
       "key": "rapid",
       "stats": {
-        "rating": 527,
+        "rating": 516,
         "highest_rating": 901,
         "highest_rating_date": "2020-12-18T00:50:12-08:00",
         "rating_time_change_days": 30,
-        "rating_time_change_value": 107,
-        "total_game_count": 366,
-        "total_win_count": 126,
-        "total_loss_count": 206,
-        "total_draw_count": 34,
+        "rating_time_change_value": 61,
+        "total_game_count": 383,
+        "total_win_count": 132,
+        "total_loss_count": 215,
+        "total_draw_count": 36,
         "avg_opponent_rating": 769.017,
         "highest_opponent_rating": 819,
         "best_win_opponent": {
@@ -37,18 +37,18 @@
         },
         "best_win_opponent_id": 95424894
       },
-      "gameCount": 366,
+      "gameCount": 383,
       "lastPlayed": true,
-      "lastDate": "2025-03-18T14:35:26-07:00"
+      "lastDate": "2025-03-19T15:56:16-07:00"
     },
     {
       "key": "tactics",
       "stats": {
-        "rating": 1105,
+        "rating": 1114,
         "highest_rating": 1155,
         "highest_rating_date": 1742221017,
         "rating_time_change_days": 30,
-        "rating_time_change_value": 705,
+        "rating_time_change_value": 677,
         "highest_rating_info": {
           "timestamp": 1742221017,
           "rating": 1155
@@ -57,17 +57,17 @@
           "timestamp": 1608279878,
           "rating": 400
         },
-        "total_seconds": 9782,
+        "total_seconds": 9827,
         "lowest_rating": 400,
         "lowest_rating_date": 1608279878,
-        "attempt_count": 368,
-        "passed_count": 224,
-        "failed_count": 144,
-        "last_date": "2025-03-18T12:07:14-07:00"
+        "attempt_count": 371,
+        "passed_count": 226,
+        "failed_count": 145,
+        "last_date": "2025-03-19T10:42:20-07:00"
       },
-      "gameCount": 368,
+      "gameCount": 371,
       "lastPlayed": false,
-      "lastDate": "2025-03-18T12:07:14-07:00"
+      "lastDate": "2025-03-19T10:42:20-07:00"
     },
     {
       "key": "bullet",
