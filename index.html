@@ -174,16 +174,64 @@
             width: 100%;
         }
 
-        .countdown {
+        .countdown-container {
             position: absolute;
-            top: -20px;
-            right: 0;
-            font-size: 12px;
+            right: 32.5px;
+            top: 50%;
+            transform: translateY(-50%);
+            text-align: center;
+            background-color: white;
+            border-radius: 12px;
+            padding: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 10;
+        }
+        
+        .countdown-title {
+            font-size: 16px;
+            color: #3458dc;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        
+        .countdown-timer {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .countdown-unit {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+        
+        .countdown-box {
+            background-color: #007bff;
+            color: white;
+            border-radius: 8px;
+            padding: 6px 10px;
+            font-size: 18px;
+            font-weight: 600;
+            min-width: 40px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 5px;
+        }
+        
+        .countdown-label {
+            font-size: 14px;
             color: #555;
+            text-align: center;
+            width: 100%;
         }
         
         @media (max-width: 768px) {
-            .made-by, .footer, .disclaimer, .changes-info, .changes2-info, .update-info, .image-container, .countdown {
+            .made-by, .footer, .disclaimer, .changes-info, .changes2-info, .update-info, .image-container, .countdown-container {
                 display: none;
             }
             
@@ -217,9 +265,28 @@
             <img src="billin.png" alt="Billin" style="width: auto; height: auto;">
         </a>
     </div>
+<div class="countdown-container">
+    <div class="countdown-title">Do rozpoczęcia turnieju:</div>
+    <div class="countdown-timer">
+        <div class="countdown-unit">
+            <div class="countdown-box" id="days">00</div>
+            <div class="countdown-label">Dni</div>
+        </div>
+        <div class="countdown-unit">
+            <div class="countdown-box" id="hours">00</div>
+            <div class="countdown-label">Godzin</div>
+        </div>
+        <div class="countdown-unit">
+            <div class="countdown-box" id="minutes">00</div>
+            <div class="countdown-label">Minut</div>
+        </div>
+        <div class="countdown-unit">
+            <div class="countdown-box" id="seconds">00</div>
+            <div class="countdown-label">Sekund</div>
+        </div>
+    </div>
+</div>
     <div class="table-container">
-        <div class="update-info" id="update-time">Aktualizuje tabelę...</div>
-        <div class="countdown" id="countdown-timer"></div>
         <table>
             <thead>
                 <tr>
@@ -239,7 +306,9 @@
             </tbody>
         </table>
     <div class="changes-info">Liczby w () (rating) to zmiany rankingu od 00:00. (Jeśli ktoś nie ma nic znaczy, że nie zmienił swojego rankingu).</div>
-    <div class="changes2-info">Gry Rapid + Dziś w () mają Win/Lose/Draw.</div>
+    <div class="changes2-info">
+    Wszystkie statystyki z poprzednich dni (od 19.03) dostępne są na  
+    <a href="https://billin.app" target="_blank" style="color: #3558dd; font-weight: bold;">Billin</a> @turniej</div>
     </div>
 
     <div class="footer">
@@ -275,12 +344,6 @@
             "https://api.allorigins.win/raw?url=",
             "https://corsproxy.io/"
         ];
-    
-        function updateTimestamp() {
-            const now = new Date();
-            const formattedTime = now.toLocaleTimeString("pl-PL", { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-            document.getElementById("update-time").textContent = `Tabela została zaktualizowana o godz. ${formattedTime}`;
-        }
 
         function updateCountdown() {
             const targetDate = new Date("2025-04-24T18:00:00+01:00");
@@ -290,21 +353,27 @@
             const timeDiff = targetDate - nowDate;
         
             if (timeDiff <= 0) {
-                document.getElementById("countdown-timer").textContent = "Turniej już się rozpoczął!";
+                document.getElementById("days").textContent = "00";
+                document.getElementById("hours").textContent = "00";
+                document.getElementById("minutes").textContent = "00";
+                document.getElementById("seconds").textContent = "00";
+                document.querySelector(".countdown-title").textContent = "Turniej rozpoczęty!";
                 return;
             }
         
-            const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+            const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
+            const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
+            const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
+            const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000).toString().padStart(2, '0');
         
-            document.getElementById("countdown-timer").textContent = `Do rozpoczęcia turnieju zostało: ${days}d ${hours}h ${minutes}m ${seconds}s.`;
+            document.getElementById("days").textContent = days;
+            document.getElementById("hours").textContent = hours;
+            document.getElementById("minutes").textContent = minutes;
+            document.getElementById("seconds").textContent = seconds;
         }
-        
         setInterval(updateCountdown, 1000);
-        updateCountdown();
-        
+        updateCountdown();        
+
         let sortDirections = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1];	
         function sortTable(colIndex) {
             const tbody = document.getElementById("stats-body");
