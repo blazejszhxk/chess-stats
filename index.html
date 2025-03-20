@@ -265,28 +265,29 @@
             <img src="billin.png" alt="Billin" style="width: auto; height: auto;">
         </a>
     </div>
-<div class="countdown-container">
-    <div class="countdown-title">Do rozpoczęcia turnieju:</div>
-    <div class="countdown-timer">
-        <div class="countdown-unit">
-            <div class="countdown-box" id="days">00</div>
-            <div class="countdown-label">Dni</div>
-        </div>
-        <div class="countdown-unit">
-            <div class="countdown-box" id="hours">00</div>
-            <div class="countdown-label">Godzin</div>
-        </div>
-        <div class="countdown-unit">
-            <div class="countdown-box" id="minutes">00</div>
-            <div class="countdown-label">Minut</div>
-        </div>
-        <div class="countdown-unit">
-            <div class="countdown-box" id="seconds">00</div>
-            <div class="countdown-label">Sekund</div>
+    <div class="countdown-container">
+        <div class="countdown-title">Do rozpoczęcia turnieju:</div>
+        <div class="countdown-timer">
+            <div class="countdown-unit">
+                <div class="countdown-box" id="days">00</div>
+                <div class="countdown-label">Dni</div>
+            </div>
+            <div class="countdown-unit">
+                <div class="countdown-box" id="hours">00</div>
+                <div class="countdown-label">Godzin</div>
+            </div>
+            <div class="countdown-unit">
+                <div class="countdown-box" id="minutes">00</div>
+                <div class="countdown-label">Minut</div>
+            </div>
+            <div class="countdown-unit">
+                <div class="countdown-box" id="seconds">00</div>
+                <div class="countdown-label">Sekund</div>
+            </div>
         </div>
     </div>
-</div>
     <div class="table-container">
+        <div class="update-info" id="update-time">Aktualizuje tabelę...</div>
         <table>
             <thead>
                 <tr>
@@ -344,6 +345,13 @@
             "https://api.allorigins.win/raw?url=",
             "https://corsproxy.io/"
         ];
+
+        function updateTimestamp() {
+            const element = document.getElementById("update-time");
+            if (element) {
+                element.remove();
+            }
+        }
 
         function updateCountdown() {
             const targetDate = new Date("2025-04-24T18:00:00+01:00");
