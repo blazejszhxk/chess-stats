@@ -3,15 +3,15 @@
     {
       "key": "rapid",
       "stats": {
-        "rating": 409,
+        "rating": 434,
         "highest_rating": 552,
         "highest_rating_date": "2023-02-16T12:59:31-08:00",
         "rating_time_change_days": 30,
-        "rating_time_change_value": -8,
-        "total_game_count": 424,
-        "total_win_count": 192,
-        "total_loss_count": 213,
-        "total_draw_count": 19,
+        "rating_time_change_value": -14,
+        "total_game_count": 436,
+        "total_win_count": 199,
+        "total_loss_count": 217,
+        "total_draw_count": 20,
         "avg_opponent_rating": 634.029,
         "highest_opponent_rating": 1952,
         "best_win_opponent": {
@@ -34,9 +34,9 @@
         },
         "best_win_opponent_id": 137486306
       },
-      "gameCount": 424,
+      "gameCount": 436,
       "lastPlayed": true,
-      "lastDate": "2025-03-20T00:11:16-07:00"
+      "lastDate": "2025-03-21T15:52:21-07:00"
     },
     {
       "key": "tactics",
