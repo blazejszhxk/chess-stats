@@ -3,15 +3,15 @@
     {
       "key": "rapid",
       "stats": {
-        "rating": 872,
+        "rating": 888,
         "highest_rating": 599,
         "highest_rating_date": "2021-01-25T05:02:27-08:00",
         "rating_time_change_days": 30,
-        "rating_time_change_value": 347,
-        "total_game_count": 1066,
-        "total_win_count": 518,
-        "total_loss_count": 485,
-        "total_draw_count": 63,
+        "rating_time_change_value": 346,
+        "total_game_count": 1078,
+        "total_win_count": 524,
+        "total_loss_count": 490,
+        "total_draw_count": 64,
         "avg_opponent_rating": 402.284,
         "highest_opponent_rating": 900,
         "best_win_opponent": {
@@ -34,37 +34,37 @@
         },
         "best_win_opponent_id": 107399908
       },
-      "gameCount": 1066,
+      "gameCount": 1078,
       "lastPlayed": true,
-      "lastDate": "2025-03-21T15:57:14-07:00"
+      "lastDate": "2025-03-22T14:25:00-07:00"
     },
     {
       "key": "tactics",
       "stats": {
-        "rating": 1901,
-        "highest_rating": 1901,
-        "highest_rating_date": 1742407925,
+        "rating": 1915,
+        "highest_rating": 1927,
+        "highest_rating_date": 1742670205,
         "rating_time_change_days": 30,
-        "rating_time_change_value": 542,
+        "rating_time_change_value": 525,
         "highest_rating_info": {
-          "timestamp": 1742407925,
-          "rating": 1901
+          "timestamp": 1742670205,
+          "rating": 1927
         },
         "lowest_rating_info": {
           "timestamp": 1739306379,
           "rating": 372
         },
-        "total_seconds": 68804,
+        "total_seconds": 68887,
         "lowest_rating": 372,
         "lowest_rating_date": 1739306379,
-        "attempt_count": 884,
-        "passed_count": 567,
-        "failed_count": 317,
-        "last_date": "2025-03-19T11:12:05-07:00"
+        "attempt_count": 888,
+        "passed_count": 569,
+        "failed_count": 319,
+        "last_date": "2025-03-22T12:03:39-07:00"
       },
-      "gameCount": 884,
+      "gameCount": 888,
       "lastPlayed": false,
-      "lastDate": "2025-03-19T11:12:05-07:00"
+      "lastDate": "2025-03-22T12:03:39-07:00"
     },
     {
       "key": "lightning",
