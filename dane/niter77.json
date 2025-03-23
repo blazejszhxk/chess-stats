@@ -1,34 +1,15 @@
 {
   "stats": [
     {
-      "key": "rapid",
-      "stats": {
-        "rating": 1071,
-        "highest_rating": 873,
-        "highest_rating_date": "2025-02-25T15:31:25-08:00",
-        "rating_time_change_days": 30,
-        "rating_time_change_value": 244,
-        "total_game_count": 125,
-        "total_win_count": 86,
-        "total_loss_count": 31,
-        "total_draw_count": 8,
-        "avg_opponent_rating": 612.267,
-        "highest_opponent_rating": 0
-      },
-      "gameCount": 125,
-      "lastPlayed": true,
-      "lastDate": "2025-03-21T17:43:28-07:00"
-    },
-    {
       "key": "lightning",
       "stats": {
-        "rating": 651,
+        "rating": 659,
         "highest_rating": 715,
         "highest_rating_date": "2021-05-04T18:53:01-07:00",
         "rating_time_change_days": 30,
-        "rating_time_change_value": 134,
-        "total_game_count": 637,
-        "total_win_count": 333,
+        "rating_time_change_value": 125,
+        "total_game_count": 638,
+        "total_win_count": 334,
         "total_loss_count": 257,
         "total_draw_count": 47,
         "avg_opponent_rating": 573.376,
@@ -53,9 +34,28 @@
         },
         "best_win_opponent_id": 138306982
       },
-      "gameCount": 637,
+      "gameCount": 638,
+      "lastPlayed": true,
+      "lastDate": "2025-03-22T19:19:28-07:00"
+    },
+    {
+      "key": "rapid",
+      "stats": {
+        "rating": 1071,
+        "highest_rating": 873,
+        "highest_rating_date": "2025-02-25T15:31:25-08:00",
+        "rating_time_change_days": 30,
+        "rating_time_change_value": 244,
+        "total_game_count": 125,
+        "total_win_count": 86,
+        "total_loss_count": 31,
+        "total_draw_count": 8,
+        "avg_opponent_rating": 612.267,
+        "highest_opponent_rating": 0
+      },
+      "gameCount": 125,
       "lastPlayed": false,
-      "lastDate": "2025-03-21T17:04:38-07:00"
+      "lastDate": "2025-03-21T17:43:28-07:00"
     },
     {
       "key": "bullet",
@@ -139,7 +139,7 @@
       "lastPlayed": false
     }
   ],
-  "lastType": "liveStandard",
+  "lastType": "liveBlitz",
   "versus": {
     "total": 0
   },
