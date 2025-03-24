@@ -1,0 +1,186 @@
+{
+  "stats": [
+    {
+      "key": "rapid",
+      "stats": {
+        "rating": 1088,
+        "highest_rating": 1175,
+        "highest_rating_date": "2023-07-19T12:53:00-07:00",
+        "rating_time_change_days": 30,
+        "rating_time_change_value": 212,
+        "total_game_count": 4839,
+        "total_win_count": 2191,
+        "total_loss_count": 2404,
+        "total_draw_count": 244,
+        "avg_opponent_rating": 926.256,
+        "highest_opponent_rating": 2367,
+        "best_win_opponent": {
+          "country": {
+            "id": 112,
+            "code": "PL",
+            "name": "Poland",
+            "iso3": "POL",
+            "currency_code": "PLN",
+            "phone_code": 48
+          },
+          "id": 73774266,
+          "create_date": "2020-03-18T05:26:58-07:00",
+          "username": "KrolPawel92OnTwitch",
+          "first_name": "Paweł",
+          "last_name": "Kowalczyk",
+          "country_id": 112,
+          "location": "Wałbrzych",
+          "last_login_date": "2023-07-14T05:41:28-07:00",
+          "points": 132,
+          "is_enabled": true,
+          "chess_title": "NM",
+          "membership_level": 50
+        },
+        "best_win_opponent_id": 73774266
+      },
+      "gameCount": 4839,
+      "lastPlayed": true,
+      "lastDate": "2025-03-24T08:05:55-07:00"
+    },
+    {
+      "key": "tactics",
+      "stats": {
+        "rating": 2002,
+        "highest_rating": 2002,
+        "highest_rating_date": 1742671252,
+        "rating_time_change_days": 30,
+        "rating_time_change_value": 116,
+        "highest_rating_info": {
+          "timestamp": 1742671252,
+          "rating": 2002
+        },
+        "lowest_rating_info": {
+          "timestamp": 1670273913,
+          "rating": 412
+        },
+        "total_seconds": 107411,
+        "lowest_rating": 412,
+        "lowest_rating_date": 1670273913,
+        "attempt_count": 2974,
+        "passed_count": 1638,
+        "failed_count": 1336,
+        "last_date": "2025-03-22T12:20:52-07:00"
+      },
+      "gameCount": 2974,
+      "lastPlayed": false,
+      "lastDate": "2025-03-22T12:20:52-07:00"
+    },
+    {
+      "key": "lightning",
+      "stats": {
+        "rating": 695,
+        "highest_rating": 941,
+        "highest_rating_date": "2023-08-25T06:50:33-07:00",
+        "rating_time_change_days": 90,
+        "rating_time_change_value": 38,
+        "total_game_count": 473,
+        "total_win_count": 214,
+        "total_loss_count": 244,
+        "total_draw_count": 15,
+        "avg_opponent_rating": 727.381,
+        "highest_opponent_rating": 1333,
+        "best_win_opponent": {
+          "country": {
+            "id": 112,
+            "code": "PL",
+            "name": "Poland",
+            "iso3": "POL",
+            "currency_code": "PLN",
+            "phone_code": 48
+          },
+          "id": 157375917,
+          "create_date": "2021-10-08T09:27:07-07:00",
+          "username": "magicwinter123",
+          "country_id": 112,
+          "last_login_date": "2025-03-22T14:48:45-07:00",
+          "points": 1,
+          "is_enabled": true,
+          "membership_level": 10
+        },
+        "best_win_opponent_id": 157375917
+      },
+      "gameCount": 473,
+      "lastPlayed": false,
+      "lastDate": "2025-02-20T10:24:08-08:00"
+    },
+    {
+      "key": "bullet",
+      "stats": {
+        "rating": 651,
+        "highest_rating": 784,
+        "highest_rating_date": "2023-09-24T15:11:07-07:00",
+        "rating_time_change_days": 30,
+        "rating_time_change_value": 0,
+        "total_game_count": 176,
+        "total_win_count": 88,
+        "total_loss_count": 85,
+        "total_draw_count": 3,
+        "avg_opponent_rating": 676.768,
+        "highest_opponent_rating": 806,
+        "best_win_opponent": {
+          "country": {
+            "id": 54,
+            "code": "DE",
+            "name": "Germany",
+            "iso3": "DEU",
+            "currency_code": "EUR",
+            "phone_code": 49
+          },
+          "id": 123537740,
+          "create_date": "2021-02-23T15:10:10-08:00",
+          "username": "Moglizinho",
+          "first_name": "",
+          "last_name": "",
+          "country_id": 54,
+          "location": "",
+          "last_login_date": "2024-08-10T09:30:07-07:00",
+          "points": 0,
+          "is_enabled": true,
+          "membership_level": 30
+        },
+        "best_win_opponent_id": 123537740
+      },
+      "gameCount": 176,
+      "lastPlayed": false,
+      "lastDate": "2025-02-19T05:27:16-08:00"
+    },
+    {
+      "key": "tactics_challenge",
+      "stats": {
+        "highest_score": 36,
+        "highest_type_code": "three_strikes",
+        "avg_score": 19.7,
+        "attempt_count": 15,
+        "puzzle_attempts_total": 265,
+        "modes": {
+          "five_minutes": 12,
+          "three_strikes": 36
+        }
+      },
+      "gameCount": 15,
+      "lastPlayed": false
+    }
+  ],
+  "lastType": "liveStandard",
+  "versus": {
+    "total": 0
+  },
+  "ratingOnlyStats": [
+    "threecheck",
+    "kingofthehill",
+    "crazyhouse",
+    "bughouse",
+    "liveChess960"
+  ],
+  "officialRating": null,
+  "lessonLevel": {
+    "icon": "pawn-fill",
+    "name": "Learn to Play Chess",
+    "progress": 86
+  }
+}

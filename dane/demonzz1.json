@@ -1,0 +1,182 @@
+{
+  "stats": [
+    {
+      "key": "rapid",
+      "stats": {
+        "rating": 1036,
+        "highest_rating": 1060,
+        "highest_rating_date": "2021-03-25T11:45:19-07:00",
+        "rating_time_change_days": 30,
+        "rating_time_change_value": 112,
+        "total_game_count": 428,
+        "total_win_count": 203,
+        "total_loss_count": 194,
+        "total_draw_count": 31,
+        "avg_opponent_rating": 928.335,
+        "highest_opponent_rating": 1123,
+        "best_win_opponent": {
+          "country": {
+            "id": 112,
+            "code": "PL",
+            "name": "Poland",
+            "iso3": "POL",
+            "currency_code": "PLN",
+            "phone_code": 48
+          },
+          "id": 104644052,
+          "create_date": "2020-12-15T14:10:43-08:00",
+          "username": "SevyX",
+          "first_name": "Xyves#0305",
+          "country_id": 112,
+          "last_login_date": "2025-03-23T07:43:33-07:00",
+          "points": 0,
+          "is_enabled": true,
+          "membership_level": 10
+        },
+        "best_win_opponent_id": 104644052
+      },
+      "gameCount": 428,
+      "lastPlayed": true,
+      "lastDate": "2025-03-24T00:33:24-07:00"
+    },
+    {
+      "key": "tactics",
+      "stats": {
+        "rating": 1730,
+        "highest_rating": 1777,
+        "highest_rating_date": 1742795341,
+        "rating_time_change_days": 30,
+        "rating_time_change_value": 504,
+        "highest_rating_info": {
+          "timestamp": 1742795341,
+          "rating": 1777
+        },
+        "lowest_rating_info": {
+          "timestamp": 1615183809,
+          "rating": 766
+        },
+        "total_seconds": 52157,
+        "lowest_rating": 766,
+        "lowest_rating_date": 1615183809,
+        "attempt_count": 1435,
+        "passed_count": 770,
+        "failed_count": 665,
+        "last_date": "2025-03-23T23:48:48-07:00"
+      },
+      "gameCount": 1435,
+      "lastPlayed": false,
+      "lastDate": "2025-03-23T23:48:48-07:00"
+    },
+    {
+      "key": "lightning",
+      "stats": {
+        "rating": 736,
+        "highest_rating": 1271,
+        "highest_rating_date": "2020-12-19T13:58:52-08:00",
+        "rating_time_change_days": 365,
+        "rating_time_change_value": 0,
+        "total_game_count": 34,
+        "total_win_count": 11,
+        "total_loss_count": 19,
+        "total_draw_count": 4,
+        "avg_opponent_rating": 840.621,
+        "highest_opponent_rating": 931,
+        "best_win_opponent": {
+          "country": {
+            "id": 2,
+            "code": "US",
+            "name": "United States",
+            "iso3": "USA",
+            "currency_code": "USD",
+            "phone_code": 1
+          },
+          "id": 96249144,
+          "create_date": "2020-11-11T09:29:43-08:00",
+          "username": "padroncintron",
+          "first_name": "David",
+          "last_name": "Cintron",
+          "country_id": 2,
+          "location": "",
+          "last_login_date": "2025-03-22T04:09:21-07:00",
+          "points": 0,
+          "is_enabled": true,
+          "membership_level": 50
+        },
+        "best_win_opponent_id": 96249144
+      },
+      "gameCount": 34,
+      "lastPlayed": false,
+      "lastDate": "2021-04-16T20:42:27-07:00"
+    },
+    {
+      "key": "tactics_challenge",
+      "stats": {
+        "highest_score": 18,
+        "highest_type_code": "three_strikes",
+        "avg_score": 10.6,
+        "attempt_count": 29,
+        "puzzle_attempts_total": 0,
+        "modes": {
+          "three_strikes": 18
+        }
+      },
+      "gameCount": 29,
+      "lastPlayed": false
+    },
+    {
+      "key": "bullet",
+      "stats": {
+        "rating": 949,
+        "highest_rating": 1373,
+        "highest_rating_date": "2021-03-24T15:07:34-07:00",
+        "rating_time_change_days": 365,
+        "rating_time_change_value": 0,
+        "total_game_count": 15,
+        "total_win_count": 3,
+        "total_loss_count": 12,
+        "total_draw_count": 0,
+        "avg_opponent_rating": 1154.93,
+        "highest_opponent_rating": 1379,
+        "best_win_opponent": {
+          "country": {
+            "id": 163,
+            "code": "ES",
+            "name": "Spain",
+            "iso3": "ESP",
+            "currency_code": "EUR",
+            "phone_code": 34
+          },
+          "id": 37234030,
+          "create_date": "2017-07-22T16:56:07-07:00",
+          "username": "yaguhu85",
+          "country_id": 163,
+          "last_login_date": "2024-11-17T08:41:18-08:00",
+          "points": 0,
+          "is_enabled": true,
+          "membership_level": 10
+        },
+        "best_win_opponent_id": 37234030
+      },
+      "gameCount": 15,
+      "lastPlayed": false,
+      "lastDate": "2021-04-12T13:29:27-07:00"
+    }
+  ],
+  "lastType": "liveStandard",
+  "versus": {
+    "total": 0
+  },
+  "ratingOnlyStats": [
+    "threecheck",
+    "kingofthehill",
+    "crazyhouse",
+    "bughouse",
+    "liveChess960"
+  ],
+  "officialRating": null,
+  "lessonLevel": {
+    "icon": "pawn-fill",
+    "name": "Learn to Play Chess",
+    "progress": 50
+  }
+}
