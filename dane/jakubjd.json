@@ -1,17 +1,45 @@
 {
   "stats": [
     {
+      "key": "tactics",
+      "stats": {
+        "rating": 2058,
+        "highest_rating": 2058,
+        "highest_rating_date": 1742939779,
+        "rating_time_change_days": 30,
+        "rating_time_change_value": 666,
+        "highest_rating_info": {
+          "timestamp": 1742939779,
+          "rating": 2058
+        },
+        "lowest_rating_info": {
+          "timestamp": 1739306379,
+          "rating": 372
+        },
+        "total_seconds": 76695,
+        "lowest_rating": 372,
+        "lowest_rating_date": 1739306379,
+        "attempt_count": 930,
+        "passed_count": 601,
+        "failed_count": 329,
+        "last_date": "2025-03-25T14:56:19-07:00"
+      },
+      "gameCount": 930,
+      "lastPlayed": true,
+      "lastDate": "2025-03-25T14:56:19-07:00"
+    },
+    {
       "key": "rapid",
       "stats": {
-        "rating": 849,
+        "rating": 784,
         "highest_rating": 599,
         "highest_rating_date": "2021-01-25T05:02:27-08:00",
         "rating_time_change_days": 30,
-        "rating_time_change_value": 312,
-        "total_game_count": 1120,
-        "total_win_count": 539,
-        "total_loss_count": 512,
-        "total_draw_count": 69,
+        "rating_time_change_value": 217,
+        "total_game_count": 1133,
+        "total_win_count": 541,
+        "total_loss_count": 522,
+        "total_draw_count": 70,
         "avg_opponent_rating": 402.284,
         "highest_opponent_rating": 900,
         "best_win_opponent": {
@@ -34,37 +62,9 @@
         },
         "best_win_opponent_id": 107399908
       },
-      "gameCount": 1120,
-      "lastPlayed": true,
-      "lastDate": "2025-03-24T15:50:23-07:00"
-    },
-    {
-      "key": "tactics",
-      "stats": {
-        "rating": 1915,
-        "highest_rating": 1927,
-        "highest_rating_date": 1742670205,
-        "rating_time_change_days": 30,
-        "rating_time_change_value": 539,
-        "highest_rating_info": {
-          "timestamp": 1742670205,
-          "rating": 1927
-        },
-        "lowest_rating_info": {
-          "timestamp": 1739306379,
-          "rating": 372
-        },
-        "total_seconds": 68887,
-        "lowest_rating": 372,
-        "lowest_rating_date": 1739306379,
-        "attempt_count": 888,
-        "passed_count": 569,
-        "failed_count": 319,
-        "last_date": "2025-03-22T12:03:39-07:00"
-      },
-      "gameCount": 888,
+      "gameCount": 1133,
       "lastPlayed": false,
-      "lastDate": "2025-03-22T12:03:39-07:00"
+      "lastDate": "2025-03-25T06:38:03-07:00"
     },
     {
       "key": "lightning",
@@ -139,7 +139,7 @@
       "lastPlayed": false
     }
   ],
-  "lastType": "liveStandard",
+  "lastType": "tactics",
   "versus": {
     "total": 0
   },
