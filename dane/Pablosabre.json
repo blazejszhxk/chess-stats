@@ -1,17 +1,59 @@
 {
   "stats": [
     {
+      "key": "bullet",
+      "stats": {
+        "rating": 705,
+        "highest_rating": 927,
+        "highest_rating_date": "2020-12-21T08:48:54-08:00",
+        "rating_time_change_days": 30,
+        "rating_time_change_value": 18,
+        "total_game_count": 1141,
+        "total_win_count": 536,
+        "total_loss_count": 572,
+        "total_draw_count": 33,
+        "avg_opponent_rating": 784.323,
+        "highest_opponent_rating": 2347,
+        "best_win_opponent": {
+          "country": {
+            "id": 112,
+            "code": "PL",
+            "name": "Poland",
+            "iso3": "POL",
+            "currency_code": "PLN",
+            "phone_code": 48
+          },
+          "id": 24528170,
+          "create_date": "2015-10-11T08:59:14-07:00",
+          "username": "DawidCzerw",
+          "first_name": "Dawid",
+          "last_name": "Czerw",
+          "country_id": 112,
+          "location": "Lublin",
+          "last_login_date": "2025-03-26T10:27:04-07:00",
+          "points": 2582,
+          "is_enabled": true,
+          "chess_title": "IM",
+          "membership_level": 90
+        },
+        "best_win_opponent_id": 24528170
+      },
+      "gameCount": 1141,
+      "lastPlayed": true,
+      "lastDate": "2025-03-26T15:31:27-07:00"
+    },
+    {
       "key": "rapid",
       "stats": {
-        "rating": 718,
+        "rating": 762,
         "highest_rating": 1020,
         "highest_rating_date": "2021-02-23T13:25:52-08:00",
         "rating_time_change_days": 30,
-        "rating_time_change_value": 53,
-        "total_game_count": 239,
-        "total_win_count": 115,
-        "total_loss_count": 107,
-        "total_draw_count": 17,
+        "rating_time_change_value": 97,
+        "total_game_count": 246,
+        "total_win_count": 120,
+        "total_loss_count": 108,
+        "total_draw_count": 18,
         "avg_opponent_rating": 916.445,
         "highest_opponent_rating": 1075,
         "best_win_opponent": {
@@ -37,9 +79,9 @@
         },
         "best_win_opponent_id": 96430728
       },
-      "gameCount": 239,
-      "lastPlayed": true,
-      "lastDate": "2025-03-25T11:01:05-07:00"
+      "gameCount": 246,
+      "lastPlayed": false,
+      "lastDate": "2025-03-26T15:26:08-07:00"
     },
     {
       "key": "lightning",
@@ -48,7 +90,7 @@
         "highest_rating": 808,
         "highest_rating_date": "2021-05-20T03:25:01-07:00",
         "rating_time_change_days": 30,
-        "rating_time_change_value": -82,
+        "rating_time_change_value": -60,
         "total_game_count": 1653,
         "total_win_count": 794,
         "total_loss_count": 779,
@@ -86,7 +128,7 @@
         "highest_rating": 1906,
         "highest_rating_date": 1741939058,
         "rating_time_change_days": 30,
-        "rating_time_change_value": 698,
+        "rating_time_change_value": 599,
         "highest_rating_info": {
           "timestamp": 1741939058,
           "rating": 1906
@@ -106,48 +148,6 @@
       "gameCount": 834,
       "lastPlayed": false,
       "lastDate": "2025-03-14T00:57:38-07:00"
-    },
-    {
-      "key": "bullet",
-      "stats": {
-        "rating": 706,
-        "highest_rating": 927,
-        "highest_rating_date": "2020-12-21T08:48:54-08:00",
-        "rating_time_change_days": 30,
-        "rating_time_change_value": 19,
-        "total_game_count": 1139,
-        "total_win_count": 535,
-        "total_loss_count": 571,
-        "total_draw_count": 33,
-        "avg_opponent_rating": 784.323,
-        "highest_opponent_rating": 2347,
-        "best_win_opponent": {
-          "country": {
-            "id": 112,
-            "code": "PL",
-            "name": "Poland",
-            "iso3": "POL",
-            "currency_code": "PLN",
-            "phone_code": 48
-          },
-          "id": 24528170,
-          "create_date": "2015-10-11T08:59:14-07:00",
-          "username": "DawidCzerw",
-          "first_name": "Dawid",
-          "last_name": "Czerw",
-          "country_id": 112,
-          "location": "Lublin",
-          "last_login_date": "2025-03-25T01:52:08-07:00",
-          "points": 2582,
-          "is_enabled": true,
-          "chess_title": "IM",
-          "membership_level": 90
-        },
-        "best_win_opponent_id": 24528170
-      },
-      "gameCount": 1139,
-      "lastPlayed": false,
-      "lastDate": "2025-03-02T13:57:53-08:00"
     },
     {
       "key": "chess",
@@ -173,7 +173,7 @@
       "lastDate": "2025-02-10T13:38:48-08:00"
     }
   ],
-  "lastType": "liveStandard",
+  "lastType": "liveBullet",
   "versus": {
     "total": 0
   },

@@ -45,7 +45,7 @@
         "highest_rating": 873,
         "highest_rating_date": "2025-02-25T15:31:25-08:00",
         "rating_time_change_days": 30,
-        "rating_time_change_value": 190,
+        "rating_time_change_value": 198,
         "total_game_count": 125,
         "total_win_count": 86,
         "total_loss_count": 31,
@@ -84,7 +84,7 @@
           "create_date": "2024-06-09T10:06:36-07:00",
           "username": "scorpio_it",
           "country_id": 76,
-          "last_login_date": "2025-03-25T13:05:16-07:00",
+          "last_login_date": "2025-03-25T20:50:25-07:00",
           "points": 0,
           "is_enabled": true,
           "membership_level": 10
@@ -102,7 +102,7 @@
         "highest_rating": 2163,
         "highest_rating_date": 1741737420,
         "rating_time_change_days": 30,
-        "rating_time_change_value": 795,
+        "rating_time_change_value": 534,
         "highest_rating_info": {
           "timestamp": 1741737420,
           "rating": 2163
