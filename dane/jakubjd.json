@@ -1,0 +1,159 @@
+{
+  "stats": [
+    {
+      "key": "rapid",
+      "stats": {
+        "rating": 858,
+        "highest_rating": 599,
+        "highest_rating_date": "2021-01-25T05:02:27-08:00",
+        "rating_time_change_days": 30,
+        "rating_time_change_value": 313,
+        "total_game_count": 1186,
+        "total_win_count": 570,
+        "total_loss_count": 546,
+        "total_draw_count": 70,
+        "avg_opponent_rating": 402.284,
+        "highest_opponent_rating": 900,
+        "best_win_opponent": {
+          "country": {
+            "id": 112,
+            "code": "PL",
+            "name": "Poland",
+            "iso3": "POL",
+            "currency_code": "PLN",
+            "phone_code": 48
+          },
+          "id": 107399908,
+          "create_date": "2020-12-26T16:43:50-08:00",
+          "username": "xViguro",
+          "country_id": 112,
+          "last_login_date": "2025-03-14T02:06:10-07:00",
+          "points": 1,
+          "is_enabled": true,
+          "membership_level": 10
+        },
+        "best_win_opponent_id": 107399908
+      },
+      "gameCount": 1186,
+      "lastPlayed": true,
+      "lastDate": "2025-03-27T14:51:59-07:00"
+    },
+    {
+      "key": "tactics",
+      "stats": {
+        "rating": 2006,
+        "highest_rating": 2068,
+        "highest_rating_date": 1743009823,
+        "rating_time_change_days": 30,
+        "rating_time_change_value": 680,
+        "highest_rating_info": {
+          "timestamp": 1743009823,
+          "rating": 2068
+        },
+        "lowest_rating_info": {
+          "timestamp": 1739306379,
+          "rating": 372
+        },
+        "total_seconds": 80177,
+        "lowest_rating": 372,
+        "lowest_rating_date": 1739306379,
+        "attempt_count": 951,
+        "passed_count": 612,
+        "failed_count": 339,
+        "last_date": "2025-03-27T10:18:03-07:00"
+      },
+      "gameCount": 951,
+      "lastPlayed": false,
+      "lastDate": "2025-03-27T10:18:03-07:00"
+    },
+    {
+      "key": "lightning",
+      "stats": {
+        "rating": 327,
+        "highest_rating": 389,
+        "highest_rating_date": "2025-02-08T12:30:32-08:00",
+        "rating_time_change_days": 30,
+        "rating_time_change_value": 0,
+        "total_game_count": 15,
+        "total_win_count": 6,
+        "total_loss_count": 8,
+        "total_draw_count": 1,
+        "avg_opponent_rating": 267.444,
+        "highest_opponent_rating": 478,
+        "best_win_opponent": {
+          "country": {
+            "id": 112,
+            "code": "PL",
+            "name": "Poland",
+            "iso3": "POL",
+            "currency_code": "PLN",
+            "phone_code": 48
+          },
+          "id": 138780434,
+          "create_date": "2021-05-04T12:55:21-07:00",
+          "username": "Niter77",
+          "country_id": 112,
+          "last_login_date": "2025-03-27T14:35:12-07:00",
+          "points": 0,
+          "is_enabled": true,
+          "membership_level": 50
+        },
+        "best_win_opponent_id": 138780434
+      },
+      "gameCount": 15,
+      "lastPlayed": false,
+      "lastDate": "2025-02-26T13:50:28-08:00"
+    },
+    {
+      "key": "tactics_challenge",
+      "stats": {
+        "highest_score": 21,
+        "highest_type_code": "three_strikes",
+        "avg_score": 12.8,
+        "attempt_count": 5,
+        "puzzle_attempts_total": 77,
+        "modes": {
+          "three_strikes": 21
+        }
+      },
+      "gameCount": 5,
+      "lastPlayed": false
+    },
+    {
+      "key": "bullet",
+      "stats": {
+        "rating": 100,
+        "highest_rating": 430,
+        "highest_rating_date": "2024-12-04T11:59:22-08:00",
+        "rating_time_change_days": 90,
+        "rating_time_change_value": 0,
+        "total_game_count": 3,
+        "total_win_count": 0,
+        "total_loss_count": 3,
+        "total_draw_count": 0,
+        "avg_opponent_rating": 303,
+        "highest_opponent_rating": 0
+      },
+      "gameCount": 3,
+      "lastPlayed": false,
+      "lastDate": "2025-02-08T14:02:07-08:00"
+    }
+  ],
+  "lastType": "liveStandard",
+  "versus": {
+    "total": 0
+  },
+  "ratingOnlyStats": [
+    "threecheck",
+    "kingofthehill",
+    "crazyhouse",
+    "bughouse",
+    "liveChess960"
+  ],
+  "officialRating": null,
+  "lessonLevel": {
+    "icon": "knight-fill",
+    "name": "From Beginner to Winner",
+    "progress": 20
+  }
+}
