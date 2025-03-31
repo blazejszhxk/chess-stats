@@ -7,11 +7,11 @@
         "highest_rating": 701,
         "highest_rating_date": "2021-01-06T15:32:17-08:00",
         "rating_time_change_days": 30,
-        "rating_time_change_value": -4,
-        "total_game_count": 154,
-        "total_win_count": 77,
-        "total_loss_count": 72,
-        "total_draw_count": 5,
+        "rating_time_change_value": 22,
+        "total_game_count": 163,
+        "total_win_count": 82,
+        "total_loss_count": 75,
+        "total_draw_count": 6,
         "avg_opponent_rating": 571.759,
         "highest_opponent_rating": 865,
         "best_win_opponent": {
@@ -34,7 +34,7 @@
         },
         "best_win_opponent_id": 104649310
       },
-      "gameCount": 154,
+      "gameCount": 163,
       "lastPlayed": true,
       "lastDate": "2025-03-23T17:54:52-07:00"
     },
@@ -45,7 +45,7 @@
         "highest_rating": 2073,
         "highest_rating_date": 1742194281,
         "rating_time_change_days": 30,
-        "rating_time_change_value": 868,
+        "rating_time_change_value": 553,
         "highest_rating_info": {
           "timestamp": 1742194281,
           "rating": 2073
@@ -74,10 +74,10 @@
         "highest_rating_date": "2025-02-08T14:02:07-08:00",
         "rating_time_change_days": 30,
         "rating_time_change_value": 91,
-        "total_game_count": 6,
+        "total_game_count": 8,
         "total_win_count": 4,
         "total_loss_count": 2,
-        "total_draw_count": 0,
+        "total_draw_count": 2,
         "avg_opponent_rating": 100,
         "highest_opponent_rating": 100,
         "best_win_opponent": {
@@ -93,14 +93,14 @@
           "create_date": "2021-01-25T04:51:22-08:00",
           "username": "JakubJD",
           "country_id": 112,
-          "last_login_date": "2025-03-27T09:46:51-07:00",
+          "last_login_date": "2025-03-31T06:56:41-07:00",
           "points": 0,
           "is_enabled": true,
           "membership_level": 50
         },
         "best_win_opponent_id": 115611078
       },
-      "gameCount": 6,
+      "gameCount": 8,
       "lastPlayed": false,
       "lastDate": "2025-03-18T20:24:10-07:00"
     },

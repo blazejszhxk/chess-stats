@@ -3,43 +3,43 @@
     {
       "key": "tactics",
       "stats": {
-        "rating": 1760,
-        "highest_rating": 1777,
-        "highest_rating_date": 1742795341,
+        "rating": 1907,
+        "highest_rating": 1971,
+        "highest_rating_date": 1743395231,
         "rating_time_change_days": 30,
-        "rating_time_change_value": 534,
+        "rating_time_change_value": 681,
         "highest_rating_info": {
-          "timestamp": 1742795341,
-          "rating": 1777
+          "timestamp": 1743395231,
+          "rating": 1971
         },
         "lowest_rating_info": {
           "timestamp": 1615183809,
           "rating": 766
         },
-        "total_seconds": 52347,
+        "total_seconds": 60321,
         "lowest_rating": 766,
         "lowest_rating_date": 1615183809,
-        "attempt_count": 1440,
-        "passed_count": 774,
-        "failed_count": 666,
-        "last_date": "2025-03-26T09:53:15-07:00"
+        "attempt_count": 1618,
+        "passed_count": 879,
+        "failed_count": 739,
+        "last_date": "2025-03-30T21:59:40-07:00"
       },
-      "gameCount": 1440,
+      "gameCount": 1618,
       "lastPlayed": true,
-      "lastDate": "2025-03-26T09:53:15-07:00"
+      "lastDate": "2025-03-30T21:59:40-07:00"
     },
     {
       "key": "rapid",
       "stats": {
-        "rating": 1036,
+        "rating": 841,
         "highest_rating": 1060,
         "highest_rating_date": "2021-03-25T11:45:19-07:00",
         "rating_time_change_days": 30,
-        "rating_time_change_value": 112,
-        "total_game_count": 428,
-        "total_win_count": 203,
-        "total_loss_count": 194,
-        "total_draw_count": 31,
+        "rating_time_change_value": -83,
+        "total_game_count": 454,
+        "total_win_count": 211,
+        "total_loss_count": 210,
+        "total_draw_count": 33,
         "avg_opponent_rating": 928.335,
         "highest_opponent_rating": 1123,
         "best_win_opponent": {
@@ -63,9 +63,9 @@
         },
         "best_win_opponent_id": 104644052
       },
-      "gameCount": 428,
+      "gameCount": 454,
       "lastPlayed": false,
-      "lastDate": "2025-03-24T00:33:24-07:00"
+      "lastDate": "2025-03-30T21:12:18-07:00"
     },
     {
       "key": "lightning",
@@ -129,11 +129,11 @@
         "rating": 949,
         "highest_rating": 1373,
         "highest_rating_date": "2021-03-24T15:07:34-07:00",
-        "rating_time_change_days": 365,
+        "rating_time_change_days": 30,
         "rating_time_change_value": 0,
-        "total_game_count": 15,
+        "total_game_count": 16,
         "total_win_count": 3,
-        "total_loss_count": 12,
+        "total_loss_count": 13,
         "total_draw_count": 0,
         "avg_opponent_rating": 1154.93,
         "highest_opponent_rating": 1379,
@@ -157,7 +157,7 @@
         },
         "best_win_opponent_id": 37234030
       },
-      "gameCount": 15,
+      "gameCount": 16,
       "lastPlayed": false,
       "lastDate": "2021-04-12T13:29:27-07:00"
     }

@@ -3,14 +3,14 @@
     {
       "key": "rapid",
       "stats": {
-        "rating": 805,
+        "rating": 812,
         "highest_rating": 1020,
         "highest_rating_date": "2021-02-23T13:25:52-08:00",
         "rating_time_change_days": 30,
-        "rating_time_change_value": 140,
-        "total_game_count": 250,
-        "total_win_count": 124,
-        "total_loss_count": 108,
+        "rating_time_change_value": 147,
+        "total_game_count": 269,
+        "total_win_count": 132,
+        "total_loss_count": 119,
         "total_draw_count": 18,
         "avg_opponent_rating": 916.445,
         "highest_opponent_rating": 1075,
@@ -37,9 +37,9 @@
         },
         "best_win_opponent_id": 96430728
       },
-      "gameCount": 250,
+      "gameCount": 269,
       "lastPlayed": true,
-      "lastDate": "2025-03-27T00:59:34-07:00"
+      "lastDate": "2025-03-31T11:14:18-07:00"
     },
     {
       "key": "bullet",
@@ -48,7 +48,7 @@
         "highest_rating": 927,
         "highest_rating_date": "2020-12-21T08:48:54-08:00",
         "rating_time_change_days": 30,
-        "rating_time_change_value": 18,
+        "rating_time_change_value": -85,
         "total_game_count": 1141,
         "total_win_count": 536,
         "total_loss_count": 572,
@@ -71,8 +71,8 @@
           "last_name": "Czerw",
           "country_id": 112,
           "location": "Lublin",
-          "last_login_date": "2025-03-27T08:59:23-07:00",
-          "points": 2582,
+          "last_login_date": "2025-03-31T02:37:58-07:00",
+          "points": 2583,
           "is_enabled": true,
           "chess_title": "IM",
           "membership_level": 90
@@ -90,7 +90,7 @@
         "highest_rating": 808,
         "highest_rating_date": "2021-05-20T03:25:01-07:00",
         "rating_time_change_days": 30,
-        "rating_time_change_value": -53,
+        "rating_time_change_value": -54,
         "total_game_count": 1653,
         "total_win_count": 794,
         "total_loss_count": 779,
@@ -128,7 +128,7 @@
         "highest_rating": 1906,
         "highest_rating_date": 1741939058,
         "rating_time_change_days": 30,
-        "rating_time_change_value": 599,
+        "rating_time_change_value": 206,
         "highest_rating_info": {
           "timestamp": 1741939058,
           "rating": 1906

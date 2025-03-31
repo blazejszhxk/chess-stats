@@ -1,17 +1,58 @@
 {
   "stats": [
     {
+      "key": "bullet",
+      "stats": {
+        "rating": 687,
+        "highest_rating": 784,
+        "highest_rating_date": "2023-09-24T15:11:07-07:00",
+        "rating_time_change_days": 30,
+        "rating_time_change_value": 36,
+        "total_game_count": 181,
+        "total_win_count": 89,
+        "total_loss_count": 87,
+        "total_draw_count": 5,
+        "avg_opponent_rating": 676.768,
+        "highest_opponent_rating": 806,
+        "best_win_opponent": {
+          "country": {
+            "id": 54,
+            "code": "DE",
+            "name": "Germany",
+            "iso3": "DEU",
+            "currency_code": "EUR",
+            "phone_code": 49
+          },
+          "id": 123537740,
+          "create_date": "2021-02-23T15:10:10-08:00",
+          "username": "Moglizinho",
+          "first_name": "",
+          "last_name": "",
+          "country_id": 54,
+          "location": "",
+          "last_login_date": "2024-08-10T09:30:07-07:00",
+          "points": 0,
+          "is_enabled": true,
+          "membership_level": 30
+        },
+        "best_win_opponent_id": 123537740
+      },
+      "gameCount": 181,
+      "lastPlayed": false,
+      "lastDate": "2025-03-30T06:44:52-07:00"
+    },
+    {
       "key": "rapid",
       "stats": {
-        "rating": 1037,
+        "rating": 1005,
         "highest_rating": 1175,
         "highest_rating_date": "2023-07-19T12:53:00-07:00",
         "rating_time_change_days": 30,
-        "rating_time_change_value": 30,
-        "total_game_count": 4856,
-        "total_win_count": 2197,
-        "total_loss_count": 2415,
-        "total_draw_count": 244,
+        "rating_time_change_value": -27,
+        "total_game_count": 4892,
+        "total_win_count": 2212,
+        "total_loss_count": 2433,
+        "total_draw_count": 247,
         "avg_opponent_rating": 926.256,
         "highest_opponent_rating": 2367,
         "best_win_opponent": {
@@ -38,9 +79,9 @@
         },
         "best_win_opponent_id": 73774266
       },
-      "gameCount": 4856,
+      "gameCount": 4892,
       "lastPlayed": true,
-      "lastDate": "2025-03-27T10:45:55-07:00"
+      "lastDate": "2025-03-28T15:16:31-07:00"
     },
     {
       "key": "tactics",
@@ -49,7 +90,7 @@
         "highest_rating": 2002,
         "highest_rating_date": 1742671252,
         "rating_time_change_days": 30,
-        "rating_time_change_value": 93,
+        "rating_time_change_value": 157,
         "highest_rating_info": {
           "timestamp": 1742671252,
           "rating": 2002
@@ -76,11 +117,11 @@
         "rating": 695,
         "highest_rating": 941,
         "highest_rating_date": "2023-08-25T06:50:33-07:00",
-        "rating_time_change_days": 90,
-        "rating_time_change_value": 38,
-        "total_game_count": 473,
+        "rating_time_change_days": 30,
+        "rating_time_change_value": 0,
+        "total_game_count": 474,
         "total_win_count": 214,
-        "total_loss_count": 244,
+        "total_loss_count": 245,
         "total_draw_count": 15,
         "avg_opponent_rating": 727.381,
         "highest_opponent_rating": 1333,
@@ -97,57 +138,16 @@
           "create_date": "2021-10-08T09:27:07-07:00",
           "username": "magicwinter123",
           "country_id": 112,
-          "last_login_date": "2025-03-27T11:23:50-07:00",
+          "last_login_date": "2025-03-30T08:05:08-07:00",
           "points": 1,
           "is_enabled": true,
           "membership_level": 10
         },
         "best_win_opponent_id": 157375917
       },
-      "gameCount": 473,
+      "gameCount": 474,
       "lastPlayed": false,
       "lastDate": "2025-02-20T10:24:08-08:00"
-    },
-    {
-      "key": "bullet",
-      "stats": {
-        "rating": 651,
-        "highest_rating": 784,
-        "highest_rating_date": "2023-09-24T15:11:07-07:00",
-        "rating_time_change_days": 30,
-        "rating_time_change_value": 0,
-        "total_game_count": 176,
-        "total_win_count": 88,
-        "total_loss_count": 85,
-        "total_draw_count": 3,
-        "avg_opponent_rating": 676.768,
-        "highest_opponent_rating": 806,
-        "best_win_opponent": {
-          "country": {
-            "id": 54,
-            "code": "DE",
-            "name": "Germany",
-            "iso3": "DEU",
-            "currency_code": "EUR",
-            "phone_code": 49
-          },
-          "id": 123537740,
-          "create_date": "2021-02-23T15:10:10-08:00",
-          "username": "Moglizinho",
-          "first_name": "",
-          "last_name": "",
-          "country_id": 54,
-          "location": "",
-          "last_login_date": "2024-08-10T09:30:07-07:00",
-          "points": 0,
-          "is_enabled": true,
-          "membership_level": 30
-        },
-        "best_win_opponent_id": 123537740
-      },
-      "gameCount": 176,
-      "lastPlayed": false,
-      "lastDate": "2025-02-19T05:27:16-08:00"
     },
     {
       "key": "tactics_challenge",

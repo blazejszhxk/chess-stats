@@ -3,15 +3,15 @@
     {
       "key": "rapid",
       "stats": {
-        "rating": 858,
+        "rating": 799,
         "highest_rating": 599,
         "highest_rating_date": "2021-01-25T05:02:27-08:00",
         "rating_time_change_days": 30,
-        "rating_time_change_value": 313,
-        "total_game_count": 1186,
-        "total_win_count": 570,
-        "total_loss_count": 546,
-        "total_draw_count": 70,
+        "rating_time_change_value": 151,
+        "total_game_count": 1271,
+        "total_win_count": 601,
+        "total_loss_count": 592,
+        "total_draw_count": 78,
         "avg_opponent_rating": 402.284,
         "highest_opponent_rating": 900,
         "best_win_opponent": {
@@ -34,18 +34,18 @@
         },
         "best_win_opponent_id": 107399908
       },
-      "gameCount": 1186,
+      "gameCount": 1271,
       "lastPlayed": true,
-      "lastDate": "2025-03-27T14:51:59-07:00"
+      "lastDate": "2025-03-31T13:56:53-07:00"
     },
     {
       "key": "tactics",
       "stats": {
-        "rating": 2006,
+        "rating": 1997,
         "highest_rating": 2068,
         "highest_rating_date": 1743009823,
         "rating_time_change_days": 30,
-        "rating_time_change_value": 680,
+        "rating_time_change_value": 641,
         "highest_rating_info": {
           "timestamp": 1743009823,
           "rating": 2068
@@ -54,17 +54,17 @@
           "timestamp": 1739306379,
           "rating": 372
         },
-        "total_seconds": 80177,
+        "total_seconds": 80301,
         "lowest_rating": 372,
         "lowest_rating_date": 1739306379,
-        "attempt_count": 951,
-        "passed_count": 612,
-        "failed_count": 339,
-        "last_date": "2025-03-27T10:18:03-07:00"
+        "attempt_count": 953,
+        "passed_count": 613,
+        "failed_count": 340,
+        "last_date": "2025-03-29T11:02:10-07:00"
       },
-      "gameCount": 951,
+      "gameCount": 953,
       "lastPlayed": false,
-      "lastDate": "2025-03-27T10:18:03-07:00"
+      "lastDate": "2025-03-29T11:02:10-07:00"
     },
     {
       "key": "lightning",
@@ -109,14 +109,14 @@
       "stats": {
         "highest_score": 21,
         "highest_type_code": "three_strikes",
-        "avg_score": 12.8,
-        "attempt_count": 5,
-        "puzzle_attempts_total": 77,
+        "avg_score": 13.666666666666666,
+        "attempt_count": 6,
+        "puzzle_attempts_total": 98,
         "modes": {
           "three_strikes": 21
         }
       },
-      "gameCount": 5,
+      "gameCount": 6,
       "lastPlayed": false
     },
     {
