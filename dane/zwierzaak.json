@@ -1,13 +1,32 @@
 {
   "stats": [
     {
+      "key": "rapid",
+      "stats": {
+        "rating": 439,
+        "highest_rating": 221,
+        "highest_rating_date": "2025-03-04T11:44:29-08:00",
+        "rating_time_change_days": 30,
+        "rating_time_change_value": 158,
+        "total_game_count": 109,
+        "total_win_count": 53,
+        "total_loss_count": 46,
+        "total_draw_count": 10,
+        "avg_opponent_rating": 0,
+        "highest_opponent_rating": 0
+      },
+      "gameCount": 109,
+      "lastPlayed": true,
+      "lastDate": "2025-04-01T14:57:45-07:00"
+    },
+    {
       "key": "tactics",
       "stats": {
-        "rating": 1313,
+        "rating": 1299,
         "highest_rating": 1405,
         "highest_rating_date": 1742853690,
         "rating_time_change_days": 30,
-        "rating_time_change_value": 913,
+        "rating_time_change_value": 899,
         "highest_rating_info": {
           "timestamp": 1742853690,
           "rating": 1405
@@ -16,39 +35,20 @@
           "timestamp": 1676938336,
           "rating": 400
         },
-        "total_seconds": 21401,
+        "total_seconds": 24991,
         "lowest_rating": 400,
         "lowest_rating_date": 1676938336,
-        "attempt_count": 663,
-        "passed_count": 409,
-        "failed_count": 254,
-        "last_date": "2025-03-31T09:22:10-07:00"
+        "attempt_count": 741,
+        "passed_count": 451,
+        "failed_count": 290,
+        "last_date": "2025-04-01T14:12:03-07:00"
       },
-      "gameCount": 663,
-      "lastPlayed": true,
-      "lastDate": "2025-03-31T09:22:10-07:00"
-    },
-    {
-      "key": "rapid",
-      "stats": {
-        "rating": 463,
-        "highest_rating": 221,
-        "highest_rating_date": "2025-03-04T11:44:29-08:00",
-        "rating_time_change_days": 30,
-        "rating_time_change_value": 182,
-        "total_game_count": 92,
-        "total_win_count": 46,
-        "total_loss_count": 36,
-        "total_draw_count": 10,
-        "avg_opponent_rating": 0,
-        "highest_opponent_rating": 0
-      },
-      "gameCount": 92,
+      "gameCount": 741,
       "lastPlayed": false,
-      "lastDate": "2025-03-29T15:55:40-07:00"
+      "lastDate": "2025-04-01T14:12:03-07:00"
     }
   ],
-  "lastType": "tactics",
+  "lastType": "liveStandard",
   "versus": {
     "total": 0
   },

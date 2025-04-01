@@ -1,66 +1,67 @@
 {
   "stats": [
     {
+      "key": "tactics_challenge",
+      "stats": {
+        "highest_score": 10,
+        "highest_type_code": "three_minutes",
+        "avg_score": 13.8,
+        "attempt_count": 5,
+        "puzzle_attempts_total": 82,
+        "modes": {
+          "three_minutes": 10,
+          "three_strikes": 18
+        }
+      },
+      "gameCount": 5,
+      "lastPlayed": true
+    },
+    {
+      "key": "rapid",
+      "stats": {
+        "rating": 722,
+        "highest_rating": 491,
+        "highest_rating_date": "2025-02-25T13:00:56-08:00",
+        "rating_time_change_days": 30,
+        "rating_time_change_value": 39,
+        "total_game_count": 100,
+        "total_win_count": 38,
+        "total_loss_count": 58,
+        "total_draw_count": 4,
+        "avg_opponent_rating": 0,
+        "highest_opponent_rating": 0
+      },
+      "gameCount": 100,
+      "lastPlayed": false,
+      "lastDate": "2025-04-01T14:39:15-07:00"
+    },
+    {
       "key": "tactics",
       "stats": {
-        "rating": 2062,
-        "highest_rating": 2081,
-        "highest_rating_date": 1743170133,
+        "rating": 2106,
+        "highest_rating": 2106,
+        "highest_rating_date": 1743517260,
         "rating_time_change_days": 30,
-        "rating_time_change_value": 558,
+        "rating_time_change_value": 441,
         "highest_rating_info": {
-          "timestamp": 1743170133,
-          "rating": 2081
+          "timestamp": 1743517260,
+          "rating": 2106
         },
         "lowest_rating_info": {
           "timestamp": 1739898032,
           "rating": 400
         },
-        "total_seconds": 105634,
+        "total_seconds": 115239,
         "lowest_rating": 400,
         "lowest_rating_date": 1739898032,
-        "attempt_count": 1333,
-        "passed_count": 860,
-        "failed_count": 473,
-        "last_date": "2025-03-30T15:11:06-07:00"
+        "attempt_count": 1395,
+        "passed_count": 900,
+        "failed_count": 495,
+        "last_date": "2025-04-01T14:26:03-07:00"
       },
-      "gameCount": 1333,
-      "lastPlayed": true,
-      "lastDate": "2025-03-30T15:11:06-07:00"
-    },
-    {
-      "key": "rapid",
-      "stats": {
-        "rating": 800,
-        "highest_rating": 491,
-        "highest_rating_date": "2025-02-25T13:00:56-08:00",
-        "rating_time_change_days": 30,
-        "rating_time_change_value": 117,
-        "total_game_count": 77,
-        "total_win_count": 31,
-        "total_loss_count": 42,
-        "total_draw_count": 4,
-        "avg_opponent_rating": 0,
-        "highest_opponent_rating": 0
-      },
-      "gameCount": 77,
+      "gameCount": 1395,
       "lastPlayed": false,
-      "lastDate": "2025-03-30T04:10:58-07:00"
-    },
-    {
-      "key": "tactics_challenge",
-      "stats": {
-        "highest_score": 18,
-        "highest_type_code": "three_strikes",
-        "avg_score": 14,
-        "attempt_count": 3,
-        "puzzle_attempts_total": 51,
-        "modes": {
-          "three_strikes": 18
-        }
-      },
-      "gameCount": 3,
-      "lastPlayed": false
+      "lastDate": "2025-04-01T14:26:03-07:00"
     },
     {
       "key": "bullet",
@@ -101,7 +102,7 @@
       "lastDate": null
     }
   ],
-  "lastType": "tactics",
+  "lastType": "tactics_challenge",
   "versus": {
     "total": 0
   },
