@@ -1,44 +1,16 @@
 {
   "stats": [
     {
-      "key": "tactics",
-      "stats": {
-        "rating": 1341,
-        "highest_rating": 1485,
-        "highest_rating_date": 1743198191,
-        "rating_time_change_days": 30,
-        "rating_time_change_value": 149,
-        "highest_rating_info": {
-          "timestamp": 1743198191,
-          "rating": 1485
-        },
-        "lowest_rating_info": {
-          "timestamp": 1739289316,
-          "rating": 387
-        },
-        "total_seconds": 27064,
-        "lowest_rating": 387,
-        "lowest_rating_date": 1739289316,
-        "attempt_count": 1462,
-        "passed_count": 809,
-        "failed_count": 653,
-        "last_date": "2025-03-30T05:52:43-07:00"
-      },
-      "gameCount": 1462,
-      "lastPlayed": false,
-      "lastDate": "2025-03-30T05:52:43-07:00"
-    },
-    {
       "key": "rapid",
       "stats": {
-        "rating": 556,
+        "rating": 612,
         "highest_rating": 693,
         "highest_rating_date": "2023-01-10T04:12:44-08:00",
         "rating_time_change_days": 30,
-        "rating_time_change_value": 33,
-        "total_game_count": 551,
-        "total_win_count": 257,
-        "total_loss_count": 245,
+        "rating_time_change_value": 97,
+        "total_game_count": 560,
+        "total_win_count": 265,
+        "total_loss_count": 246,
         "total_draw_count": 49,
         "avg_opponent_rating": 593.284,
         "highest_opponent_rating": 727,
@@ -55,16 +27,44 @@
           "create_date": "2020-12-19T11:06:40-08:00",
           "username": "xLukiSteve",
           "country_id": 112,
-          "last_login_date": "2025-03-28T00:47:56-07:00",
+          "last_login_date": "2025-04-01T16:55:58-07:00",
           "points": 0,
           "is_enabled": true,
           "membership_level": 10
         },
         "best_win_opponent_id": 105586742
       },
-      "gameCount": 551,
+      "gameCount": 560,
       "lastPlayed": true,
-      "lastDate": "2025-03-28T14:07:52-07:00"
+      "lastDate": "2025-04-02T14:47:26-07:00"
+    },
+    {
+      "key": "tactics",
+      "stats": {
+        "rating": 1296,
+        "highest_rating": 1485,
+        "highest_rating_date": 1743198191,
+        "rating_time_change_days": 30,
+        "rating_time_change_value": -114,
+        "highest_rating_info": {
+          "timestamp": 1743198191,
+          "rating": 1485
+        },
+        "lowest_rating_info": {
+          "timestamp": 1739289316,
+          "rating": 387
+        },
+        "total_seconds": 27617,
+        "lowest_rating": 387,
+        "lowest_rating_date": 1739289316,
+        "attempt_count": 1487,
+        "passed_count": 819,
+        "failed_count": 668,
+        "last_date": "2025-04-02T13:41:12-07:00"
+      },
+      "gameCount": 1487,
+      "lastPlayed": false,
+      "lastDate": "2025-04-02T13:41:12-07:00"
     },
     {
       "key": "lightning",
@@ -73,7 +73,7 @@
         "highest_rating": 490,
         "highest_rating_date": "2025-02-16T14:16:25-08:00",
         "rating_time_change_days": 90,
-        "rating_time_change_value": -32,
+        "rating_time_change_value": 82,
         "total_game_count": 18,
         "total_win_count": 4,
         "total_loss_count": 11,

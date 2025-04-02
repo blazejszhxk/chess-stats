@@ -7,7 +7,7 @@
         "highest_rating": 937,
         "highest_rating_date": "2022-09-09T08:18:30-07:00",
         "rating_time_change_days": 30,
-        "rating_time_change_value": 82,
+        "rating_time_change_value": 28,
         "total_game_count": 673,
         "total_win_count": 360,
         "total_loss_count": 278,
@@ -113,7 +113,7 @@
           "create_date": "2019-08-09T10:02:26-07:00",
           "username": "fragoooo",
           "country_id": 112,
-          "last_login_date": "2025-04-01T03:10:57-07:00",
+          "last_login_date": "2025-04-02T02:56:08-07:00",
           "points": 0,
           "is_enabled": true,
           "membership_level": 40

@@ -1,6 +1,48 @@
 {
   "stats": [
     {
+      "key": "rapid",
+      "stats": {
+        "rating": 1013,
+        "highest_rating": 1175,
+        "highest_rating_date": "2023-07-19T12:53:00-07:00",
+        "rating_time_change_days": 30,
+        "rating_time_change_value": -76,
+        "total_game_count": 4893,
+        "total_win_count": 2213,
+        "total_loss_count": 2433,
+        "total_draw_count": 247,
+        "avg_opponent_rating": 926.256,
+        "highest_opponent_rating": 2367,
+        "best_win_opponent": {
+          "country": {
+            "id": 112,
+            "code": "PL",
+            "name": "Poland",
+            "iso3": "POL",
+            "currency_code": "PLN",
+            "phone_code": 48
+          },
+          "id": 73774266,
+          "create_date": "2020-03-18T05:26:58-07:00",
+          "username": "KrolPawel92OnTwitch",
+          "first_name": "Paweł",
+          "last_name": "Kowalczyk",
+          "country_id": 112,
+          "location": "Wałbrzych",
+          "last_login_date": "2023-07-14T05:41:28-07:00",
+          "points": 132,
+          "is_enabled": true,
+          "chess_title": "NM",
+          "membership_level": 50
+        },
+        "best_win_opponent_id": 73774266
+      },
+      "gameCount": 4893,
+      "lastPlayed": true,
+      "lastDate": "2025-04-02T10:03:33-07:00"
+    },
+    {
       "key": "bullet",
       "stats": {
         "rating": 687,
@@ -42,55 +84,13 @@
       "lastDate": "2025-03-30T06:44:52-07:00"
     },
     {
-      "key": "rapid",
-      "stats": {
-        "rating": 1005,
-        "highest_rating": 1175,
-        "highest_rating_date": "2023-07-19T12:53:00-07:00",
-        "rating_time_change_days": 30,
-        "rating_time_change_value": -84,
-        "total_game_count": 4892,
-        "total_win_count": 2212,
-        "total_loss_count": 2433,
-        "total_draw_count": 247,
-        "avg_opponent_rating": 926.256,
-        "highest_opponent_rating": 2367,
-        "best_win_opponent": {
-          "country": {
-            "id": 112,
-            "code": "PL",
-            "name": "Poland",
-            "iso3": "POL",
-            "currency_code": "PLN",
-            "phone_code": 48
-          },
-          "id": 73774266,
-          "create_date": "2020-03-18T05:26:58-07:00",
-          "username": "KrolPawel92OnTwitch",
-          "first_name": "Paweł",
-          "last_name": "Kowalczyk",
-          "country_id": 112,
-          "location": "Wałbrzych",
-          "last_login_date": "2023-07-14T05:41:28-07:00",
-          "points": 132,
-          "is_enabled": true,
-          "chess_title": "NM",
-          "membership_level": 50
-        },
-        "best_win_opponent_id": 73774266
-      },
-      "gameCount": 4892,
-      "lastPlayed": true,
-      "lastDate": "2025-03-28T15:16:31-07:00"
-    },
-    {
       "key": "tactics",
       "stats": {
         "rating": 2002,
         "highest_rating": 2002,
         "highest_rating_date": 1742671252,
         "rating_time_change_days": 30,
-        "rating_time_change_value": 130,
+        "rating_time_change_value": 145,
         "highest_rating_info": {
           "timestamp": 1742671252,
           "rating": 2002

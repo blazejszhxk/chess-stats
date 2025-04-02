@@ -1,6 +1,34 @@
 {
   "stats": [
     {
+      "key": "tactics",
+      "stats": {
+        "rating": 1878,
+        "highest_rating": 1971,
+        "highest_rating_date": 1743395231,
+        "rating_time_change_days": 30,
+        "rating_time_change_value": 652,
+        "highest_rating_info": {
+          "timestamp": 1743395231,
+          "rating": 1971
+        },
+        "lowest_rating_info": {
+          "timestamp": 1615183809,
+          "rating": 766
+        },
+        "total_seconds": 67730,
+        "lowest_rating": 766,
+        "lowest_rating_date": 1615183809,
+        "attempt_count": 1836,
+        "passed_count": 993,
+        "failed_count": 843,
+        "last_date": "2025-04-02T05:40:16-07:00"
+      },
+      "gameCount": 1836,
+      "lastPlayed": true,
+      "lastDate": "2025-04-02T05:40:16-07:00"
+    },
+    {
       "key": "rapid",
       "stats": {
         "rating": 863,
@@ -36,36 +64,8 @@
         "best_win_opponent_id": 104644052
       },
       "gameCount": 463,
-      "lastPlayed": true,
-      "lastDate": "2025-04-01T12:31:36-07:00"
-    },
-    {
-      "key": "tactics",
-      "stats": {
-        "rating": 1863,
-        "highest_rating": 1971,
-        "highest_rating_date": 1743395231,
-        "rating_time_change_days": 30,
-        "rating_time_change_value": 637,
-        "highest_rating_info": {
-          "timestamp": 1743395231,
-          "rating": 1971
-        },
-        "lowest_rating_info": {
-          "timestamp": 1615183809,
-          "rating": 766
-        },
-        "total_seconds": 60970,
-        "lowest_rating": 766,
-        "lowest_rating_date": 1615183809,
-        "attempt_count": 1637,
-        "passed_count": 888,
-        "failed_count": 749,
-        "last_date": "2025-04-01T10:56:30-07:00"
-      },
-      "gameCount": 1637,
       "lastPlayed": false,
-      "lastDate": "2025-04-01T10:56:30-07:00"
+      "lastDate": "2025-04-01T12:31:36-07:00"
     },
     {
       "key": "lightning",
@@ -162,7 +162,7 @@
       "lastDate": "2021-04-12T13:29:27-07:00"
     }
   ],
-  "lastType": "liveStandard",
+  "lastType": "tactics",
   "versus": {
     "total": 0
   },
