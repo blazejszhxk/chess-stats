@@ -1,17 +1,59 @@
 {
   "stats": [
     {
+      "key": "bullet",
+      "stats": {
+        "rating": 671,
+        "highest_rating": 927,
+        "highest_rating_date": "2020-12-21T08:48:54-08:00",
+        "rating_time_change_days": 30,
+        "rating_time_change_value": -35,
+        "total_game_count": 1146,
+        "total_win_count": 538,
+        "total_loss_count": 575,
+        "total_draw_count": 33,
+        "avg_opponent_rating": 784.323,
+        "highest_opponent_rating": 2347,
+        "best_win_opponent": {
+          "country": {
+            "id": 112,
+            "code": "PL",
+            "name": "Poland",
+            "iso3": "POL",
+            "currency_code": "PLN",
+            "phone_code": 48
+          },
+          "id": 24528170,
+          "create_date": "2015-10-11T08:59:14-07:00",
+          "username": "DawidCzerw",
+          "first_name": "Dawid",
+          "last_name": "Czerw",
+          "country_id": 112,
+          "location": "Lublin",
+          "last_login_date": "2025-04-03T01:59:42-07:00",
+          "points": 2583,
+          "is_enabled": true,
+          "chess_title": "IM",
+          "membership_level": 90
+        },
+        "best_win_opponent_id": 24528170
+      },
+      "gameCount": 1146,
+      "lastPlayed": true,
+      "lastDate": "2025-04-03T13:45:23-07:00"
+    },
+    {
       "key": "rapid",
       "stats": {
-        "rating": 810,
+        "rating": 866,
         "highest_rating": 1020,
         "highest_rating_date": "2021-02-23T13:25:52-08:00",
         "rating_time_change_days": 30,
-        "rating_time_change_value": 145,
-        "total_game_count": 316,
-        "total_win_count": 154,
-        "total_loss_count": 141,
-        "total_draw_count": 21,
+        "rating_time_change_value": 201,
+        "total_game_count": 334,
+        "total_win_count": 166,
+        "total_loss_count": 146,
+        "total_draw_count": 22,
         "avg_opponent_rating": 916.445,
         "highest_opponent_rating": 1075,
         "best_win_opponent": {
@@ -37,51 +79,9 @@
         },
         "best_win_opponent_id": 96430728
       },
-      "gameCount": 316,
-      "lastPlayed": true,
-      "lastDate": "2025-04-02T13:58:00-07:00"
-    },
-    {
-      "key": "bullet",
-      "stats": {
-        "rating": 705,
-        "highest_rating": 927,
-        "highest_rating_date": "2020-12-21T08:48:54-08:00",
-        "rating_time_change_days": 30,
-        "rating_time_change_value": -1,
-        "total_game_count": 1141,
-        "total_win_count": 536,
-        "total_loss_count": 572,
-        "total_draw_count": 33,
-        "avg_opponent_rating": 784.323,
-        "highest_opponent_rating": 2347,
-        "best_win_opponent": {
-          "country": {
-            "id": 112,
-            "code": "PL",
-            "name": "Poland",
-            "iso3": "POL",
-            "currency_code": "PLN",
-            "phone_code": 48
-          },
-          "id": 24528170,
-          "create_date": "2015-10-11T08:59:14-07:00",
-          "username": "DawidCzerw",
-          "first_name": "Dawid",
-          "last_name": "Czerw",
-          "country_id": 112,
-          "location": "Lublin",
-          "last_login_date": "2025-04-02T02:16:25-07:00",
-          "points": 2583,
-          "is_enabled": true,
-          "chess_title": "IM",
-          "membership_level": 90
-        },
-        "best_win_opponent_id": 24528170
-      },
-      "gameCount": 1141,
+      "gameCount": 334,
       "lastPlayed": false,
-      "lastDate": "2025-03-26T15:31:27-07:00"
+      "lastDate": "2025-04-03T12:53:04-07:00"
     },
     {
       "key": "lightning",
@@ -90,7 +90,7 @@
         "highest_rating": 808,
         "highest_rating_date": "2021-05-20T03:25:01-07:00",
         "rating_time_change_days": 30,
-        "rating_time_change_value": -47,
+        "rating_time_change_value": -39,
         "total_game_count": 1653,
         "total_win_count": 794,
         "total_loss_count": 779,
@@ -171,9 +171,24 @@
       "gameCount": 3,
       "lastPlayed": false,
       "lastDate": "2025-02-10T13:38:48-08:00"
+    },
+    {
+      "key": "tactics_challenge",
+      "stats": {
+        "highest_score": 20,
+        "highest_type_code": "five_minutes",
+        "avg_score": 20,
+        "attempt_count": 1,
+        "puzzle_attempts_total": 23,
+        "modes": {
+          "five_minutes": 20
+        }
+      },
+      "gameCount": 1,
+      "lastPlayed": false
     }
   ],
-  "lastType": "liveStandard",
+  "lastType": "liveBullet",
   "versus": {
     "total": 0
   },
