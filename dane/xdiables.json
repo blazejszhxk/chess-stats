@@ -7,7 +7,7 @@
         "highest_rating": 901,
         "highest_rating_date": "2020-12-18T00:50:12-08:00",
         "rating_time_change_days": 30,
-        "rating_time_change_value": 139,
+        "rating_time_change_value": 239,
         "total_game_count": 433,
         "total_win_count": 152,
         "total_loss_count": 241,
@@ -48,7 +48,7 @@
         "highest_rating": 1155,
         "highest_rating_date": 1742221017,
         "rating_time_change_days": 30,
-        "rating_time_change_value": 289,
+        "rating_time_change_value": 142,
         "highest_rating_info": {
           "timestamp": 1742221017,
           "rating": 1155

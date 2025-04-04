@@ -3,30 +3,30 @@
     {
       "key": "tactics",
       "stats": {
-        "rating": 2095,
-        "highest_rating": 2190,
-        "highest_rating_date": 1743696111,
+        "rating": 2207,
+        "highest_rating": 2207,
+        "highest_rating_date": 1743755676,
         "rating_time_change_days": 30,
-        "rating_time_change_value": 499,
+        "rating_time_change_value": 667,
         "highest_rating_info": {
-          "timestamp": 1743696111,
-          "rating": 2190
+          "timestamp": 1743755676,
+          "rating": 2207
         },
         "lowest_rating_info": {
           "timestamp": 1739898032,
           "rating": 400
         },
-        "total_seconds": 140054,
+        "total_seconds": 151825,
         "lowest_rating": 400,
         "lowest_rating_date": 1739898032,
-        "attempt_count": 1606,
-        "passed_count": 1026,
-        "failed_count": 580,
-        "last_date": "2025-04-03T14:58:22-07:00"
+        "attempt_count": 1677,
+        "passed_count": 1075,
+        "failed_count": 602,
+        "last_date": "2025-04-04T01:34:36-07:00"
       },
-      "gameCount": 1606,
-      "lastPlayed": true,
-      "lastDate": "2025-04-03T14:58:22-07:00"
+      "gameCount": 1677,
+      "lastPlayed": false,
+      "lastDate": "2025-04-04T01:34:36-07:00"
     },
     {
       "key": "rapid",
@@ -36,15 +36,15 @@
         "highest_rating_date": "2025-02-25T13:00:56-08:00",
         "rating_time_change_days": 30,
         "rating_time_change_value": 81,
-        "total_game_count": 108,
-        "total_win_count": 44,
-        "total_loss_count": 59,
+        "total_game_count": 111,
+        "total_win_count": 45,
+        "total_loss_count": 61,
         "total_draw_count": 5,
         "avg_opponent_rating": 0,
         "highest_opponent_rating": 0
       },
-      "gameCount": 108,
-      "lastPlayed": false,
+      "gameCount": 111,
+      "lastPlayed": true,
       "lastDate": "2025-04-03T08:28:02-07:00"
     },
     {
@@ -102,7 +102,7 @@
       "lastDate": null
     }
   ],
-  "lastType": "tactics",
+  "lastType": "liveStandard",
   "versus": {
     "total": 0
   },
