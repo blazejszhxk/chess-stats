@@ -3,14 +3,14 @@
     {
       "key": "lightning",
       "stats": {
-        "rating": 718,
+        "rating": 710,
         "highest_rating": 715,
         "highest_rating_date": "2021-05-04T18:53:01-07:00",
         "rating_time_change_days": 30,
-        "rating_time_change_value": 128,
-        "total_game_count": 652,
+        "rating_time_change_value": 120,
+        "total_game_count": 653,
         "total_win_count": 346,
-        "total_loss_count": 257,
+        "total_loss_count": 258,
         "total_draw_count": 49,
         "avg_opponent_rating": 573.376,
         "highest_opponent_rating": 613,
@@ -34,9 +34,9 @@
         },
         "best_win_opponent_id": 138306982
       },
-      "gameCount": 652,
+      "gameCount": 653,
       "lastPlayed": true,
-      "lastDate": "2025-04-03T19:36:51-07:00"
+      "lastDate": "2025-04-05T14:16:18-07:00"
     },
     {
       "key": "rapid",
