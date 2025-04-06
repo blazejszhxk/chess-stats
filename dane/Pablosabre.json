@@ -1,6 +1,47 @@
 {
   "stats": [
     {
+      "key": "rapid",
+      "stats": {
+        "rating": 890,
+        "highest_rating": 1020,
+        "highest_rating_date": "2021-02-23T13:25:52-08:00",
+        "rating_time_change_days": 30,
+        "rating_time_change_value": 225,
+        "total_game_count": 346,
+        "total_win_count": 173,
+        "total_loss_count": 150,
+        "total_draw_count": 23,
+        "avg_opponent_rating": 916.445,
+        "highest_opponent_rating": 1075,
+        "best_win_opponent": {
+          "country": {
+            "id": 101,
+            "code": "NL",
+            "name": "Netherlands",
+            "iso3": "NLD",
+            "currency_code": "EUR",
+            "phone_code": 31
+          },
+          "id": 96430728,
+          "create_date": "2020-11-12T09:03:37-08:00",
+          "username": "schaaknurd",
+          "first_name": "Max",
+          "last_name": "van Koppen",
+          "country_id": 101,
+          "location": "Haags Montessori Lyceum",
+          "last_login_date": "2025-04-06T07:43:09-07:00",
+          "points": 2,
+          "is_enabled": true,
+          "membership_level": 10
+        },
+        "best_win_opponent_id": 96430728
+      },
+      "gameCount": 346,
+      "lastPlayed": true,
+      "lastDate": "2025-04-06T09:58:46-07:00"
+    },
+    {
       "key": "lightning",
       "stats": {
         "rating": 585,
@@ -35,7 +76,7 @@
         "best_win_opponent_id": 94327284
       },
       "gameCount": 1654,
-      "lastPlayed": true,
+      "lastPlayed": false,
       "lastDate": "2025-04-05T12:58:57-07:00"
     },
     {
@@ -68,7 +109,7 @@
           "last_name": "Czerw",
           "country_id": 112,
           "location": "Lublin",
-          "last_login_date": "2025-04-05T00:02:23-07:00",
+          "last_login_date": "2025-04-06T01:59:38-07:00",
           "points": 2583,
           "is_enabled": true,
           "chess_title": "IM",
@@ -79,47 +120,6 @@
       "gameCount": 1146,
       "lastPlayed": false,
       "lastDate": "2025-04-03T13:45:23-07:00"
-    },
-    {
-      "key": "rapid",
-      "stats": {
-        "rating": 866,
-        "highest_rating": 1020,
-        "highest_rating_date": "2021-02-23T13:25:52-08:00",
-        "rating_time_change_days": 30,
-        "rating_time_change_value": 201,
-        "total_game_count": 334,
-        "total_win_count": 166,
-        "total_loss_count": 146,
-        "total_draw_count": 22,
-        "avg_opponent_rating": 916.445,
-        "highest_opponent_rating": 1075,
-        "best_win_opponent": {
-          "country": {
-            "id": 101,
-            "code": "NL",
-            "name": "Netherlands",
-            "iso3": "NLD",
-            "currency_code": "EUR",
-            "phone_code": 31
-          },
-          "id": 96430728,
-          "create_date": "2020-11-12T09:03:37-08:00",
-          "username": "schaaknurd",
-          "first_name": "Max",
-          "last_name": "van Koppen",
-          "country_id": 101,
-          "location": "Haags Montessori Lyceum",
-          "last_login_date": "2025-03-23T06:15:35-07:00",
-          "points": 2,
-          "is_enabled": true,
-          "membership_level": 10
-        },
-        "best_win_opponent_id": 96430728
-      },
-      "gameCount": 334,
-      "lastPlayed": false,
-      "lastDate": "2025-04-03T12:53:04-07:00"
     },
     {
       "key": "tactics",
@@ -188,7 +188,7 @@
       "lastPlayed": false
     }
   ],
-  "lastType": "liveBlitz",
+  "lastType": "liveStandard",
   "versus": {
     "total": 0
   },

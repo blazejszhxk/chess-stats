@@ -47,8 +47,8 @@
         "rating": 1122,
         "highest_rating": 1152,
         "highest_rating_date": 1741725402,
-        "rating_time_change_days": 30,
-        "rating_time_change_value": -25,
+        "rating_time_change_days": 90,
+        "rating_time_change_value": 341,
         "highest_rating_info": {
           "timestamp": 1741725402,
           "rating": 1152
