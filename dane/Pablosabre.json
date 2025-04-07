@@ -3,15 +3,15 @@
     {
       "key": "rapid",
       "stats": {
-        "rating": 890,
+        "rating": 921,
         "highest_rating": 1020,
         "highest_rating_date": "2021-02-23T13:25:52-08:00",
         "rating_time_change_days": 30,
-        "rating_time_change_value": 225,
-        "total_game_count": 346,
-        "total_win_count": 173,
-        "total_loss_count": 150,
-        "total_draw_count": 23,
+        "rating_time_change_value": 256,
+        "total_game_count": 364,
+        "total_win_count": 183,
+        "total_loss_count": 156,
+        "total_draw_count": 25,
         "avg_opponent_rating": 916.445,
         "highest_opponent_rating": 1075,
         "best_win_opponent": {
@@ -37,9 +37,9 @@
         },
         "best_win_opponent_id": 96430728
       },
-      "gameCount": 346,
+      "gameCount": 364,
       "lastPlayed": true,
-      "lastDate": "2025-04-06T09:58:46-07:00"
+      "lastDate": "2025-04-07T10:14:44-07:00"
     },
     {
       "key": "lightning",
@@ -175,16 +175,17 @@
     {
       "key": "tactics_challenge",
       "stats": {
-        "highest_score": 20,
-        "highest_type_code": "five_minutes",
-        "avg_score": 20,
-        "attempt_count": 1,
-        "puzzle_attempts_total": 23,
+        "highest_score": 14,
+        "highest_type_code": "three_minutes",
+        "avg_score": 17,
+        "attempt_count": 2,
+        "puzzle_attempts_total": 40,
         "modes": {
-          "five_minutes": 20
+          "five_minutes": 20,
+          "three_minutes": 14
         }
       },
-      "gameCount": 1,
+      "gameCount": 2,
       "lastPlayed": false
     }
   ],

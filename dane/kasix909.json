@@ -3,15 +3,15 @@
     {
       "key": "rapid",
       "stats": {
-        "rating": 609,
+        "rating": 633,
         "highest_rating": 726,
         "highest_rating_date": "2021-04-16T12:34:02-07:00",
         "rating_time_change_days": 30,
-        "rating_time_change_value": 50,
-        "total_game_count": 453,
-        "total_win_count": 210,
+        "rating_time_change_value": 82,
+        "total_game_count": 457,
+        "total_win_count": 213,
         "total_loss_count": 215,
-        "total_draw_count": 28,
+        "total_draw_count": 29,
         "avg_opponent_rating": 656.473,
         "highest_opponent_rating": 1219,
         "best_win_opponent": {
@@ -34,18 +34,18 @@
         },
         "best_win_opponent_id": 80701590
       },
-      "gameCount": 453,
+      "gameCount": 457,
       "lastPlayed": true,
-      "lastDate": "2025-04-05T16:26:32-07:00"
+      "lastDate": "2025-04-07T07:00:10-07:00"
     },
     {
       "key": "tactics",
       "stats": {
-        "rating": 1448,
+        "rating": 1456,
         "highest_rating": 1559,
         "highest_rating_date": 1740089883,
         "rating_time_change_days": 30,
-        "rating_time_change_value": 123,
+        "rating_time_change_value": 137,
         "highest_rating_info": {
           "timestamp": 1740089883,
           "rating": 1559
@@ -54,17 +54,17 @@
           "timestamp": 1618868433,
           "rating": 387
         },
-        "total_seconds": 46434,
+        "total_seconds": 50954,
         "lowest_rating": 387,
         "lowest_rating_date": 1618868433,
-        "attempt_count": 2180,
-        "passed_count": 1175,
-        "failed_count": 1005,
-        "last_date": "2025-03-31T02:25:44-07:00"
+        "attempt_count": 2208,
+        "passed_count": 1188,
+        "failed_count": 1020,
+        "last_date": "2025-04-07T06:20:05-07:00"
       },
-      "gameCount": 2180,
+      "gameCount": 2208,
       "lastPlayed": false,
-      "lastDate": "2025-03-31T02:25:44-07:00"
+      "lastDate": "2025-04-07T06:20:05-07:00"
     },
     {
       "key": "bullet",
