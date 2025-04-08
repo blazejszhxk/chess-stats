@@ -1,6 +1,23 @@
 {
   "stats": [
     {
+      "key": "tactics_challenge",
+      "stats": {
+        "highest_score": 20,
+        "highest_type_code": "three_minutes",
+        "avg_score": 11.2,
+        "attempt_count": 33,
+        "puzzle_attempts_total": 403,
+        "modes": {
+          "five_minutes": 16,
+          "three_minutes": 20,
+          "three_strikes": 21
+        }
+      },
+      "gameCount": 33,
+      "lastPlayed": true
+    },
+    {
       "key": "rapid",
       "stats": {
         "rating": 841,
@@ -36,7 +53,7 @@
         "best_win_opponent_id": 104644052
       },
       "gameCount": 480,
-      "lastPlayed": true,
+      "lastPlayed": false,
       "lastDate": "2025-04-03T14:04:41-07:00"
     },
     {
@@ -97,7 +114,7 @@
           "last_name": "Cintron",
           "country_id": 2,
           "location": "",
-          "last_login_date": "2025-04-05T08:44:25-07:00",
+          "last_login_date": "2025-04-08T07:24:55-07:00",
           "points": 0,
           "is_enabled": true,
           "membership_level": 50
@@ -107,21 +124,6 @@
       "gameCount": 34,
       "lastPlayed": false,
       "lastDate": "2021-04-16T20:42:27-07:00"
-    },
-    {
-      "key": "tactics_challenge",
-      "stats": {
-        "highest_score": 18,
-        "highest_type_code": "three_strikes",
-        "avg_score": 10.6,
-        "attempt_count": 29,
-        "puzzle_attempts_total": 0,
-        "modes": {
-          "three_strikes": 18
-        }
-      },
-      "gameCount": 29,
-      "lastPlayed": false
     },
     {
       "key": "bullet",
@@ -162,7 +164,7 @@
       "lastDate": "2021-04-12T13:29:27-07:00"
     }
   ],
-  "lastType": "liveStandard",
+  "lastType": "tactics_challenge",
   "versus": {
     "total": 0
   },

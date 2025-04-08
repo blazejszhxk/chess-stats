@@ -1,6 +1,44 @@
 {
   "stats": [
     {
+      "key": "rapid",
+      "stats": {
+        "rating": 587,
+        "highest_rating": 693,
+        "highest_rating_date": "2023-01-10T04:12:44-08:00",
+        "rating_time_change_days": 30,
+        "rating_time_change_value": 72,
+        "total_game_count": 633,
+        "total_win_count": 296,
+        "total_loss_count": 281,
+        "total_draw_count": 56,
+        "avg_opponent_rating": 593.284,
+        "highest_opponent_rating": 727,
+        "best_win_opponent": {
+          "country": {
+            "id": 112,
+            "code": "PL",
+            "name": "Poland",
+            "iso3": "POL",
+            "currency_code": "PLN",
+            "phone_code": 48
+          },
+          "id": 105586742,
+          "create_date": "2020-12-19T11:06:40-08:00",
+          "username": "xLukiSteve",
+          "country_id": 112,
+          "last_login_date": "2025-04-08T14:53:36-07:00",
+          "points": 0,
+          "is_enabled": true,
+          "membership_level": 10
+        },
+        "best_win_opponent_id": 105586742
+      },
+      "gameCount": 633,
+      "lastPlayed": true,
+      "lastDate": "2025-04-08T14:52:48-07:00"
+    },
+    {
       "key": "tactics",
       "stats": {
         "rating": 1385,
@@ -25,46 +63,8 @@
         "last_date": "2025-04-07T14:57:39-07:00"
       },
       "gameCount": 1523,
-      "lastPlayed": true,
-      "lastDate": "2025-04-07T14:57:39-07:00"
-    },
-    {
-      "key": "rapid",
-      "stats": {
-        "rating": 550,
-        "highest_rating": 693,
-        "highest_rating_date": "2023-01-10T04:12:44-08:00",
-        "rating_time_change_days": 30,
-        "rating_time_change_value": 35,
-        "total_game_count": 608,
-        "total_win_count": 282,
-        "total_loss_count": 271,
-        "total_draw_count": 55,
-        "avg_opponent_rating": 593.284,
-        "highest_opponent_rating": 727,
-        "best_win_opponent": {
-          "country": {
-            "id": 112,
-            "code": "PL",
-            "name": "Poland",
-            "iso3": "POL",
-            "currency_code": "PLN",
-            "phone_code": 48
-          },
-          "id": 105586742,
-          "create_date": "2020-12-19T11:06:40-08:00",
-          "username": "xLukiSteve",
-          "country_id": 112,
-          "last_login_date": "2025-04-01T16:55:58-07:00",
-          "points": 0,
-          "is_enabled": true,
-          "membership_level": 10
-        },
-        "best_win_opponent_id": 105586742
-      },
-      "gameCount": 608,
       "lastPlayed": false,
-      "lastDate": "2025-04-07T14:19:56-07:00"
+      "lastDate": "2025-04-07T14:57:39-07:00"
     },
     {
       "key": "lightning",
@@ -108,7 +108,7 @@
       "lastDate": "2025-02-18T02:55:42-08:00"
     }
   ],
-  "lastType": "tactics",
+  "lastType": "liveStandard",
   "versus": {
     "total": 0
   },
