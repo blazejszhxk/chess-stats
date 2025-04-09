@@ -3,15 +3,15 @@
     {
       "key": "rapid",
       "stats": {
-        "rating": 526,
+        "rating": 518,
         "highest_rating": 552,
         "highest_rating_date": "2023-02-16T12:59:31-08:00",
         "rating_time_change_days": 30,
-        "rating_time_change_value": 79,
-        "total_game_count": 513,
-        "total_win_count": 242,
-        "total_loss_count": 248,
-        "total_draw_count": 23,
+        "rating_time_change_value": 63,
+        "total_game_count": 522,
+        "total_win_count": 245,
+        "total_loss_count": 252,
+        "total_draw_count": 25,
         "avg_opponent_rating": 634.029,
         "highest_opponent_rating": 1952,
         "best_win_opponent": {
@@ -34,18 +34,18 @@
         },
         "best_win_opponent_id": 137486306
       },
-      "gameCount": 513,
+      "gameCount": 522,
       "lastPlayed": true,
-      "lastDate": "2025-04-08T14:15:17-07:00"
+      "lastDate": "2025-04-09T09:37:19-07:00"
     },
     {
       "key": "tactics",
       "stats": {
-        "rating": 1248,
+        "rating": 1351,
         "highest_rating": 1485,
         "highest_rating_date": 1744090820,
         "rating_time_change_days": 30,
-        "rating_time_change_value": -18,
+        "rating_time_change_value": 85,
         "highest_rating_info": {
           "timestamp": 1744090820,
           "rating": 1485
@@ -54,17 +54,17 @@
           "timestamp": 1705355471,
           "rating": 358
         },
-        "total_seconds": 14461,
+        "total_seconds": 17147,
         "lowest_rating": 358,
         "lowest_rating_date": 1705355471,
-        "attempt_count": 912,
-        "passed_count": 500,
-        "failed_count": 412,
-        "last_date": "2025-04-08T09:55:22-07:00"
+        "attempt_count": 1005,
+        "passed_count": 554,
+        "failed_count": 451,
+        "last_date": "2025-04-09T08:33:34-07:00"
       },
-      "gameCount": 912,
+      "gameCount": 1005,
       "lastPlayed": false,
-      "lastDate": "2025-04-08T09:55:22-07:00"
+      "lastDate": "2025-04-09T08:33:34-07:00"
     },
     {
       "key": "lightning",
